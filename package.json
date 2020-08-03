@@ -3,12 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "babel-plugin-emotion": "^10.0.33",
+    "i18next": "^19.6.3",
+    "i18next-xhr-backend": "^3.2.2",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-collapse": "^5.0.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-i18next": "^11.7.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-slick": "^0.27.1",
+    "slick": "^1.12.2",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",
