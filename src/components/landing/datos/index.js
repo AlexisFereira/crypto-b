@@ -94,7 +94,7 @@ const Cifra = ({text,number,big,flex="1 0 22%"})=>{
         </CifraCont>
     )
 };
-function Datos() {
+function Datos({noDescrtiption}) {
     const { t, i18n } = useTranslation();
     return (
         <Container className={"wc"}>
@@ -107,9 +107,10 @@ function Datos() {
                     <Cifra text={t('total_income')} number={'3000 ETH'}  />
                 </Flex>
             </div>
+            {!noDescrtiption &&
             <div className="desc cc text-center">
                 {t('ON_CRYPTOBILLION')}
-            </div>
+            </div>}
         </Container>
     )
 }
