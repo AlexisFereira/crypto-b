@@ -10,7 +10,8 @@ const Container = styled.div`
     position:relative;
     
     .historia{
-        font-size:13px;
+        font-size:12px;
+        font-weight:300;
     }
     
     .color-circle{
