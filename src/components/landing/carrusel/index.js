@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import Slider from "react-slick";
 import CardDatos from "./cardDatos";
 import {useTranslation} from "react-i18next";
+import {Icon} from "../bannerInicio/helpers";
 
 
 const Container = styled.div`
@@ -13,6 +14,20 @@ const Container = styled.div`
     
     .header-title{
         margin-bottom:50px;
+    }
+    
+    .arrow{
+        position:absolute;
+        top:50%;
+        left:-20px;
+        transform:translateY(-50%);
+        z-index:999;
+        cursor:pointer;
+    }
+    
+    .arrow-r{
+        left:auto;
+        right:-20px;
     }
 
     
@@ -37,6 +52,44 @@ const Container = styled.div`
     }
 `;
 
+function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={"arrow arrow-r"}
+            style={{ ...style, display: "block" }}
+            onClick={onClick}
+        >
+            <Icon
+                number={"3"}
+                nIcons={"8"}
+                w={"40"}
+                h={"40"}
+                url={"img//landing/icons_02.png"}
+            />
+        </div>
+    );
+}
+function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={"arrow arrow-l"}
+            style={{ ...style, display: "block"}}
+            onClick={onClick}
+        >
+            <Icon
+                number={"2"}
+                nIcons={"8"}
+                w={"40"}
+                h={"40"}
+                url={"img//landing/icons_02.png"}
+            />
+        </div>
+    );
+}
+
+
 const settings = {
     centerMode: true,
     // variableWidth:true,
@@ -44,8 +97,9 @@ const settings = {
     infinite: true,
     slidesToShow: 3,
     speed: 500,
-    arrows:false,
     dots:false,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
         {
             breakpoint: 1024,

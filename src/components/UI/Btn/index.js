@@ -9,6 +9,7 @@ const Btnt = styled.div`
     flex: ${props=>  props.theme.flex};
     position:relative;
     height:${props=>  props.theme.height}px;
+    max-width:${props=>  props.theme.mw};
     
     
     button{   
@@ -21,6 +22,7 @@ const Btnt = styled.div`
         min-height:40px;
         border-radius:    ${props=>  props.theme.bRadius};
         cursor:           ${props=>  props.theme.cursor};
+        text-transform: uppercase;
         
         &:hover{
             background:   ${props=>  props.theme.hoverColor};

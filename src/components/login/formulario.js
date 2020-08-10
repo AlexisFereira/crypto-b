@@ -29,15 +29,14 @@ function Formulario() {
                 {t('login')}
             </div>
 
-            <form className={"text-center"}>
+            <form className={"text-center p-3"}>
                <div className={"wc mb-5"}>
                    <small className={"cw mb-2 d-block"}><b>{t('Automatic_login')}</b></small>
-                   <Btn mw={"160px"}  type={"line"} gold >{t('Login_automatically')}</Btn>
+                   <Btn mw={"250px"} className={"mx-auto"}  type={"line"} gold >{t('Login_automatically')}</Btn>
                </div>
                 <Field placeholder={t('Enter_ETH')} className={"mb-3"} />
-                <Btn mw={"160px"} >{t('Entern_manually')}</Btn>
+                <Btn mw={"250px"} className={"mx-auto"}>{t('Entern_manually')}</Btn>
             </form>
-
         </Container>
     )
 }

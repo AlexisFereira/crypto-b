@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import Flex from "./../../UI/Flex";
 import {Collapse} from "react-collapse";
+import {Icon} from "../bannerInicio/helpers";
 
 const Container = styled.div`
     position:relative;
@@ -44,7 +45,13 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
         <Container className={"wc"} onClick={()=> handleTab(id)}>
             <Flex className={"wc "} alg={"flex-start"}>
                 <Flex flex={"0 0 40px"}>
-                    <img src="/img/question.png" alt="" className={"imgr"}/>
+                    <Icon
+                        number={"4"}
+                        nIcons={"8"}
+                        w={"40"}
+                        h={"40"}
+                        url={"img//landing/icons_02.png"}
+                    />
                 </Flex>
                 <Flex flex={"1 0 70%"} jc={"flex-start"} className={"pl-3"}>
                     <p className={"question cw mb-0"}>{text}</p>
@@ -57,7 +64,13 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                     </div>
                 </Flex>
                 <Flex flex={"0 0 10px"} className={open ? "active" : ""}>
-                    <img src="/img/landing/caret-lang.png" alt="" className={"imgr"}/>
+                    <Icon
+                        number={"8"}
+                        nIcons={"8"}
+                        w={"40"}
+                        h={"40"}
+                        url={"img//landing/icons_02.png"}
+                    />
                 </Flex>
             </Flex>
         </Container>

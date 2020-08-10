@@ -12,7 +12,7 @@ const MapIcon = styled.div`
     height:${props=> props.height};
 `;
 
-const Icon = ({url, number="1",w,h,nIcons,className})=>{
+export const Icon = ({url, number="1",w,h,nIcons,className})=>{
 
     let positions  = 100 / (nIcons - 1);
     let arrP = [];
