@@ -36,7 +36,7 @@ function BannerInicio() {
         <Container direction={"column"} className={"col-12 col-xl-10 mx-auto"}>
             <Flex flex={"1 0 100%"} direction={"column"}>
                 <Flex className={"wc d-lg-none"} flex={"1 0 35vh"}> </Flex>
-                <Flex className="text wc px-3 pb-4" direction={"column"} alg={"flex-start"} flex={"1 0 50%"}>
+                <Flex className="text wc px-3 pb-4 pl-xl-0" direction={"column"} alg={"flex-start"} flex={"1 0 50%"}>
                     <h1 className={"cw title-main"}>
                         <b>{t('earn_money')}</b> <br/>
                         {t('as_you_can')}

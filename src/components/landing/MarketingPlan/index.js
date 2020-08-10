@@ -17,27 +17,34 @@ const Container = styled.div`
     }
     
     .cont-cards{
-        max-width:900px;
+        max-width:650px;
         margin:auto;
+        
+        .cont-card{
+            max-width:270px;
+            margin-bottom:20px;
+        }
     }
 
     
     .text-vertical{
         text-transform:uppercase;
         p {
-        position:absolute;
         letter-spacing:8px;
+        margin-bottom:20px;
         }  
         span{
             color:${colors.cian};
         }
     }
     
-    @media all and (min-width:768px){
+    @media all and (min-width:600px){
         .text-vertical{
             flex:0 0 60px;
             p{
-                transform:rotate(-90deg)
+                position:absolute;
+                transform:rotate(-90deg);
+                margin-bottom:0;
             }
         }
         
@@ -53,17 +60,17 @@ function MarketingPlan() {
                 {t('MARKETING_PLAN')}
             </div>
             <Flex className={"wc cont-cards mb-5"} alg={"stretch"}>
-                <Flex flex={"1 0 40%"} >
+                <Flex flex={"1 0 40%"}  className={"cont-card"}>
                     <BlueCard version={"X3"}>
-                        <img src="" alt=""/>
+                        <img src="img/landing/img_01.png" alt="" className={"imgr"}/>
                     </BlueCard>
                 </Flex>
                 <Flex className={"text-vertical"}>
-                    <p className={"mb-0"}><span>crypto</span>billions</p>
+                    <p><span>crypto</span>billions</p>
                 </Flex>
-                <Flex flex={"1 0 40%"} >
+                <Flex flex={"1 0 40%"} className={"cont-card"} >
                     <BlueCard version={"X6"}>
-                        <img src="" alt=""/>
+                        <img src="img/landing/img_02.png" alt="" className={"imgr"}/>
                     </BlueCard>
                 </Flex>
             </Flex>
