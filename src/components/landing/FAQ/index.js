@@ -26,7 +26,7 @@ function Faq() {
 
 
     return (
-        <Container>
+        <Container className={"px-3"}>
             <div className="header-title mb-5">
                 FAQ
             </div>

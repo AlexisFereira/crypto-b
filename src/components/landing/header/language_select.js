@@ -16,14 +16,20 @@ const Container = styled.div`
         border-radius:22px;
         background:rgba(0,0,0,.5);
         position:relative;
+        padding:3pz;
         
         .flag{
             flex:0 0 30px;
-            img {
-            flex:0 0 30px;
-                width:100%:
-                height:auto:
+
+            img{
+                display:block;
+                width:70%;
+                height:auto;
             }
+        }
+        
+        .caret{
+            flex:0 0 12px;
         }
     }
     .menu-flags{
@@ -50,13 +56,12 @@ function Language_select() {
 
     return (
         <Container>
-
-            <Flex className="changeF " onClick={()=> setOpen({...menuL,open:!menuL.open})}>
-                <div className="flag">
-                    <img src={`img/flags/${i18n.language}.png`} alt="" width={"20px"} height={"auto"}/>
-                </div>
-                <div className="caret">
-                    <img src="" alt=""/>
+            <Flex className="changeF" onClick={()=> setOpen({...menuL,open:!menuL.open})}>
+                <Flex className="flag " direction={"column"}>
+                    <img src={`img/flags/${i18n.language}.png`} alt="" />
+                </Flex>
+                <div className="caret ">
+                    <img src="img/landing/caret-lang.png" alt=""/>
                 </div>
                 <div className="menu-flags bgDark br6" >
                    <UnmountClosed isOpened={menuL.open === true} className={"p-1"}>

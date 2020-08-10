@@ -30,6 +30,13 @@ const Container = styled.div`
             text-decoration:underline;
         }
     }
+    
+    @media all and ( max-width:480px){
+         .question{
+            font-size:15px;
+         }
+    }
+    
 `;
 
 function ItemCollapse({open,text,desc,handleTab,id}) {
@@ -49,8 +56,8 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                         </Collapse>
                     </div>
                 </Flex>
-                <Flex flex={"0 0 40px"} className={open ? "active" : ""}>
-                    <img src="/img/caret.png" alt="" className={"imgr"}/>
+                <Flex flex={"0 0 10px"} className={open ? "active" : ""}>
+                    <img src="/img/landing/caret-lang.png" alt="" className={"imgr"}/>
                 </Flex>
             </Flex>
         </Container>

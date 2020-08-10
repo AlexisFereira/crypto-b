@@ -27,6 +27,14 @@ const BtnFlasgS = styled.button`
     }
 `;
 
+const Burger = styled.div`
+    position:fixed;
+    top:10px;
+    right:10px;
+    width:50px;
+    height:50px;
+`;
+
 export const BtnFlag = ({flag,value,action,name,activo}) => {
     if(activo === value){
         return "";
@@ -38,5 +46,15 @@ export const BtnFlag = ({flag,value,action,name,activo}) => {
                <p className={"mb-0 text-left"}>{name}</p>
            </Flex>
         </BtnFlasgS>
+    )
+};
+
+export const Btnburguer = ({action})=>{
+    return(
+        <Burger>
+            <button onClick={action}>
+
+            </button>
+        </Burger>
     )
 };

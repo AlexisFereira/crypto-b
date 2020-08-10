@@ -19,6 +19,21 @@ const Container = styled.div`
         font-size:14px;
         font-weight:400;
     }
+    
+    .cont-scroll{
+    padding-top:10px;
+    margin-top:-10px;
+        overflow-x: auto ;
+        
+        .scroll{
+            min-width:600px;
+            flex-flow:row nowrap
+        }
+    }
+    
+    @media all and (max-width:600px){
+        font-size: .8em;
+    }
 `;
 
 const CifraCont = styled.div`
@@ -71,15 +86,20 @@ const CifraCont = styled.div`
     .amount{
         font-size:1.5em;
     }
+    
+    
 `;
 
 const Cifra = ({text,number,big,flex="1 0 22%"})=>{
+
+
+
     return(
         <CifraCont
             opacity={big ? 1 : ".5"}
             flex={flex}
             bg={big ? colors.cian : "white" }
-            fontS={big ? "2em" : "1em"}
+            fontS={big ? "1.8em" : "1em"}
         >
             {big ?
                 <Flex className="pointB" direction={"column"}>
@@ -99,7 +119,7 @@ function Datos({noDescrtiption}) {
     return (
         <Container className={"wc"}>
             <div className="line line-gradien-h"> </div>
-            <div className="col-12 col-xl-10 mx-auto">
+            <div className="col-12 col-xl-10 mx-auto cont-scroll">
                 <Flex className={"scroll"} alg={"flex-start"}>
                     <Cifra text={t('total_participants')} number={'100.000 '}  />
                     <Cifra text={t('new_participants')} number={'30.000'} />
@@ -108,7 +128,7 @@ function Datos({noDescrtiption}) {
                 </Flex>
             </div>
             {!noDescrtiption &&
-            <div className="desc cc text-center">
+            <div className="desc cc text-center px-3">
                 {t('ON_CRYPTOBILLION')}
             </div>}
         </Container>

@@ -23,7 +23,7 @@ function Crowfunding() {
 
     return (
         <Container className={"wc"}>
-            <div className="col-12 col-xl-10 mx-auto px-0">
+            <div className="col-12 col-xl-10 mx-auto px-xl-0">
                 <div className={"header-title wc text-center mb-5"}>
                     {t('CROWDFUNDING')}
                 </div>

@@ -101,5 +101,11 @@ button,select,input,textarea{
   text-transform: uppercase;
 }
 
+@media all and (max-width: 440px) {
+  .header-title{
+    font-size: 24px;
+  }
+}
+
 
 

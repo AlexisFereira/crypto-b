@@ -48,7 +48,7 @@ function MarketingPlan() {
     const { t, i18n } = useTranslation();
 
     return (
-        <Container className={"wc text-center "}>
+        <Container className={"wc text-center px-3"}>
             <div className="header-title mx-auto mb-5">
                 {t('MARKETING_PLAN')}
             </div>

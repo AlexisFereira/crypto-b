@@ -25,6 +25,10 @@ const Btnt = styled.div`
         &:hover{
             background:   ${props=>  props.theme.hoverColor};
         }
+        
+        @media all and (max-width: 380px){
+            font-size:  13px;
+        }
     }
     
     

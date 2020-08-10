@@ -12,6 +12,11 @@ import Footer from "./footer";
 
 const Container = styled.div`
     position:relative;
+    
+    background-image: url(img/landing/line.png),  url(img/landing/textura_04.png), url(img/landing/textura_02.png);
+    background-position: left bottom, 90% 90%, 5% 3%;
+    background-size: 50% auto, 20% auto, 10% auto;
+    background-repeat:no-repeat;
 `;
 
 function Landing() {
