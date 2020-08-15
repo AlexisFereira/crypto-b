@@ -82,11 +82,11 @@ function Login() {
                 <Flex flex={"1 0 200px"} className={" gold-movil wc d-md-none"}>
                     <img src="img/gold-icon.png" alt="" className={"position-relative z900"}/>
                     <div className="telegramBtn ml-3"> </div>
-                </Flex>
+      kk          </Flex>
                 <Flex className={"wc d-md-none"} flex={"0 0 40px"}>
                     <Redes/>
                 </Flex>
-                <Flex className="pie wc pt-3 pb-3 pb-md-0
+                <Flex className="pie wc pt-3 pb-3 pb-md-0" flex={"0 0 50px"}>
                     <Flex flex={"1 0 100px"} >
                         <div className={"wc text-center"}><small className={"d-block"}><b className={"wc cw"}>Cryptobillions smart-contract:</b></small></div>
                         <small className={"d-block"}><b className={"wc cb"}>sijd3idncopdj1236543ddvc333csp33kmcs</b></small>
