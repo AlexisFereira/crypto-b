@@ -6,7 +6,7 @@ const Container = styled.div`
     position:relative;
     padding:50px 15px 100px;
     width:100%;
-    background-image:url(img/landing/bg01.png);
+    background-image:url(img/landing/moneda-bg.png);
     background-repeat:no-repeat;
     background-size:140% auto;
     background-position: center 70%;
@@ -16,25 +16,25 @@ const Container = styled.div`
         max-width:650px;
         margin:auto;
         text-align:center;
-        margin-bottom:100px;
+        margin-bottom:50px;
         p{
             font-size:15px
         }
     }
     
     .coin{
-        max-width:600px;
+        max-width:800px;
         margin:auto;
     }
 `;
 
 function BigCoin() {
-    const { t, i18n } = useTranslation();
+    const { t} = useTranslation();
 
     return (
         <Container className={"px-3 px-xl-0"}>
             <div className="text">
-                <div className="header-title">
+                <div className="header-title mb-3">
                     {t('the_best_smart')}
                 </div>
                 <p className={"cw"}>

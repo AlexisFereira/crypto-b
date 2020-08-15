@@ -56,7 +56,7 @@ const Btnt = styled.div`
 
 
 
-function Btn({type="none",text,children, onClick,disabled,loading,bRadius = "6px",flex,className,mw,size="md",gold }) {
+function Btn({type,text,children, onClick,disabled,loading,bRadius = "6px",flex,className,mw,size="md",gold }) {
 
     disabled = loading || disabled;
 

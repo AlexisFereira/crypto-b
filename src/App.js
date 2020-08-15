@@ -12,7 +12,7 @@ import './i18n';
 
 function App() {
   return (
-    <div className="main-container bgDark">
+    <div className="main-container bgDark" id={"scroll"}>
       <Router>
         <Switch>
             <Route exact path={"/"} render={()=> <Landing/> } />

@@ -19,13 +19,17 @@ const Container = styled.div`
         font-size:40px;
         color:white;
      }
+     
+     @media all and (max-width:768px){
+        margin-top:0;
+     }
 `;
 
 function Formulario() {
     const { t, i18n } = useTranslation();
     return (
-        <Container className={"p3 p-lg-4 br-8 "}>
-            <div className="title text-center mb-5">
+        <Container className={"p-2 p-lg-4 br-8 "}>
+            <div className="title text-center mb-md-5">
                 {t('login')}
             </div>
 

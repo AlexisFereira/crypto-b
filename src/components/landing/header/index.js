@@ -5,6 +5,7 @@ import Btn from "./../../UI/Btn";
 import { useTranslation } from 'react-i18next';
 import Language_select from "./language_select";
 import {withRouter} from "react-router-dom";
+import {scrollT} from "./menuMovil";
 
 
 const Container = styled.header`
@@ -13,6 +14,11 @@ const Container = styled.header`
     .menu {
         text-transform:uppercase;
         color:white;
+        
+        .link{
+            background:transparent;
+            text-transform:uppercase;
+        }
     }
     
     .main-btns{
@@ -45,7 +51,7 @@ const Container = styled.header`
 `;
 
 function Header(props) {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
 
     return (
@@ -57,10 +63,10 @@ function Header(props) {
                 </Flex>
                 <Flex className={"menu"} jc={"flex-start"}>
                     <Flex flex={"1 0 350px"} className="menu d-none d-lg-flex">
-                        <a className={"cw px-2"} href="">{t('home')}</a>
-                        <a className={"cw px-2"} href="">{t('how_this')}</a>
-                        <a className={"cw px-2"} href="">{t('faqs')}</a>
-                        <a className={"cw px-2"} href="">{t('etherum_fqas')}</a>
+                        <button onClick={()=>scrollT("home")} className={"link cw px-2"} >{t('home')}</button>
+                        <button onClick={()=>scrollT("how")} className={"link cw px-2"} >{t('how_this')}</button>
+                        <button onClick={()=>scrollT("faq")} className={"link cw px-2"} >{t('faqs')}</button>
+                        <button onClick={()=>scrollT("faq2")} className={"link cw px-2"} >{t('etherum_fqas')}</button>
                     </Flex>
                     <Flex className={"main-btns pr-3 "}>
                         <div className={"col-6 px-0 pr-2"}>

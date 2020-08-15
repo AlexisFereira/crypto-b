@@ -25,6 +25,49 @@ const Container = styled.div`
     }
 `;
 
+export const Redes = ()=>{
+    return(
+        <Flex flex={"0 0 150px"} className={"cw redes"}>
+            <a target={"_blank"} href="">
+                <Icon
+                    url={"img/landing/redes.png"}
+                    nIcons={"4"}
+                    w={"20"}
+                    h={"20"}
+                    number={"1"}
+                />
+            </a>
+            <a target={"_blank"} href="">
+                <Icon
+                    url={"img/landing/redes.png"}
+                    nIcons={"4"}
+                    w={"20"}
+                    h={"20"}
+                    number={"2"}
+                />
+            </a>
+            <a target={"_blank"} href="">
+                <Icon
+                    url={"img/landing/redes.png"}
+                    nIcons={"4"}
+                    w={"20"}
+                    h={"20"}
+                    number={"3"}
+                />
+            </a>
+            <a target={"_blank"} href="">
+                <Icon
+                    url={"img/landing/redes.png"}
+                    nIcons={"4"}
+                    w={"20"}
+                    h={"20"}
+                    number={"4"}
+                />
+            </a>
+        </Flex>
+    )
+};
+
 function Footer() {
     const {t, i18n} = useTranslation();
     return (
@@ -36,44 +79,7 @@ function Footer() {
                 <Flex className={"terminos"}>
                     <small className={"mb-0 cw"}><b>{t('rights')}</b></small>
                 </Flex>
-                <Flex flex={"0 0 150px"} className={"cw redes"}>
-                    <a target={"_blank"} href="">
-                        <Icon
-                            url={"img/landing/redes.png"}
-                            nIcons={"4"}
-                            w={"20"}
-                            h={"20"}
-                            number={"1"}
-                        />
-                    </a>
-                    <a target={"_blank"} href="">
-                        <Icon
-                            url={"img/landing/redes.png"}
-                            nIcons={"4"}
-                            w={"20"}
-                            h={"20"}
-                            number={"2"}
-                        />
-                    </a>
-                    <a target={"_blank"} href="">
-                        <Icon
-                            url={"img/landing/redes.png"}
-                            nIcons={"4"}
-                            w={"20"}
-                            h={"20"}
-                            number={"3"}
-                        />
-                    </a>
-                    <a target={"_blank"} href="">
-                        <Icon
-                            url={"img/landing/redes.png"}
-                            nIcons={"4"}
-                            w={"20"}
-                            h={"20"}
-                            number={"4"}
-                        />
-                    </a>
-                </Flex>
+                <Redes/>
             </Flex>
         </Container>
     )
