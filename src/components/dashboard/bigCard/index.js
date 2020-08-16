@@ -24,15 +24,15 @@ function BigCard({version}) {
             <p className={"title"}>Bilions <span className={"str"}>{version}</span></p>
             <DegCard className={"wc px-2 pt-2 px-lg-3 pt-lg-3 pb-lg-2"}>
                 <Flex jc={"flex-start"}>
-                    <Modulo number={"1"}/>
-                    <Modulo number={"2"}/>
-                    <Modulo number={"3"}/>
-                    <Modulo number={"4"}/>
-                    <Modulo number={"5"}/>
-                    <Modulo number={"6"}/>
-                    <Modulo number={"7"}/>
-                    <Modulo number={"8"}/>
-                    <Modulo number={"9"}/>
+                    <Modulo number={"1"} />
+                    <Modulo number={"2"} />
+                    <Modulo number={"3"} />
+                    <Modulo number={"4"} />
+                    <Modulo number={"5"} />
+                    <Modulo number={"6"} />
+                    <Modulo number={"7"} lock canbuy/>
+                    <Modulo number={"8"} lock />
+                    <Modulo number={"9"} lock />
                 </Flex>
             </DegCard>
         </Container>

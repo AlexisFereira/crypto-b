@@ -5,11 +5,27 @@ import Header from "./header";
 import Flex from "./../UI/Flex";
 import {DegCard} from "./helper";
 import BigCard from "./bigCard";
-import {Icon} from "../landing/bannerInicio/helpers";
 import {colors} from "../UI";
+import {Redes} from "../landing/footer";
 
 const Container = styled.div`
     position:relative;
+    background-image:
+        url(img/landing/textura_01.png),
+        url(img/landing/forma_01.png),
+        url(img/landing/textura_02.png);
+     
+     background-position:
+        10% 105%,
+        60% 70%,
+        80% 5%;
+           
+     background-repeat:no-repeat;   
+     background-size:
+        30% auto,
+        40% auto,
+        15% auto;
+     
     
     .historia{
         font-size:12px;
@@ -112,8 +128,8 @@ function Dashboard() {
                 <div className="content col-12 col-sm-10 col-lg-9">
                     <BigCard version={"x3"}/>
                         <Flex jc={"flex-end"} className={"wc cw historia"}>
-                            <div className={"pl-3"}>Usuario en matriz</div>
-                            <div className={"pl-3"}>Número de ciclos</div>
+                            <div className={"pl-3"}>Usuario en matriz <img src="img/dashboard/user.png" className={"align-middle ml-2"} width={"12px"} height={"auto"}  alt=""/></div>
+                            <div className={"pl-3"}>Número de ciclos <img src="img/dashboard/ciclo.png" className={"align-middle ml-2"} width={"12px"} height={"auto"}  alt=""/></div>
                         </Flex>
                     <BigCard version={"x6"}/>
                     <Flex jc={"flex-end"} className={"wc cw historia"}>
@@ -125,12 +141,15 @@ function Dashboard() {
                 </div>
             </Flex>
             <Flex className={"col-12 col-xl-10 mx-auto pb-3 pt-5"}>
-                <Flex flex={"0 0 100px"}></Flex>
+                <Flex flex={"0 0 150px"}>
+                    <Redes/>
+                </Flex>
                 <Flex flex={"1 0 50%"} >
                     <div className={"cw wc text-center"}><small><b>Cryptobillions smart-contract:</b></small></div>
                     <div className={"cb wc text-center"}><small><b>sijd3idncopdj1236543ddvc333csp33kmcs</b></small></div>
                 </Flex>
-                <Flex flex={"0 0 100px"}></Flex>
+                <Flex flex={"0 0 150px"}>
+                </Flex>
             </Flex>
         </Container>
     )

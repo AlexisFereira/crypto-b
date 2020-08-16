@@ -1,0 +1,2 @@
+export const  SET_DATA_LANDING = "SET_DATA_LANDING";
+export const  SET_DATA_DASHBOARD = "SET_DATA_DASHBOARD";

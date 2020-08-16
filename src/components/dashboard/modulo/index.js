@@ -1,30 +1,9 @@
 import React from "react";
-import styled from "@emotion/styled";
 import Flex from "./../../UI/Flex";
 import {DegCard} from "../helper";
+import {Container,Lines} from "./styles";
 
-const Container = styled(Flex)`
-    position:relative;
-    max-width:130px;
-    
-    .circle{
-        width:12px;
-        height:12px;
-        border:1px solid white;
-        border-radius:50%;
-        margin:3px 0;
-    }
-    .number{
-        font-weight:700;
-        font-size:18px;
-    }
-    
-    .bcard{
-        border-radius:10px;
-    }
-`;
-
-function Modulo({number}) {
+function Modulo({number,gold,lock,canbuy}) {
     return (
         <Container className={"px-2 mb-2 mb-lg-3"}>
             <Flex className={"number pr-2"} flex={"0 0 20px"}>
@@ -32,19 +11,27 @@ function Modulo({number}) {
             </Flex>
             <Flex flex={"1 0 80%"} className={"p-2 bcard bgb "}>
                 <Flex flex={"0 0 35px"}>
-                    <img src="img/icon-card.png" alt="" className={"imgr"}/>
+                    <img src={`img/dashboard/${gold ? "hexGold":"hexCian"}.png`} alt="" className={"imgr"}/>
                 </Flex>
-                <Flex flex={"0 0 15px"}>
-
-                </Flex>
+                <Lines/>
                 <Flex flex={"0 0 20px"}>
                     <div className="circle"> </div>
                     <div className="circle"> </div>
                     <div className="circle"> </div>
                 </Flex>
-                <Flex className={"wc"}>
-                    <small><b>11</b></small>
+                <Flex className={"wc "}>
+                    <small className={"d-inline-block mx-1"}><b>11</b> <img src="img/dashboard/user.png" width={"12px"} height={"auto"} className={"align-middle"} alt=""/></small>
+                    <small className={"d-inline-block mx-1"}><b>11</b> <img src="img/dashboard/ciclo.png" width={"12px"} height={"auto"} className={"align-middle"} alt=""/></small>
                 </Flex>
+                {lock &&
+                    <div className="lock">
+                        <Flex className={"cart"} direction={"column"}>
+                            {canbuy &&
+                            <button className="shop">
+                                <img src="img/dashboard/cart.png" alt="" className={"imgr"}/>
+                            </button>}
+                        </Flex>
+                    </div>}
             </Flex>
 
             <Flex className={"wc"}>

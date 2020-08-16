@@ -22,8 +22,6 @@ export const Icon = ({url, number="1",w,h,nIcons,className})=>{
     }
     let pF = arrP;
 
-    console.log(pF[number])
-
     return(
         <MapIcon
             className={className}
