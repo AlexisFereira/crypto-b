@@ -56,7 +56,7 @@ function Language_select() {
                     <img src={`/img/flags/${i18n.language}.png`} alt="" width={"20px"} height={"auto"}/>
                 </div>
                 <div className="caret">
-                    <img src="" alt=""/>
+                    <img src="/img/landing/caret-lang.png" alt=""/>
                 </div>
                 <div className="menu-flags bgDark br6" >
                    <UnmountClosed isOpened={menuL.open === true} className={"p-1"}>

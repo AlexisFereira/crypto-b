@@ -16,13 +16,12 @@ import {withRouter} from "react-router-dom";
 
 function Dashboard(props) {
 
-
     const [state,setstate ] =useState({
         loading:true,
     });
 
-    let id = props.history.location.search.split('=')
-    console.log(id[0])
+    let {history} = props;
+    let id = props.history.location.search.split('=');
     if(!id[0]){
         props.history.push('/login')
     }
@@ -31,24 +30,24 @@ function Dashboard(props) {
     useEffect(()=>{
         Datosgenerales()
             .then(response =>{
-                    if(response.status){
-                        let {total_users,
-                            total_users_24h,
-                            total_users_eth,
-                            total_users_usd,
-                            ether_valu } = response.data;
-                        props.SeTDataLanding({
-                            participants:total_users,
-                            newEth:total_users_24h,
-                            incomeUsd:total_users_eth,
-                            TotalParticipants:total_users_usd,
-                            ether_valu
-                        })
-                    }
-                    else{
-                        console.log("::: No se pudo consultar ::::");
-                        return false;
-                    }
+                if(response.status){
+                    let {total_users,
+                        total_users_24h,
+                        total_users_eth,
+                        total_users_usd,
+                        ether_value } = response.data;
+                    props.SeTDataLanding({
+                        participants:total_users,
+                        newEth:total_users_24h,
+                        incomeUsd:total_users_eth,
+                        TotalParticipants:total_users_usd,
+                        ether_value
+                    })
+                }
+                else{
+                    console.log("::: No se pudo consultar ::::");
+                    return false;
+                }
                 }
             )
             .catch(e=>{
@@ -62,7 +61,7 @@ function Dashboard(props) {
         )
             .then(function (response) {
                 if(response.status){
-                    setstate({...state,loading:false})
+                    setstate({...state,loading:false});
                     let {
                         id,
                         users,
@@ -101,6 +100,7 @@ function Dashboard(props) {
             .catch(function (error) {
                 // handle error
                 setstate({...state,loading:false})
+                history.push("/login");
                 console.log("::: Error en peticion de Dashboard ::::",error);
             })
     },[]);
@@ -119,8 +119,8 @@ function Dashboard(props) {
                     <Datos noDescrtiption />
                     <Flex alg={"flex-start"} className={"col-12 col-xl-10 mx-auto cw pt-4 fadeIn"}>
                         <aside className={"col-12 col-sm-10 col-lg-3 mx-auto pt-md-5 mt-md-2 pb-5 px-0"}>
-                            <DegCard className={"p-3 mb-lg-5"}>
-                                <Flex alg={"flex-start"}>
+                            <DegCard className={"p-3 mb-lg-5 col-xl-9 mx-auto" }>
+                                <Flex alg={"flex-start"} className={"pt-4"}>
                                     <img src="/img/dashboard/hexCian.png" alt="" width={"60px"} height={"auto"}/>
                                     <Flex flex={"1 0 50%"} jc={"flex-end"} className="texto">
                                         <div className={"wc text-right"}>
@@ -142,12 +142,12 @@ function Dashboard(props) {
                             <Flex className={"wc pt-3"} alg={"flex-start"}>
                                 <Flex className={"col-12 col-sm-6 col-lg-12 px-0"}>
                                     <div className="section py-2 py-lg-3">
-                                        <small>BILLIONS <b>X3</b></small>
+                                        <p className={"mb-0"}>BILLIONS <b>X3</b></p>
                                         <div className="datoBlue"><b>{props.dashboard.m1_total_eth}</b> ETH</div>
                                         <span className={"text-center mr-1"}>${formatNumber(props.dashboard.m1_total_eth * props.landing.ether_value,true)}</span><b>USD</b>
                                     </div>
                                     <div className="section py-2 py-lg-3 mb-lg-5">
-                                        <small>BILLIONS <b>X6</b></small>
+                                        <p className={"mb-0"}>BILLIONS <b> <span className={"cg"}>X6</span></b></p>
                                         <div className="datoBlue"><b>{props.dashboard.m2_total_eth}</b>ETH</div>
                                         <span className={"text-center mr-1"}>${formatNumber(props.dashboard.m2_total_eth * props.landing.ether_value,true)}</span><b>USD</b>
                                     </div>

@@ -47,7 +47,7 @@ const Modal = props => {
 
 
                         {!props.noBtn &&
-                            <Flex className={"wc botones p-3"} jc={"space-around"}>
+                            <Flex className={"wc botones p-3 pb-4"} jc={"space-around"}>
                                 {/*<Btn  bRadius={"22px"} mw={ small ? "114px" :"150px"} className={"mx-2"} btntype={"secondary"} onClick={props.cancel}>*/}
                                 {/*    Cancelar*/}
                                 {/*</Btn>*/}

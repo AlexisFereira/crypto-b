@@ -106,7 +106,7 @@ function RegisterForm(props) {
                                });
                                hanldeModal({
                                    status:true,
-                                   title:"Dirección no enctontrada",
+                                   title:"Dirección no encontrada",
                                    description: <span>La dirección de wallet <b>{accounts[0].substring(0,22) + "..."}</b> no se encuentra registrada.</span>,
                                    icon:"cancel",
                                })
@@ -121,7 +121,7 @@ function RegisterForm(props) {
                    handleState({loading:false,error:true})
                    hanldeModal({
                        status:true,
-                       title:"Dirección no enctontrada",
+                       title:"Dirección no encontrada.",
                        description: "",
                        icon:"cancel",
                    })

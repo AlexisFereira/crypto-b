@@ -38,7 +38,7 @@ function Modulo({number,gold,lock,canbuy,data}) {
                 <Flex flex={"0 0 20px"}> </Flex>
                 <Flex flex={"1 0 50%"} className={"mt-2 px-2"}>
                     <DegCard className={"wc text-center"}>
-                        <small>HOLA</small>
+                        <small><b>0.09</b> ETH</small>
                     </DegCard>
                 </Flex>
             </Flex>

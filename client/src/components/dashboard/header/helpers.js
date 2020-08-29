@@ -34,7 +34,7 @@ export const BtnFlag = ({flag,value,action,name,activo}) => {
     return(
         <BtnFlasgS onClick={()=> action(value) }>
            <Flex className={"wc"}>
-               <img src={`img/flags/${flag}.png`} alt=""/>
+               <img src={`/img/flags/${flag}.png`} alt=""/>
                <p className={"mb-0 text-left"}>{name}</p>
            </Flex>
         </BtnFlasgS>
