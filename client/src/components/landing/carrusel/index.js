@@ -53,7 +53,7 @@ const Container = styled.div`
 `;
 
 function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
+    const {style, onClick } = props;
     return (
         <div
             className={"arrow arrow-r"}
@@ -71,7 +71,7 @@ function SampleNextArrow(props) {
     );
 }
 function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
+    const { style, onClick } = props;
     return (
         <div
             className={"arrow arrow-l"}
@@ -123,7 +123,7 @@ const settings = {
 };
 
 function Carrusel() {
-    const { t, i18n } = useTranslation();
+    const { t} = useTranslation();
     return (
         <Container className={"wc px-3"}>
             <div className="header-title text-center">

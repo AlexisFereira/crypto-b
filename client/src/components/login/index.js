@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import RegisterForm from "./Registerform"
 import {Container} from "./styles";
 import {withRouter} from "react-router-dom";
+import Fade from "./../UI/Fade";
 
 
 function Login(props) {
@@ -23,10 +24,12 @@ function Login(props) {
                 </Flex>
                 <Flex className={"wc"} flex={"2 0 auto"}>
                     {props.register ?
-                     <RegisterForm />  :
-                    <Formulario />}
+                       <RegisterForm/>
+                        :
+                        <Formulario />
+                    }
                 </Flex>
-                <Flex flex={"1 0 200px"} className={" gold-movil wc d-md-none"}>
+                <Flex flex={"1 0 100px"} className={" gold-movil wc d-md-none"}>
                     <img src="img/gold-icon.png" alt="" className={"position-relative z900"}/>
                     <div className="telegramBtn ml-3"> </div>
                 </Flex>

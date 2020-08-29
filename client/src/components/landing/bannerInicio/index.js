@@ -31,7 +31,7 @@ const Container = styled(Flex)`
 `;
 
 function BannerInicio(props) {
-    const { t, i18n } = useTranslation();
+    const { t} = useTranslation();
     return (
         <Container direction={"column"} className={"col-12 col-xl-10 mx-auto"}>
             <Flex flex={"1 0 100%"} direction={"column"}>

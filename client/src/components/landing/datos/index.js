@@ -38,7 +38,7 @@ const Cifra = ({text,number,big,flex="1 0 22%",decimales})=>{
     )
 };
 function Datos(props) {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <Container className={"wc fadeIn"}>
             <div className="line line-gradien-h"> </div>

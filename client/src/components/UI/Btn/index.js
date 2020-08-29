@@ -18,10 +18,18 @@ const Btnt = styled.div`
         border:1px solid  ${props=>  props.theme.borde};
         width:100%;
         font-weight: 600;
+        line-height:1em;
         min-height:40px;
         border-radius:    ${props=>  props.theme.bRadius};
         cursor:           ${props=>  props.theme.cursor};
         text-transform: uppercase;
+        
+        small{
+        font-weight:300;
+        width:100%;
+        text-transform:initial;
+        display:block;
+        }
         
         &:hover{
             background:   ${props=>  props.theme.hoverColor};
@@ -65,7 +73,7 @@ const Btnt = styled.div`
 
 
 
-function Btn({type,text,children,btntype="submit", onClick,disabled,loading,bRadius = "6px",flex,className,mw,size="md",gold }) {
+function Btn({type,text,children,btntype="submit", onClick,disabled,loading,bRadius = "6px",flex,className,mw,size="md",gold,caption}) {
 
     disabled = loading ? loading : disabled;
 
@@ -112,11 +120,13 @@ function Btn({type,text,children,btntype="submit", onClick,disabled,loading,bRad
                 type={btntype}
             >
                 {children ? children:text}
+                {caption && <small>{caption}</small>}
             </button>
 
             {loading &&
                 <Flex className="load" direction={"column"}>
                     <div className="circle"> </div>
+
                 </Flex>
             }
         </Btnt>

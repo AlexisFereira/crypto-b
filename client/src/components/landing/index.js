@@ -44,7 +44,7 @@ function Landing(props) {
                  // handle error
                  console.log("::: Errror en peticion de landing ::::",error);
          })
-     },[]);
+     },[ ]);
 
 
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import Btn from "./../UI/Btn";
 import {useTranslation} from "react-i18next";
 import Field from "./../UI/field";
@@ -8,6 +8,9 @@ import {SeTDataDash} from "../store/actions/actionsCreators";
 import {ContainerFom} from "./styles";
 import getWeb3 from "../../getWeb3";
 import Cryptobillions from "../../contracts/Cryptobillions";
+import {VerificaId} from "../../crypto";
+import ShowModal from "../UI/ShowModal/ShowModal";
+import Fade from "./../UI/Fade";
 
 function RegisterForm(props) {
     const {t} = useTranslation();
@@ -19,7 +22,15 @@ function RegisterForm(props) {
         web3:{},
         disabled:false
     });
+    const [modal,SetM] = useState({
+        status:false,
+        title:"",
+        description:"",
+        callBack:null,
+        icon:""
+    });
 
+    let hanldeModal = x => SetM({...modal,...x});
     const handleState = x => SetS({...state,...x});
 
     // registrationEx
@@ -46,6 +57,7 @@ function RegisterForm(props) {
             const deployedNetwork = Cryptobillions.networks[networkId];
             const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
             const nonce           = await web3.eth.getTransactionCount(accounts[0]);
+
             // return await instance.methods;
             let options=  {
                 nonce,
@@ -61,18 +73,58 @@ function RegisterForm(props) {
             if(state.address.length < 18 && instance){
                try{
                    let x = await instance.methods.idToAddress(state.address).call();
+
                    try{
-                       console.log(x)
-                       let r = await instance.methods.registrationExt(x).send(options)
-                       handleState({loading:false})
-                       props.SeTDataDash({userId:r.events.Registration.returnValues.userId});
-                       props.history.push("/dashboard/?user=" + r.events.Registration.returnValues.userId  )
+                       // valida el id
+                       let id = await instance.methods.users(x).call();
+                       // consulta le id
+                       await VerificaId(await id.id)
+                           .then(async result =>{
+                               console.log(result)
+                               try {
+
+                                   let r = await instance.methods.registrationExt(x).send(options);
+                                   handleState({loading:false});
+                                   props.SeTDataDash({userId:r.events.Registration.returnValues.userId});
+                                   props.history.push("/dashboard/?user=" + r.events.Registration.returnValues.userId  )
+
+                               }catch (e) {
+                                   handleState({loading:false,error:true})
+                                   hanldeModal({
+                                       status:true,
+                                       title:"Transacción rechazada.",
+                                       description: "",
+                                       icon:"cancel",
+                                   })
+                               }
+
+                           })
+                           .catch(()=>{
+                               SetS({
+                                   ...state,
+                                   loadingAuth:false,
+                               });
+                               hanldeModal({
+                                   status:true,
+                                   title:"Dirección no enctontrada",
+                                   description: <span>La dirección de wallet <b>{accounts[0].substring(0,22) + "..."}</b> no se encuentra registrada.</span>,
+                                   icon:"cancel",
+                               })
+                           })
+
+
                    }catch (e) {
                         alert("la dirección de la billetera no existe.")
                         handleState({error:true,loading:false})
                    }
                }catch (e) {
                    handleState({loading:false,error:true})
+                   hanldeModal({
+                       status:true,
+                       title:"Dirección no enctontrada",
+                       description: "",
+                       icon:"cancel",
+                   })
                }
             }
             // consulta normal si es un address
@@ -110,41 +162,49 @@ function RegisterForm(props) {
     };
 
     return (
-        <ContainerFom className={"p-2 p-lg-4 br-8 "}>
-            <div className="title text-center mb-md-5" style={{textTransform:"uppercase"}}>
-                {t('register')}
-            </div>
+       <Fade>
+           <ContainerFom className={"p-2 p-lg-4 br-8 "}>
+               <div className="title text-center mb-md-5">
+                   {t('register')}
+               </div>
+               <form
+                   className={"text-center p-3"}
+                   onSubmit={ e=>{
+                       e.preventDefault();
+                       onSubmit()
+                   }}
+               >
 
-            <form
-                className={"text-center p-3"}
-                onSubmit={ e=>{
-                    e.preventDefault();
-                   onSubmit()
-                }}
-            >
-
-                <Field
-                    placeholder={t('Enter_ETH')}
-                    className={"mb-3"}
-                    error={state.error}
-                    value={state.address}
-                    onChange={e => {
-                        let value  = e.target.value.replace(/[^0-9a-zA-Z]/g,"").substring(0,24);
-                        let obj = {target:{value}};
-                        handleAddres(obj)
-                    }}
-                    disabled={state.loading}
-                />
-                <Btn
-                    loading={state.loading}
-                    mw={"250px"}
-                    className={"mx-auto"}
-                    disabled={state.disabled}
-                >
-                    {t('register')}
-                </Btn>
-            </form>
-        </ContainerFom>
+                   <Field
+                       placeholder={t('Enter_ETH')}
+                       className={"mb-3"}
+                       error={state.error}
+                       value={state.address}
+                       onChange={e => {
+                           let value  = e.target.value.replace(/[^0-9a-zA-Z]/g,"").substring(0,24);
+                           let obj = {target:{value}};
+                           handleAddres(obj)
+                       }}
+                       disabled={state.loading}
+                   />
+                   <Btn
+                       loading={state.loading}
+                       mw={"250px"}
+                       className={"mx-auto"}
+                       disabled={state.disabled}
+                   >
+                       {t('register')}
+                   </Btn>
+               </form>
+               <ShowModal
+                   show={modal.status}
+                   onConfirm={()=> hanldeModal({status:false})}
+                   icon={modal.icon}
+                   title={modal.title}
+                   description={modal.description}
+               />
+           </ContainerFom>
+       </Fade>
     )
 }
 const MSTprops = state => ({ state : state.Dashboard});

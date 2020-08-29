@@ -39,7 +39,7 @@ function Language_select() {
     const [menuL,setOpen] = useState({
         open:false
     });
-    const { t, i18n } = useTranslation();
+    const {i18n } = useTranslation();
 
 
     const changeLanguage = (value) => {
@@ -53,7 +53,7 @@ function Language_select() {
 
             <Flex className="changeF " onClick={()=> setOpen({...menuL,open:!menuL.open})}>
                 <div className="flag">
-                    <img src={`img/flags/${i18n.language}.png`} alt="" width={"20px"} height={"auto"}/>
+                    <img src={`/img/flags/${i18n.language}.png`} alt="" width={"20px"} height={"auto"}/>
                 </div>
                 <div className="caret">
                     <img src="" alt=""/>

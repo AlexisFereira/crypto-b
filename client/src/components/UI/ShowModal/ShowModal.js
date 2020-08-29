@@ -14,7 +14,7 @@ const Modal = props => {
     let iconos = {
         check: CHECK,
         cancel: CANCEL
-    }
+    };
 
     return (
 
@@ -32,12 +32,13 @@ const Modal = props => {
                 <Flex className="area wc position-relative px-2 ">
                     {!props.reset ?
                     <div className={`card ${props.className}  bgDark`}>
-                        <div className="content px-3 pt-4 text-center">
+                        <div className="content px-3 px-lg-4 pt-4 text-center">
                             {props.icon &&
                             <div className="wc pb-3">
                                 <img src={iconos[props.icon]} alt="" width={"70px"} height={"auto"}/>
                             </div>}
                             {props.title && <h3 className="title">{ props.title}</h3>}
+                            {props.title && <p className="tdescription">{ props.description}</p>}
 
                             {/*{props.children}*/}
                         </div>

@@ -5,12 +5,13 @@ import {useTranslation} from "react-i18next";
 import Field from "./../UI/field";
 import {connect} from "react-redux";
 import {SeTDataDash} from "../store/actions/actionsCreators";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import getWeb3 from "../../getWeb3";
 import Cryptobillions from "../../contracts/Cryptobillions";
 import {VerificaId} from "../../crypto";
 import axios from "axios";
 import ShowModal from "../UI/ShowModal/ShowModal";
+import Fade from "./../UI/Fade";
 
 const Container = styled.div`
     position:relative;
@@ -51,7 +52,7 @@ function Formulario(props) {
         icon:""
     });
 
-    let hanldeModal = x => SetM({...modal,x});
+    let hanldeModal = x => SetM({...modal,...x});
     const TheRef = useRef(null);
 
     let onSubmitAuth = async ()=>{
@@ -65,15 +66,12 @@ function Formulario(props) {
             const networkId       = await web3.eth.net.getId();
             const deployedNetwork = Cryptobillions.networks[networkId];
             const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
-            const nonce           = await web3.eth.getTransactionCount(accounts[0]);
-            // return await instance.methods;
 
             // valida si es un id o un add y consultalo
             if(accounts[0]){
                 try{
                     // valida el id
                     let id = await instance.methods.users(accounts[0]).call();
-
                     // consulta le id
                     await VerificaId(await id.id)
                         .then(result =>{
@@ -90,17 +88,16 @@ function Formulario(props) {
                             SetS({
                                 ...state,
                                 loadingAuth:false,
-                                error:true,
                             });
                             hanldeModal({
                                 status:true,
-                                title:"La dirección on ID ingresado no existen.",
+                                title:"Dirección no enctontrada",
+                                description: <span>La dirección de wallet <b>{accounts[0].substring(0,22) + "..."}</b> no se encuentra registrada, haga clic <Link to="/register"><b>acá</b></Link> para registrarse</span>,
                                 icon:"cancel",
                             })
                         })
                 }
                 catch (e) {
-
                 }
             }
             // consulta normal si es un address
@@ -108,19 +105,18 @@ function Formulario(props) {
                 SetS({...state,loadingAuth:true});
                 hanldeModal({
                     status:true,
-                    title: "0000"
-                });
-
-                alert("No hay una billetera conectada.")
+                    title:"Error de wallet",
+                    description: <span>No se encontró ninguna billetera conectada a su meta mask.</span>,
+                    icon:"cancel",
+                })
             }
-            // console.log(options)
         }
         catch (e) {
-            console.log(e);
-            SetS({...state,loadingAuth:true});
+            SetS({...state,loadingAuth:false});
             hanldeModal({
                 status:true,
-                title:"La dirección on ID ingresado no existen.",
+                title:"Error de wallet",
+                description: <span>No se encontró ninguna billetera conectada a su meta mask.(<small>{e.message}</small>)</span>,
                 icon:"cancel",
             })
 
@@ -132,6 +128,7 @@ function Formulario(props) {
             SetS({...state,loading:false,disabled:true,error:true});
             return "";
         }
+
         else{
             SetS({...state,loading:true});
             try{
@@ -147,12 +144,17 @@ function Formulario(props) {
                                 error:false
                             });
                             return props.history.push("/dashboard/?user="+ state.address)
-                        }else {
+                        } else {
                             SetS({
                                 ...state,
                                 loading:false,
                                 error:false
                             });
+                            hanldeModal({
+                                status:true,
+                                title:"ID no encontrado.",
+                                icon:"cancel"
+                            })
                         }
                     })
                     .catch(()=>{
@@ -160,10 +162,14 @@ function Formulario(props) {
                             ...state,
                             loading:false,
                             error:true,
-                            modal:"1"
                         });
 
-
+                        hanldeModal({
+                            status:true,
+                            title:<span>No se enontró información relacionada con <b>{state.address}.</b> </span>   ,
+                            icon:"cancel",
+                            description: ""
+                        })
                     });
             }
             catch (e) {
@@ -189,66 +195,69 @@ function Formulario(props) {
     };
 
     return (
-        <Container className={"p-2 p-lg-4 br-8 "}>
-            <div className="title text-center mb-md-5">
-                {t('login')}
-            </div>
+     <Fade>
+         <Container className={"p-2 p-lg-4 br-8 "}>
+             <div className="title text-center mb-md-5">
+                 {t('login')}
+             </div>
 
-            <form
-                className={"text-center p-3"}
-                ref={TheRef}
-                onSubmit={e=>{
-                    e.preventDefault();
-                    onSubmit();
-                }}
-            >
-               <div className={"wc mb-5"}>
-                   <small className={"cw mb-2 d-block"}>
-                       <b>{t('Automatic_login')}</b>
-                   </small>
-                   <Btn
-                       btntype={"button"}
-                       mw={"250px"}
-                       className={"mx-auto"}
-                       type={"line"}
-                       gold
-                       disabled={state.loading}
-                       onClick={()=> onSubmitAuth()}
-                       loading={state.loadingAuth}
-                   >
-                       {t('Login_automatically')}
-                   </Btn>
-               </div>
-                <Field
-                    placeholder={t('Enter_ETH')}
-                    className={"mb-3"}
-                    error={state.error}
-                    value={state.address}
-                    onChange={e =>{
-                        let value  = e.target.value.replace(/[^0-9a-zA-Z]/g,"").substring(0,24);
-                        let obj = {target:{value}};
-                        handleAddres(obj)
-                    }}
-                    disabled={state.loading || state.loadingAuth}
-                />
-                <Btn
-                    mw={"250px"}
-                    disabled={state.loadingAuth || state.disabled }
-                    className={"mx-auto"}
-                    loading={state.loading}
-                >
-                    {t('Entern_manually')}
-                </Btn>
-            </form>
+             <form
+                 className={"text-center p-3"}
+                 ref={TheRef}
+                 onSubmit={e=>{
+                     e.preventDefault();
+                     onSubmit();
+                 }}
+             >
+                 <div className={"wc mb-5"}>
+                     <small className={"cw mb-2 d-block"}>
+                         <b>{t('Automatic_login')}</b>
+                     </small>
+                     <Btn
+                         btntype={"button"}
+                         mw={"250px"}
+                         className={"mx-auto"}
+                         type={"line"}
+                         gold
+                         disabled={state.loading}
+                         onClick={()=> onSubmitAuth()}
+                         loading={state.loadingAuth}
+                     >
+                         {t('Login_automatically')}
+                     </Btn>
+                 </div>
+                 <Field
+                     placeholder={t('Enter_ETH')}
+                     className={"mb-3"}
+                     error={state.error}
+                     value={state.address}
+                     onChange={e =>{
+                         let value  = e.target.value.replace(/[^0-9a-zA-Z]/g,"").substring(0,24);
+                         let obj = {target:{value}};
+                         handleAddres(obj)
+                     }}
+                     disabled={state.loading || state.loadingAuth}
+                 />
+                 <Btn
+                     mw={"250px"}
+                     disabled={state.loadingAuth || state.disabled }
+                     className={"mx-auto"}
+                     loading={state.loading}
+                     caption={"Preview only"}
+                 >
+                     {t('Entern_manually')}
+                 </Btn>
+             </form>
 
-            <ShowModal
-                show={modal === "1"}
-                onConfirm={()=> hanldeModal({status:""})}
-                icon={modal.icon}
-                title={modal.title}
-                description={modal.description}
-            />
-        </Container>
+             <ShowModal
+                 show={modal.status}
+                 onConfirm={()=> hanldeModal({status:false})}
+                 icon={modal.icon}
+                 title={modal.title}
+                 description={modal.description}
+             />
+         </Container>
+     </Fade>
     )
 }
 const MSTprops = state => ({ dashboard : state.Dashboard});
