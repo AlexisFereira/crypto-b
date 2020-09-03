@@ -1,0 +1,95 @@
+{
+  "home" : "home",
+  "how_this": "how this",
+  "faqs": "faqs",
+  "etherum_fqas" : "faqs",
+  "register": "Register",
+  "login": "login",
+  "logout": "Logout",
+  "close": "Close",
+  "earn_money": "Earn money",
+  "as_you_can": "as far as you can imagine",
+  "Wallets_Compatibles": "Wallets Compatibles",
+  "The_number_one": "The number one platform in the world that generates more wealth",
+  "Absence":"Absence of Risk:",
+  "no_human":"No human Factor",
+  "Etherrum":"Ethereum:",
+  "highest":"Highest Profitable Cryptocurrency",
+  "smartContract":"Smart Contract:",
+  "nothing_can":"Nothing Can Stop it",
+  "Social_Mark":"Social Marketing:",
+  "Participants":"Participants Overflow",
+  "wallets":"wallets Compatibles",
+  "the_best_smart":"The best smart contrat",
+  "the_best_smart_desc":"Ethereum Smart Contract This is the best earning system that mankind come up with in recent years.The most secure, decentralized money machine is now available to everyone!",
+  "total_participants": "total participants",
+  "new_participants": "new entrants 24h",
+  "income": "Income usd",
+  "total_income": "total participating income",
+  "ON_CRYPTOBILLION": "ON CRYPTOBILLIONS YOU CAN EARN AS MUCH AS YOU WANT IN AN OPEN AND TRANSPARENT\nSYSTEM, KEEPING UP WITH THE PACE OF ADVANCED TECHNOLOGY.",
+  "PARTICIPANTS_RESULTS": "PARTICIPANTS RESULTS",
+  "balance": "balance",
+  "gain": "gain",
+  "CROWDFUNDING": "CROWDFUNDING ETHEREUM SMART CONTRACT",
+    "crow_a": {
+      "title": "Absolutely no risk",
+      "desc" : "Open source smart contract uploaded\nto the Ethereum Blockchain. One of the most\nsecure and popular cryptocurrencies in the\nmarket."
+    },
+    "crow_b": {
+      "title": "The system cannot be hacked",
+      "desc" : "It is not possible to change the algorithm or\ndelete the participants' rooms. The system is\nable to work without a site. The site is needed\nonly for the display of statistics and progress."
+    },
+    "crow_c": {
+      "title": "Non Hierarchically Organized",
+      "desc" : "A crowdfunded decentralized matrix project\nspecifically designed to stimulate a global\nrelocation to the crypto ecosystem by offering\nnewcomers a seamless introductory experience."
+    },
+    "crow_d": {
+      "title": "Smart Contracts are easy and simple",
+      "desc" : "It is easy to understand even for those who\nhave not encountered such projects."
+    },
+    "crow_e": {
+      "title": "Transactional Surety",
+      "desc" : "Ethereum network nodes irrevocably record and\nstore the transactional history of all Neun network\nparticipants on the Blockchain."
+    },
+    "crow_f": {
+      "title": "Instant payouts, cheating excluded",
+      "desc" : "The smart contract does not control\nthe money. All transactions are 100% from\nperson to person. Anonymous in every way."
+    },
+    "crow_g": {
+      "title": "Inclusive entry",
+      "desc" : "Entrance cost - 0.09 ETH ($XX.XX USD)"
+    },
+    "crow_h": {
+      "title": "Indefinite term",
+      "desc" : "Smart contract will exist as long as the\nEthereum blockchain exists, and even the\ncreators of a smart contract will not be able\nto delete or change its terms."
+    },
+    "crow_i": {
+      "title": "Easy Start",
+      "desc" : "- Smart user experience { <br/> } - Unique promotional tools { <br/> }- 100% Automated { <br/>}- Winning Guarante { <br/>}"
+    },
+  "MARKETING_PLAN": " MARKETING PLAN - SMART AND\nSIMPLE PAYOUT SYSTEM",
+  "Automatic_downline": "Automatic downline participant commissions paid instantly to your ETH wallet",
+  "By_completing": "By completing your matrix, the contract generates a new matrix that will allow you to have spaces for new participants.",
+  "Automatic_commissions": "Automatic commissions from your second tier participants are instantly paid to your ETH wallet.",
+  "All_data_is": "All data is is stored on the blockchain and publicly accessible at etherscan.io",
+  "only": "only",
+  "During_register": "During register Cryptobillion.io automatically will create both matrices (x3 and x6) for you.",
+  "What_is_Criptobillions": "What is Criptobillions.io?",
+  "rights": "CRYPTOBILLIONS. All rights reserved.",
+  "Automatic_login": "Automatic login with wallet:",
+  "Login_automatically": "Login automatically",
+  "Entern_manually": "Enter manually",
+  "Enter_ETH": "Enter ETH address or system ID",
+  "Enter_the_number": "Enter the number of your referral",
+  "linkcopied": "Link copied!",
+  "walletCopied": "Wallet address copied!",
+  "processing": "Processing...",
+  "support": "Support",
+  "presentation": "Presentation",
+  "continue": "Continue",
+  "address_not_found":"Address not found",
+  "wallet_addres_nf": "Wallet address not found",
+  "transaction_reject": "Transaction rejected",
+  "prewiew_only": "Preview only",
+  "user_registered": "Usuario registrado."
+}

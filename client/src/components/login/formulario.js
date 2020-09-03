@@ -67,6 +67,7 @@ function Formulario(props) {
             const deployedNetwork = Cryptobillions.networks[networkId];
             const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
 
+            console.log(accounts[0])
             // valida si es un id o un add y consultalo
             if(accounts[0]){
                 try{
@@ -102,7 +103,7 @@ function Formulario(props) {
             }
             // consulta normal si es un address
             else{
-                SetS({...state,loadingAuth:true});
+                SetS({...state,loadingAuth:false});
                 hanldeModal({
                     status:true,
                     title:"Error de wallet",
@@ -243,7 +244,7 @@ function Formulario(props) {
                      disabled={state.loadingAuth || state.disabled }
                      className={"mx-auto"}
                      loading={state.loading}
-                     caption={"Preview only"}
+                     caption={t("prewiew_only")}
                  >
                      {t('Entern_manually')}
                  </Btn>

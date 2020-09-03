@@ -25,7 +25,7 @@ export const ContainerFom = styled.div`
 
 export const Container = styled(Flex)`
     position:relative;
-    min-height:100%;
+    height:100%;
     .lang{
         position:fixed;
         height:80px;
@@ -45,7 +45,7 @@ export const Container = styled(Flex)`
         background-position:bottom right,bottom left;
         background-size: 30% auto, 90% auto; 
         overflow:hidden auto;
-        min-height:100vh;
+        min-height:100%;
     }
     
     .area-foto{
@@ -61,10 +61,27 @@ export const Container = styled(Flex)`
         }
         
         .telegramBtn{
-            width:150px;
+            width:210px;
             height: 40px;
             border-radius:22px;
-            background:${colors.blue};
+            background:#0088CC;
+            text-align:center;
+            font-size:12px;
+            color:white;
+            text-transform:uppercase;
+            font-weight:bold;
+            line-height:35px;
+            
+            a{
+                color:white;
+            }
+            
+            img{
+                height:40px;
+                width:auto;
+                margin:auto;
+                display:inline-block;
+            }
         }
     }
     

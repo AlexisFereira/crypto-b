@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Datos from "./../landing/datos";
 import Header from "./header";
 import Flex from "./../UI/Flex";
-import {DegCard} from "./helper";
+import {DegCard,CopyUrl} from "./helper";
 import BigCard from "./bigCard";
 import {Redes} from "../landing/footer";
 import axios from "axios";
@@ -12,6 +12,9 @@ import {Container} from "./styles";
 import {formatNumber} from "./../landing/datos";
 import {Datosgenerales} from "../../crypto";
 import {withRouter} from "react-router-dom";
+import {useTranslation} from "react-i18next";
+import Telegram from "./../UI/telegramBtn";
+
 
 
 function Dashboard(props) {
@@ -19,6 +22,8 @@ function Dashboard(props) {
     const [state,setstate ] =useState({
         loading:true,
     });
+
+    const { t } = useTranslation();
 
     let {history} = props;
     let id = props.history.location.search.split('=');
@@ -112,7 +117,7 @@ function Dashboard(props) {
            </div>
             {state.loading ?
                 <div className={"wc cw text-center"}>
-                    Procesing...
+                    {t("processing")}
                 </div>
             :
                 <React.Fragment>
@@ -153,24 +158,8 @@ function Dashboard(props) {
                                     </div>
                                 </Flex>
                                 <Flex className={"col-12 col-sm-6 col-lg-12"}>
-                                    <Flex className="enlaces mb-3">
-                                        <Flex flex={"1 0 60%"} className="enlace pr-2" jc={"flex-start"} style={{overflow:"hidden"}}>
-                                            <small className={"cw wc"}> Link de afiliado </small>
-                                            <small className={"cb"}> {props.dashboard.link} </small>
-                                        </Flex>
-                                        <button>
-                                            <img src="/img/dashboard/copiar.png" width={"25px"} height={"auto"} alt=""/>
-                                        </button>
-                                    </Flex>
-                                    <Flex className="enlaces mb-3">
-                                        <Flex flex={"1 0 60%"} className="enlace pr-2" jc={"flex-start"} style={{overflow:"hidden"}}>
-                                            <small className={"cw wc"}> The etherum wallet </small>
-                                            <small className={"cb"}>{props.dashboard.wallet}</small>
-                                        </Flex>
-                                        <button>
-                                            <img src="/img/dashboard/copiar.png" width={"25px"} height={"auto"} alt=""/>
-                                        </button>
-                                    </Flex>
+                                    <CopyUrl id={"02"} name={"Link de afiliado"} url={props.dashboard.link} message={t("linkcopied")}/>
+                                    <CopyUrl id={"01"} name={"The etherum wallet"} url={props.dashboard.wallet} message={t("walletCopied")}/>
                                 </Flex>
                             </Flex>
                         </aside>
@@ -180,7 +169,7 @@ function Dashboard(props) {
                                 <div className={"pl-3"}>Usuario en matriz <img src="/img/dashboard/user.png" className={"align-middle ml-2"} width={"12px"} height={"auto"}  alt=""/></div>
                                 <div className={"pl-3"}>Número de ciclos <img src="/img/dashboard/ciclo.png" className={"align-middle ml-2"} width={"12px"} height={"auto"}  alt=""/></div>
                             </Flex>
-                            <BigCard version={"x6"} activos={props.dashboard.m2_levels} data={props.dashboard.m2}/>
+                            <BigCard version={"x6"} activos={props.dashboard.m2_levels} data={props.dashboard.m2} m2/>
                             <Flex jc={"flex-end"} className={"wc cw historia"}>
                                 <div className={"pl-3"}> <div className="color-circle"> </div> Usuario en matriz</div>
                                 <div className={"pl-3"}> <div className="color-circle"> </div> Número de ciclos</div>
@@ -202,6 +191,7 @@ function Dashboard(props) {
                     </Flex>
                 </React.Fragment>
             }
+            <Telegram/>
         </Container>
     );
 }

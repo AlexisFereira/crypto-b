@@ -7,33 +7,39 @@ import {connect} from "react-redux";
 import RegisterForm from "./Registerform"
 import {Container} from "./styles";
 import {withRouter} from "react-router-dom";
-import Fade from "./../UI/Fade";
+import Telegram from "./../UI/telegramBtn"
+import {useTranslation} from "react-i18next";
 
 
 function Login(props) {
+    const {t} = useTranslation();
     return (
-        <Container className={"wc "} alg={"stretch"}>
+        <Container className={"wc"} alg={"stretch"}>
             <Flex className="lang">
                 <LanguageSelect/>
             </Flex>
-            <Flex direction={"column"} className="col-12 col-md-6 area-login">
+            <Flex direction={"column"} className="col-12 col-md-6 area-login ">
                 <Flex flex={"0 0 50px"} className={"wc d-none d-md-flex"}> </Flex>
                 <Flex flex={"0 0 20px"} className={"wc d-md-none"}> </Flex>
                 <Flex className="logo" flex={"0 0 50px"} onClick={()=>props.history.push("/")}>
                     <img src="img/logo.png" alt=""/>
                 </Flex>
-                <Flex className={"wc"} flex={"2 0 auto"}>
+                <Flex className={"wc"} flex={"1 0 auto"}>
                     {props.register ?
                        <RegisterForm/>
                         :
                         <Formulario />
                     }
                 </Flex>
-                <Flex flex={"1 0 100px"} className={" gold-movil wc d-md-none"}>
-                    <img src="img/gold-icon.png" alt="" className={"position-relative z900"}/>
-                    <div className="telegramBtn ml-3"> </div>
+                <Flex flex={"0 0 80px"} className={" gold-movil wc d-md-none"}>
+                    <img src="/img/gold-icon.png" alt="" className={"position-relative z900"}/>
+                    <div className="telegramBtn ml-3 ">
+                        <a href="https://t.me/cryptobillions2020" target={"_blank"}>
+                        {t("telegram_chanel")}
+                        </a>
+                    </div>
                 </Flex>
-                <Flex className={"wc d-md-none"} flex={"0 0 40px"}>
+                <Flex className={"wc d-md-none"} flex={"0 0 30px"}>
                     <Redes/>
                 </Flex>
                 <Flex className="pie wc pt-3 pb-3 pb-md-0" flex={"0 0 50px"}>
@@ -50,6 +56,7 @@ function Login(props) {
                 <div className="sombra bgDark pa"> </div>
                 <img src="img/gold-icon.png" alt="" className={"position-relative z900"}/>
             </Flex>
+            <Telegram className={"d-none d-md-block"}/>
         </Container>
     )
 }

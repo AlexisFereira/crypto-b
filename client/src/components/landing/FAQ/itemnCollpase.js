@@ -50,12 +50,12 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                         nIcons={"8"}
                         w={"40"}
                         h={"40"}
-                        url={"img//landing/icons_02.png"}
+                        url={"/img/landing/icons_02.png"}
                     />
                 </Flex>
                 <Flex flex={"1 0 70%"} jc={"flex-start"} className={"pl-3"}>
                     <p className={"question cw mb-0"}>{text}</p>
-                    <div className={"wc pt-3"}>
+                    <div className={"wc pt-3 d-none d-md-bock"}>
                         <Collapse isOpened={open}>
                             <div className="desc">
                                 {desc}
@@ -69,9 +69,16 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                         nIcons={"8"}
                         w={"40"}
                         h={"40"}
-                        url={"img//landing/icons_02.png"}
+                        url={"/img/landing/icons_02.png"}
                     />
                 </Flex>
+                <div className={"wc pt-3 d-md-none"}>
+                    <Collapse isOpened={open}>
+                        <div className="desc">
+                            {desc}
+                        </div>
+                    </Collapse>
+                </div>
             </Flex>
         </Container>
     )

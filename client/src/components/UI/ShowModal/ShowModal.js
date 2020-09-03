@@ -5,10 +5,11 @@ import Flex from "../Flex";
 import Btn from "../Btn";
 import CANCEL from "./../../img/cancel.png";
 import CHECK from "./../../img/ch.png";
+import {useTranslation} from "react-i18next";
 
 
 const Modal = props => {
-
+    const {t} = useTranslation();
     let small = window.innerWidth < 768;
 
     let iconos = {
@@ -17,7 +18,6 @@ const Modal = props => {
     };
 
     return (
-
         <CSSTransition
             in={props.show}
             timeout={600}
@@ -43,26 +43,21 @@ const Modal = props => {
                             {/*{props.children}*/}
                         </div>
 
-
-
-
                         {!props.noBtn &&
                             <Flex className={"wc botones p-3 pb-4"} jc={"space-around"}>
                                 {/*<Btn  bRadius={"22px"} mw={ small ? "114px" :"150px"} className={"mx-2"} btntype={"secondary"} onClick={props.cancel}>*/}
                                 {/*    Cancelar*/}
                                 {/*</Btn>*/}
                                 <Btn size={""}  bRadius={"22px"} mw={"150px"} className={"mx-2"} onClick={props.onConfirm}>
-                                    {props.btnText ? props.btnText : "Continuar" }
+                                    {props.btnText ? props.btnText : t("continue") }
                                 </Btn>
                             </Flex>
                         }
-
                     </div>
-
                         :
-                        <div className={` wc gira`}>
-                            {props.children}
-                        </div>
+                    <div className={` wc gira`}>
+                        {props.children}
+                    </div>
                     }
                 </Flex>
 

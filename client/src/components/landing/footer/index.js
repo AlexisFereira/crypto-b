@@ -28,37 +28,37 @@ const Container = styled.div`
 export const Redes = ()=>{
     return(
         <Flex flex={"0 0 150px"} className={"cw redes"}>
-            <a target={"_blank"} href="">
+            <a target={"_blank"} href="https://www.instagram.com/invites/contact/?i=w0fnvoicorvp&utm_content=221nkz4">
                 <Icon
-                    url={"img/landing/redes.png"}
-                    nIcons={"4"}
+                    url={"/img/landing/redes.png"}
+                    nIcons={"5"}
                     w={"20"}
                     h={"20"}
                     number={"1"}
                 />
             </a>
-            <a target={"_blank"} href="">
+            <a target={"_blank"} href="https://www.facebook.com/Crypto-Billions-108685800961946">
                 <Icon
-                    url={"img/landing/redes.png"}
-                    nIcons={"4"}
+                    url={"/img/landing/redes.png"}
+                    nIcons={"5"}
                     w={"20"}
                     h={"20"}
                     number={"2"}
                 />
             </a>
-            <a target={"_blank"} href="">
+            <a target={"_blank"} href="https://twitter.com/CryptoBillions3">
                 <Icon
-                    url={"img/landing/redes.png"}
-                    nIcons={"4"}
+                    url={"/img/landing/redes.png"}
+                    nIcons={"5"}
                     w={"20"}
                     h={"20"}
-                    number={"3"}
+                    number={"5"}
                 />
             </a>
-            <a target={"_blank"} href="">
+            <a target={"_blank"} href="https://www.youtube.com/channel/UCi4jHPjlgJQoofiq8VCNT7Q/about?edit_links=1&disable_polymer=1#c4-primary-header-contents">
                 <Icon
-                    url={"img/landing/redes.png"}
-                    nIcons={"4"}
+                    url={"/img/landing/redes.png"}
+                    nIcons={"5"}
                     w={"20"}
                     h={"20"}
                     number={"4"}
@@ -69,7 +69,7 @@ export const Redes = ()=>{
 };
 
 function Footer() {
-    const {t, i18n} = useTranslation();
+    const {t} = useTranslation();
     return (
         <Container className={"wc"}>
             <Flex className="col-12 mx-auto col-xl-10 py-4">

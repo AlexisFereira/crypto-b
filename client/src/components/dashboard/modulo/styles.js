@@ -3,6 +3,68 @@ import Flex from "../../UI/Flex";
 import React from "react";
 import {colors} from "../../UI";
 
+
+export const ThreePoints = styled.div`
+    width:32px;
+    height:32px;
+    position:relative;
+    margin-bottom:2px;
+    
+    span{position:absolute;}
+    
+    .line01{ 
+        width:7px;
+        border-bottom:1px solid ${colors.cian};
+        top:${props=> props.top};
+        right:100%;
+        transform:rotate(${props=> props.rotate});
+    }
+    
+    .line02{ 
+        width:7px;
+        border-bottom:1px solid ${colors.cian};
+        transform:rotate(-35deg);
+        top:6px;
+        right:13px;
+    }
+    
+    .line03{ 
+        width:7px;
+        border-bottom:1px solid ${colors.cian};
+        transform:rotate(35deg);
+        bottom:6px;
+        right:13px;
+    }
+    
+    .point{
+        height:12px;
+        width:12px;
+        border:1px solid white;
+        border-radius:50%;
+        position:absolute;
+    }
+    
+    .p01{
+        top:50%;
+        left:0;
+        transform:translateY(-50%);
+        background:${props => props.bg1}
+    }
+    
+    .p02{
+        top:0;
+        right:0;
+        background:${props => props.bg2}
+    }
+    
+    .p03{
+        right:0;
+        bottom:0;
+        background:${props => props.bg3}
+    }
+`;
+
+
 export const Container = styled(Flex)`
     position:relative;
     max-width:133px;

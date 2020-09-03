@@ -18,8 +18,6 @@ const Container = styled.header`
 
 function Header(props) {
     const { t } = useTranslation();
-
-
     return (
         <Container className={"wc py-3 py-md-4 mb-5"}>
             <Flex className={"col-12 col-xl-10 mx-auto px-0"} clasName={"wc"}>
@@ -28,10 +26,10 @@ function Header(props) {
                 </Flex>
                 <Flex flex={"1 0 50%"} jc={"flex-end"} className={"pr-3"}>
                     <Flex flex={"0 0 auto"} jc={"flex-end"}>
-                        <a className={"p-2 cw "} href="">Presentación</a>
-                        <a className={"p-2 cw "} href="">Soporte</a>
+                        <a className={"p-2 cw "} href="">{t("presentation")}</a>
+                        <a className={"p-2 cw "} href="">{t("support")}</a>
                         <Btn className={"ml-3"} flex={"0 0 150px"} onClick={()=>props.history.push('/login')}>
-                            {t('login')}
+                            {t('logout')}
                         </Btn>
                     </Flex>
                 </Flex>
