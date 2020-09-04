@@ -72,42 +72,55 @@ function RegisterForm(props) {
 
             // valida si es un id o un add
             if(state.address.length < 18 && instance){
+                let existe = false;
                try{
                    let x = await instance.methods.idToAddress(state.address).call();
-                   let id = await instance.methods.users(x).call();
-                   // consulta le id
-                   await VerificaId(await id.id)
-                       .then(async result =>{
-                           try {
-                               let r = await instance.methods.registrationExt(x).send(options);
-                               handleState({loading:false});
-                               props.SeTDataDash({userId:r.events.Registration.returnValues.userId});
-                               props.history.push("/dashboard/?user=" + r.events.Registration.returnValues.userId  )
+                   let referido = await instance.methods.users(x).call();
+                   let userToRegister  = await instance.methods.users(accounts[0]).call();
 
-                           }catch (e) {
-                               handleState({loading:false,error:true});
+                   if(userToRegister.id === "0"){
+                       // consulta le id
+                       await VerificaId(await referido.id)
+                           .then(async result =>{
+                               try {
+                                   let r = await instance.methods.registrationExt(x).send(options);
+                                   handleState({loading:false});
+                                   props.SeTDataDash({userId:r.events.Registration.returnValues.userId});
+                                   props.history.push("/dashboard/?user=" + r.events.Registration.returnValues.userId  )
+                               }
+                               catch (e) {
+                                   handleState({loading:false,error:true});
+                                   hanldeModal({
+                                       status:true,
+                                       title:t("transaction_reject"),
+                                       description: "",
+                                       icon:"cancel",
+                                   })
+                               }
+                           })
+                           .catch(()=>{
+                               SetS({
+                                   ...state,
+                                   loadingAuth:false,
+                               });
                                hanldeModal({
                                    status:true,
-                                   title:t("transaction_reject"),
-                                   description: "",
+                                   title:t("address_not_found"),
+                                   description: <span>La dirección de wallet <b>{accounts[0].substring(0,22) + "..."}</b> no se encuentra registrada.</span>,
                                    icon:"cancel",
                                })
-                           }
-                       })
-                       .catch(()=>{
-                           SetS({
-                               ...state,
-                               loadingAuth:false,
-                           });
-                           hanldeModal({
-                               status:true,
-                               title:t("address_not_found"),
-                               description: <span>La dirección de wallet <b>{accounts[0].substring(0,22) + "..."}</b> no se encuentra registrada.</span>,
-                               icon:"cancel",
                            })
+                   }else{
+                       handleState({loading:false,error:true});
+                       hanldeModal({
+                           status:true,
+                           title:t("address_not_found"),
+                           description: "",
+                           icon:"cancel",
                        })
+                   }
                }catch (e) {
-                   handleState({loading:false,error:true})
+                   handleState({loading:false,error:true});
                    hanldeModal({
                        status:true,
                        title:t("address_not_found"),
@@ -116,7 +129,6 @@ function RegisterForm(props) {
                    })
                }
             }
-
             // consulta si ya esta registrado
             // axios({
             //     url:"http://api-cryptobillions.herokuapp.com/api/v1/account/registrationExt",

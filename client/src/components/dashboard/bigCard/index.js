@@ -19,6 +19,7 @@ const Container = styled.div`
     }
 `;
 
+
 function BigCard({version,activos,data,m2 }) {
     return (
         <Container className={"wc mb-4"}>
@@ -27,31 +28,35 @@ function BigCard({version,activos,data,m2 }) {
                 <Flex jc={"flex-start"}>
                     {activos && activos.map((item,index)=>{
                         if(m2){
-                            return(
-                                <Modulo2
-                                    gold={data[index].mtype === 2}
-                                    key={index}
-                                    number={data[index].level}
-                                    data={{
-                                        users:data[index].descendants,
-                                        ciclos:data[index].resets,
-                                        circles:data[index].circles,
-                                    }}
-                                    lock={!data[index].active}
-                                />
-                            )
+                           return(
+                               <Modulo2
+                                   gold={data[index].mtype === 2}
+                                   key={index}
+                                   number={data[index].level}
+                                   data={{
+                                       users:data[index].descendants,
+                                       ciclos:data[index].resets,
+                                       circles:data[index].circles,
+                                   }}
+                                   lock={!data[index].active}
+                                   canbuy={!item.active}
+                               />
+                           )
                         }else{
                             return(
                                 <Modulo
                                     gold={data[index].mtype === 2}
                                     key={index}
                                     number={data[index].level}
+                                    // number={data[index].level}
                                     data={{
                                         users:data[index].descendants,
                                         ciclos:data[index].resets,
                                         circles:data[index].circles,
+                                        active:item.active
                                     }}
                                     lock={!data[index].active}
+                                    canbuy={!item.active && (index > 0 && data[index -1 ].active)}
                                 />
                             )
                         }

@@ -105,6 +105,17 @@ export const Container = styled(Flex)`
        border-radius:10px;
     }
     
+    .loading{
+        width:40px;
+        height:40px;
+        border-radius:50%;
+        border:4px solid white;
+        border-color: ${colors.blue} ${colors.blue} ${colors.blue}  white;
+        animation: girar .5s ease-out infinite;   
+        display:block;
+    }
+    
+    
     .cart{
         background:transparent;
         

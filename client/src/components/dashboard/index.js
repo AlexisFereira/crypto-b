@@ -65,6 +65,7 @@ function Dashboard(props) {
             }
         )
             .then(function (response) {
+                console.log(response)
                 if(response.status){
                     setstate({...state,loading:false});
                     let {
