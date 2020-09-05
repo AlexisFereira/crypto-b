@@ -91,5 +91,6 @@
   "wallet_addres_nf": "Dirección de billetera no encontrada.",
   "transaction_reject": "Transacción rechazada",
   "prewiew_only": "Solo para ver",
-  "user_registered": "Usuario registrado."
+  "user_registered": "Usuario registrado.",
+  "telegram_chanel": "Canal Telegram"
 }

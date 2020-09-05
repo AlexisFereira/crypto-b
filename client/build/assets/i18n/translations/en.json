@@ -91,5 +91,6 @@
   "wallet_addres_nf": "Wallet address not found",
   "transaction_reject": "Transaction rejected",
   "prewiew_only": "Preview only",
-  "user_registered": "Usuario registrado."
+  "user_registered": "Usuario registrado.",
+  "telegram_chanel": "Telegram Channel"
 }

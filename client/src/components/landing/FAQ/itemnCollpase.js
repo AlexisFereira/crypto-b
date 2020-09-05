@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "@emotion/styled";
 import Flex from "./../../UI/Flex";
 import {Collapse} from "react-collapse";
 import {Icon} from "../bannerInicio/helpers";
+import {useTranslation} from "react-i18next";
 
 const Container = styled.div`
     position:relative;
@@ -41,6 +42,9 @@ const Container = styled.div`
 `;
 
 function ItemCollapse({open,text,desc,handleTab,id}) {
+
+    const { t } = useTranslation();
+
     return (
         <Container className={"wc"} onClick={()=> handleTab(id)}>
             <Flex className={"wc "} alg={"flex-start"}>
@@ -55,7 +59,7 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                 </Flex>
                 <Flex flex={"1 0 70%"} jc={"flex-start"} className={"pl-3"}>
                     <p className={"question cw mb-0"}>{text}</p>
-                    <div className={"wc pt-3 d-none d-md-bock"}>
+                    <div className={"wc pt-3 d-none d-md-block"}>
                         <Collapse isOpened={open}>
                             <div className="desc">
                                 {desc}
