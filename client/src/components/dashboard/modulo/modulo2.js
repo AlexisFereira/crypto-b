@@ -72,7 +72,7 @@ function Modulo2({number,gold,lock,canbuy,data}) {
         try{
             let gasStimate = await instance.methods.buyNewLevel(level,number).estimateGas(optionGas);
             let compra = await instance.methods.buyNewLevel(level,number).send(optionSend(gasStimate));
-            console.log(compra)
+
             window.location.reload();
         }
         catch (e) {

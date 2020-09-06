@@ -46,11 +46,11 @@ function Dashboard(props) {
                         total_users_usd,
                         ether_value } = response.data;
                     props.SeTDataLanding({
-                        participants:total_users,
-                        newEth:total_users_24h,
-                        incomeUsd:total_users_eth,
-                        TotalParticipants:total_users_usd,
-                        ether_value
+                        participants       :total_users,
+                        newEth             :total_users_24h,
+                        incomeUsd          :ether_value,
+                        TotalParticipants  :total_users_usd,
+                        ether_value        :total_users_eth
                     })
                 }
                 else{
