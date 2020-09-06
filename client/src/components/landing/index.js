@@ -14,37 +14,42 @@ import {connect} from "react-redux";
 import {SeTDataLanding} from "../store/actions/actionsCreators";
 import axios from "axios";
 import {withRouter} from "react-router-dom";
+import {cryptoVar} from "../../config";
 
 function Landing(props) {
 
 
     let Register = ()=> props.history.push("/register");
 
+    let getData = async ()=>{
+        await axios(
+            {
+                method: 'get',
+                url: `${cryptoVar.api}api/v1/contract/globalstats`,
+            }
+        )
+            .then(function (response) {
+                if(response.status){
+                    let data = response.data;
+                    props.SeTDataLanding({
+                        participants      : data.total_users,
+                        newEth            : data.total_users_24h,
+                        incomeUsd         : data.total_users_eth,
+                        TotalParticipants : data.total_users_usd,
+                    })
+                }else{
+                    console.log("::: No se pudo consultar ::::")
+                }
+            })
+            .catch(function (error) {
+                // handle error
+                console.log("::: Errror obteniendo los datos de landing ::::",error);
+            })
+    };
+
      useEffect(()=>{
-     axios(
-         {
-         method: 'get',
-         url: 'http://api-cryptobillions.herokuapp.com/api/v1/contract/globalstats',
-         }
-     )
-         .then(function (response) {
-                 if(response.status){
-                        let data = response.data;
-                        props.SeTDataLanding({
-                                participants      : data.total_users,
-                                newEth            : data.total_users_24h,
-                                incomeUsd         : data.total_users_eth,
-                                TotalParticipants : data.total_users_usd,
-                        })
-                 }else{
-                         console.log("::: No se pudo consultar ::::")
-                 }
-         })
-         .catch(function (error) {
-                 // handle error
-                 console.log("::: Errror en peticion de landing ::::",error);
-         })
-     },[ ]);
+         getData();
+     },[]);
 
 
 

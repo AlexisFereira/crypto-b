@@ -10,7 +10,6 @@ import {useTranslation} from "react-i18next";
 
 const Modal = props => {
     const {t} = useTranslation();
-    let small = window.innerWidth < 768;
 
     let iconos = {
         check: CHECK,

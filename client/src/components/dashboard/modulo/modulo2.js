@@ -1,11 +1,87 @@
-import React from "react";
+import React, {useState} from "react";
 import Flex from "./../../UI/Flex";
 import {DegCard} from "../helper";
 import {Container,ThreePoints} from "./styles";
-import {colors} from "../../UI";
+import getWeb3 from "../../../getWeb3";
+import Cryptobillions from "../../../contracts/Cryptobillions";
+import {cryptoVar} from "../../../config";
+import axios from "axios";
 
 
 function Modulo2({number,gold,lock,canbuy,data}) {
+
+
+    let values = [0.045,
+        0.09,
+        0.18,
+        0.36,
+        0.72,
+        1.44,
+        2.88,
+        5.76,
+        11.52];
+
+    let level = gold ? 2 : 1;
+
+    let [state,setState] = useState({
+        loading:false
+    });
+
+    let handler = x => setState({...state,...x});
+
+    let buyLevel = async (index) =>{
+
+        handler({loading:true});
+        const web3 = await getWeb3();
+        // Use web3 to get the user's accounts.
+        const accounts = await web3.eth.getAccounts();
+
+        // Get the contract instance.
+        const networkId       = await web3.eth.net.getId();
+        const deployedNetwork = Cryptobillions.networks[networkId];
+        // const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
+        // const nonce           = await web3.eth.getTransactionCount(accounts[0]);
+
+        const instance        = new web3.eth.Contract( Cryptobillions.abi, cryptoVar.contractAddress);
+        const nonce           = await web3.eth.getTransactionCount(accounts[0]);
+
+        // snow core cash bring dumb race toilet spice drill near invest grace
+        let gasPrice = await axios({
+            method:"get",
+            url:"https://ethgasstation.info/json/ethgasAPI.json"
+        }).then(result => result.data.average / 10 );
+
+        let optionSend= (gas) =>({
+            nonce,
+            gasPrice,
+            gas,
+            from: accounts[0],
+            to:cryptoVar.contractAddress, // la direccion del contrato
+            value: web3.utils.toWei(values[index].toString(), "ether"),
+            data: web3.eth.abi.encodeFunctionSignature('whitdrawETH()')
+        });
+
+        let optionGas = {
+            nonce,
+            from: accounts[0],
+            to:cryptoVar.contractAddress, // la direccion del contrato
+            value: web3.utils.toWei(values[index].toString(), "ether"),
+            data: web3.eth.abi.encodeFunctionSignature('whitdrawETH()')
+        };
+
+        try{
+            let gasStimate = await instance.methods.buyNewLevel(level,number).estimateGas(optionGas);
+            let compra = await instance.methods.buyNewLevel(level,number).send(optionSend(gasStimate));
+            console.log(compra)
+            window.location.reload();
+        }
+        catch (e) {
+            console.log(e,":::: no se hizo la compra ::::")
+            handler({loading:false});
+        }
+    };
+
+
     return (
         <Container className={"px-1 mb-2 mb-lg-3 "}>
             <Flex className={"number pr-2"} flex={"0 0 20px"}>
@@ -57,8 +133,10 @@ function Modulo2({number,gold,lock,canbuy,data}) {
                 <div className="lock">
                     <Flex className={"cart"} direction={"column"}>
                         {canbuy &&
-                        <button className="shop">
-                            <img src="/img/dashboard/cart.png" alt="" className={"imgr"}/>
+                        <button className="shop" onClick={()=>buyLevel(Number(number) - 1)}>
+                            {state.loading ? <span className="loading"> </span> :
+                                <img src="/img/dashboard/cart.png" alt="" className={"imgr"}/>
+                            }
                         </button>}
                     </Flex>
                 </div>}
@@ -68,7 +146,7 @@ function Modulo2({number,gold,lock,canbuy,data}) {
                 <Flex flex={"0 0 20px"}> </Flex>
                 <Flex flex={"1 0 50%"} className={"mt-2 px-2"}>
                     <DegCard className={"wc text-center"}>
-                        <small><b>0.09</b> ETH</small>
+                        <small><b>{values[Number(number)-1]}</b> ETH</small>
                     </DegCard>
                 </Flex>
             </Flex>

@@ -44,7 +44,7 @@ const Container = styled.div`
         padding: 20px;
     
         .data{
-            max-width:200px;
+            max-width:250px;
             height: 40px;
             margin:auto;
             border-radius:10px;
@@ -145,7 +145,7 @@ function MarketingPlan(props) {
                     </div>
                 </div>
                <div className={"text-center"}>
-                   <Btn className={"mx-auto"} mw={"110px"} onClick={()=> props.register()}> {t('register')} </Btn>
+                   <Btn className={"mx-auto"} mw={"220px"} onClick={()=> props.register()}> {t('register')} </Btn>
                </div>
             </div>
         </Container>

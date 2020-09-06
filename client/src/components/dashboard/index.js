@@ -14,7 +14,7 @@ import {Datosgenerales} from "../../crypto";
 import {withRouter} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import Telegram from "./../UI/telegramBtn";
-
+import {cryptoVar} from "../../config";
 
 
 function Dashboard(props) {
@@ -27,10 +27,14 @@ function Dashboard(props) {
 
     let {history} = props;
     let id = props.history.location.search.split('=');
-    if(!id[0]){
+    if(!id[0] && !props.dashboard.minihash){
         props.history.push('/login')
     }
 
+
+    let addressRequeest = props.dashboard.inCommingFromRegister ?
+        `${cryptoVar.api}/api/v1/accounth/${props.dashboard.minihash}`
+        :`${cryptoVar.api}/api/v1/account/${id[1]}`
 
     useEffect(()=>{
         Datosgenerales()
@@ -58,12 +62,10 @@ function Dashboard(props) {
             .catch(e=>{
                 console.log(e)
             });
-        axios(
-            {
+        axios({
                 method: 'get',
-                url: `https://api-cryptobillions.herokuapp.com/api/v1/account/${id[1]}`,
-            }
-        )
+                url: addressRequeest,
+            })
             .then(function (response) {
                 console.log(response)
                 if(response.status){
@@ -109,7 +111,7 @@ function Dashboard(props) {
                 history.push("/login");
                 console.log("::: Error en peticion de Dashboard ::::",error);
             })
-    },[]);
+    },[ ]);
 
     return (
         <Container className={"wc bgDark"}>
@@ -165,12 +167,12 @@ function Dashboard(props) {
                             </Flex>
                         </aside>
                         <div className="content col-12 col-sm-10 col-lg-9 px-0 pl-md-4">
-                            <BigCard version={"x3"} activos={props.dashboard.m1_levels} data={props.dashboard.m1}/>
+                            <BigCard version={"x3"} activos={props.dashboard.m1_levels} data={props.dashboard.m1} onlyView={props.dashboard.onlyView}/>
                             <Flex jc={"flex-end"} className={"wc cw historia"}>
                                 <div className={"pl-3"}>Usuario en matriz <img src="/img/dashboard/user.png" className={"align-middle ml-2"} width={"12px"} height={"auto"}  alt=""/></div>
                                 <div className={"pl-3"}>Número de ciclos <img src="/img/dashboard/ciclo.png" className={"align-middle ml-2"} width={"12px"} height={"auto"}  alt=""/></div>
                             </Flex>
-                            <BigCard version={"x6"} activos={props.dashboard.m2_levels} data={props.dashboard.m2} m2/>
+                            <BigCard version={"x6"} activos={props.dashboard.m2_levels} data={props.dashboard.m2} onlyView={props.dashboard.onlyView} m2/>
                             <Flex jc={"flex-end"} className={"wc cw historia"}>
                                 <div className={"pl-3"}> <div className="color-circle"> </div> Usuario en matriz</div>
                                 <div className={"pl-3"}> <div className="color-circle"> </div> Número de ciclos</div>

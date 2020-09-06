@@ -2,6 +2,7 @@ import i18n from 'i18next'
 import Backend from 'i18next-xhr-backend'
 import { initReactI18next } from 'react-i18next'
 
+
 i18n
     .use(Backend)
     .use(initReactI18next)
@@ -11,6 +12,7 @@ i18n
             /* translation file path */
             loadPath: '/assets/i18n/{{ns}}/{{lng}}.json'
         },
+        compatibilityJSON: 'v1',
         fallbackLng: 'en',
         debug: false,
         /* can have multiple namespace, in case you want to divide a huge translation into smaller pieces and load them on demand */
@@ -18,10 +20,11 @@ i18n
         defaultNS: 'translations',
         keySeparator: false,
         interpolation: {
-            escapeValue: true,
+            escapeValue: false,
             formatSeparator: ','
         },
         returnObjects:true,
+        returnedObjectHandler: (key, value, options) => value,
         react: {
             wait: true,
             useSuspense:false

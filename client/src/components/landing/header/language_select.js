@@ -65,8 +65,10 @@ function LanguageSelect() {
                 </div>
                 <div className="menu-flags bgDark br6" >
                    <UnmountClosed isOpened={menuL.open === true} className={"p-1"}>
-                       <BtnFlag action={changeLanguage} flag={"en"} value={"en"} name={"english"} activo={i18n.language} />
-                       <BtnFlag action={changeLanguage} flag={"es"} value={"es"} name={"spanish"} activo={i18n.language} />
+                       <BtnFlag action={changeLanguage} flag={"en"} value={"en"} name={"english"}  activo={i18n.language} />
+                       <BtnFlag action={changeLanguage} flag={"es"} value={"es"} name={"spanish"}  activo={i18n.language} />
+                       <BtnFlag action={changeLanguage} flag={"rus"} value={"rus"} name={"russian"} activo={i18n.language} />
+                       <BtnFlag action={changeLanguage} flag={"chi"} value={"chi"} name={"chines"}  activo={i18n.language} />
                    </UnmountClosed>
                 </div>
             </Flex>

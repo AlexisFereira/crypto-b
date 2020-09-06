@@ -7,6 +7,7 @@ const getWeb3 = () =>
      // Modern dapp browsers...
      if (window.ethereum) {
        const web3 = new Web3(window.ethereum);
+
        try {
          // Request account access if needed
          await window.ethereum.enable();
@@ -27,7 +28,7 @@ const getWeb3 = () =>
      // Fallback to localhost; use dev console port by default...
      else {
        const provider = new Web3.providers.HttpProvider(
-           "http://127.0.0.1:8545"
+           "https://ropsten.infura.io/v3/397b69dc54c043c781078dac3b24d77a"
        );
        const web3 = new Web3(provider);
        console.log("No web3 instance injected, using Local web3.");

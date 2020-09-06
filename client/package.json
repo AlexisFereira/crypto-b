@@ -23,6 +23,8 @@
     "react-scripts": "3.4.1",
     "react-scroll": "^1.8.1",
     "react-slick": "^0.27.1",
+    "react-tippy": "^1.4.0",
+    "react-transition-group": "^4.4.1",
     "redux": "^4.0.5",
     "redux-devtools": "^3.6.1",
     "slick": "^1.12.2",

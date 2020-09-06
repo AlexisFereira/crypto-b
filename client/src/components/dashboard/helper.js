@@ -5,7 +5,6 @@ import 'react-tippy/dist/tippy.css'
 import {
     Tooltip,
 } from 'react-tippy';
-import {useTranslation} from "react-i18next";
 
 
 export const DegCard = styled.div`
@@ -16,8 +15,7 @@ export const DegCard = styled.div`
 
 export const CopyUrl = ({url,name,id,message})=> {
 
-    let [tool, setT] = useState(false)
-    const {t} = useTranslation();
+    let [tool, setT] = useState(false);
 
     function Copy() {
         /* Get the text field */

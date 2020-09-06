@@ -19,7 +19,7 @@ const Container = styled.div`
 function Telegram({className}) {
     return (
         <Container className={className}>
-            <a href="https://t.me/cryptobillions2020" target={"_blank"}>
+            <a href="https://t.me/cryptobillions2020" target={"_blank" } rel="noopener noreferrer" >
                 <img src="/img/telegrama.png" alt=""/>
             </a>
         </Container>

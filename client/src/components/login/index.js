@@ -34,7 +34,7 @@ function Login(props) {
                 <Flex flex={"0 0 80px"} className={" gold-movil wc d-md-none"}>
                     <img src="/img/gold-icon.png" alt="" className={"position-relative z900"}/>
                     <div className="telegramBtn ml-3 ">
-                        <a href="https://t.me/cryptobillions2020" target={"_blank"}>
+                        <a href="https://t.me/cryptobillions2020" target={"_blank"}  rel="noopener noreferrer">
                         {t("telegram_chanel")}
                         </a>
                     </div>

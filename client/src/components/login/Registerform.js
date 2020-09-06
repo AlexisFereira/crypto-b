@@ -12,6 +12,7 @@ import {VerificaId} from "../../crypto";
 import ShowModal from "../UI/ShowModal/ShowModal";
 import Fade from "./../UI/Fade";
 import axios from "axios";
+import {cryptoVar} from "../../config";
 
 function RegisterForm(props) {
     const {t} = useTranslation();
@@ -39,9 +40,6 @@ function RegisterForm(props) {
     // idToAddress
     // buyNewLevel
 
-    // 0x3F38d06b136ae62815170C70D21896e9DbE7051B
-
-
     let onSubmit = async ()=>{
         SetS({...state,loading:true});
         if(state.address === ""){
@@ -54,25 +52,28 @@ function RegisterForm(props) {
             const accounts = await web3.eth.getAccounts();
 
             // Get the contract instance.
-            const networkId       = await web3.eth.net.getId();
-            const deployedNetwork = Cryptobillions.networks[networkId];
-            const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
+
+            // const networkId       = await web3.eth.net.getId();
+            // const deployedNetwork = Cryptobillions.networks[networkId];
+            // const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
+
+            const instance        = new web3.eth.Contract( Cryptobillions.abi, cryptoVar.contractAddress);
             const nonce           = await web3.eth.getTransactionCount(accounts[0]);
 
             // return await instance.methods;
-            let options=  {
+            let options = {
                 nonce,
                 gasPrice:web3.utils.toWei("50", "gwei"),
                 gas:2000000,
                 from: accounts[0],
-                to:"0x39526b94b37380C38baE779546d5a99b47f1A858", // la direccion del contrato
+                to:cryptoVar.contractAddress, // la direccion del contrato
                 value: web3.utils.toWei("0.09", "ether"),
                 data: web3.eth.abi.encodeFunctionSignature('whitdrawETH()')
             };
 
+
             // valida si es un id o un add
             if(state.address.length < 18 && instance){
-                let existe = false;
                try{
                    let x = await instance.methods.idToAddress(state.address).call();
                    let referido = await instance.methods.users(x).call();
@@ -81,12 +82,31 @@ function RegisterForm(props) {
                    if(userToRegister.id === "0"){
                        // consulta le id
                        await VerificaId(await referido.id)
-                           .then(async result =>{
+                           .then(async () =>{
                                try {
                                    let r = await instance.methods.registrationExt(x).send(options);
-                                   handleState({loading:false});
-                                   props.SeTDataDash({userId:r.events.Registration.returnValues.userId});
-                                   props.history.push("/dashboard/?user=" + r.events.Registration.returnValues.userId  )
+                                   axios({
+                                       url:`${cryptoVar.api}/api/v1/account/registrationExt`,
+                                       method:"post",
+                                       contentType: "application/json",
+                                       data:{
+                                           wallet:accounts[0],
+                                           referred:x
+                                       }})
+                                       .then(async result =>{
+                                           console.log(result,"respondio el api de registor de usuario.");
+                                           handleState({loading:false});
+                                           props.SeTDataDash({
+                                               userId:r.events.Registration.returnValues.userId,
+                                               minihash: result.data.minihash
+                                           });
+                                           props.history.push("/dashboard/?user=" + r.events.Registration.returnValues.userId  )
+                                       })
+                                       .catch(e=>{
+                                           handleState({loading:false});
+                                           console.log(e,"No se registró el usuario en el api.")
+                                       });
+
                                }
                                catch (e) {
                                    handleState({loading:false,error:true});
@@ -95,10 +115,12 @@ function RegisterForm(props) {
                                        title:t("transaction_reject"),
                                        description: "",
                                        icon:"cancel",
-                                   })
+                                   });
+                                   console.log(e,"Hubo un error haciendo el registro.");
                                }
                            })
                            .catch(()=>{
+                               console.log("El referido no está registrado.");
                                SetS({
                                    ...state,
                                    loadingAuth:false,
@@ -108,16 +130,19 @@ function RegisterForm(props) {
                                    title:t("address_not_found"),
                                    description: <span>La dirección de wallet <b>{accounts[0].substring(0,22) + "..."}</b> no se encuentra registrada.</span>,
                                    icon:"cancel",
-                               })
+                               });
+                               console.log("El referido no está registrado.")
                            })
-                   }else{
+                   }
+                   else{
                        handleState({loading:false,error:true});
                        hanldeModal({
                            status:true,
                            title:t("address_not_found"),
                            description: "",
                            icon:"cancel",
-                       })
+                       });
+                       console.log("la cuenta que intenta registrar, ya está registrada.")
                    }
                }catch (e) {
                    handleState({loading:false,error:true});
@@ -129,44 +154,19 @@ function RegisterForm(props) {
                    })
                }
             }
-            // consulta si ya esta registrado
-            // axios({
-            //     url:"http://api-cryptobillions.herokuapp.com/api/v1/account/registrationExt",
-            //     method:"post",
-            //     contentType: "application/json",
-            //     data:{
-            //         wallet:accounts[0],
-            //         referred:x
-            //     }}).then(async result =>{
-            //     if(result.status === 200){
-            //         hanldeModal({
-            //             status:true,
-            //             title:t("address_not_found"),
-            //             description: "",
-            //             icon:"cancel",
-            //         })
-            //     }else{
-            //         // consulta le id
-            //
-            //     }
-            // }).catch(e=>{
-            //     console.log(e)
-            // })
-
 
             // consulta normal si es un address
             else{
                 try{
                     let R = await instance.methods.registrationExt(state.address).send(options);
                     handleState({loading:false});
-                    props.SeTDataDash({userId:R.events.Registration.returnValues.userId})
+                    props.SeTDataDash({userId:R.events.Registration.returnValues.userId});
                     props.history.push("/dashboard")
                 } catch (e) {
-                    alert("la dirección de la billetera no existe.")
+                    alert("la dirección de la billetera no existe.");
                     handleState({loading:false,error:true})
                 }
             }
-
          // console.log(options)
         }catch (e) {
             console.log(e)

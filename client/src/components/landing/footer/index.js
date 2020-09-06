@@ -28,7 +28,7 @@ const Container = styled.div`
 export const Redes = ()=>{
     return(
         <Flex flex={"0 0 150px"} className={"cw redes"}>
-            <a target={"_blank"} href="https://www.instagram.com/invites/contact/?i=w0fnvoicorvp&utm_content=221nkz4">
+            <a target={"_blank"} href="https://www.instagram.com/invites/contact/?i=w0fnvoicorvp&utm_content=221nkz4" rel="noopener noreferrer" >
                 <Icon
                     url={"/img/landing/redes.png"}
                     nIcons={"5"}
@@ -37,7 +37,7 @@ export const Redes = ()=>{
                     number={"1"}
                 />
             </a>
-            <a target={"_blank"} href="https://www.facebook.com/Crypto-Billions-108685800961946">
+            <a target={"_blank"} href="https://www.facebook.com/Crypto-Billions-108685800961946" rel="noopener noreferrer" >
                 <Icon
                     url={"/img/landing/redes.png"}
                     nIcons={"5"}
@@ -46,7 +46,7 @@ export const Redes = ()=>{
                     number={"2"}
                 />
             </a>
-            <a target={"_blank"} href="https://twitter.com/CryptoBillions3">
+            <a target={"_blank"} href="https://twitter.com/CryptoBillions3" rel="noopener noreferrer" >
                 <Icon
                     url={"/img/landing/redes.png"}
                     nIcons={"5"}
@@ -55,7 +55,7 @@ export const Redes = ()=>{
                     number={"5"}
                 />
             </a>
-            <a target={"_blank"} href="https://www.youtube.com/channel/UCi4jHPjlgJQoofiq8VCNT7Q/about?edit_links=1&disable_polymer=1#c4-primary-header-contents">
+            <a target={"_blank"} href="https://www.youtube.com/channel/UCi4jHPjlgJQoofiq8VCNT7Q/about?edit_links=1&disable_polymer=1#c4-primary-header-contents" rel="noopener noreferrer" >
                 <Icon
                     url={"/img/landing/redes.png"}
                     nIcons={"5"}

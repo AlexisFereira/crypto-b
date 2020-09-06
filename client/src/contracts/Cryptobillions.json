@@ -61055,12 +61055,12 @@
         }
       },
       "links": {},
-      "address": "0x2B9a8062aB94d7CC066c0bBEc167cC2951523025",
-      "transactionHash": "0xc876374951eb119576d45db155eccdd8104e95e5596c26a4d4d53cd369b6fc30"
+      "address": "0xb7A75E957Be800bCac6A4015C762A49b0bd9c712",
+      "transactionHash": "0x28ef1150b6219076e37a5d65c2f731059ad1b2dd07433bbfaa365899909c4830"
     }
   },
   "schemaVersion": "3.2.3",
-  "updatedAt": "2020-09-03T23:45:46.979Z",
+  "updatedAt": "2020-09-05T20:05:27.478Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

@@ -1,6 +1,7 @@
 import getWeb3 from "./getWeb3";
 import Cryptobillions from "./contracts/Cryptobillions";
 import axios from "axios";
+import {cryptoVar} from "./config";
 
 export const Crypto = async ()=>{
     try {
@@ -38,11 +39,11 @@ export const Crypto = async ()=>{
 export const VerificaId = async (id)=>{
     await axios({
         method: 'get',
-        url: `https://api-cryptobillions.herokuapp.com/api/v1/account/${id}`
+        url: `${cryptoVar.api}/api/v1/account/${id}`
     })
 };
 
 export const Datosgenerales = async () =>{
     console.log("consulté")
-    return await axios({method: 'get', url: 'http://api-cryptobillions.herokuapp.com/api/v1/contract/globalstats',})
+    return await axios({method: 'get', url: `${cryptoVar.api}/api/v1/contract/globalstats`,})
 };

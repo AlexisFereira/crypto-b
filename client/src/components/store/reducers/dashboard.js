@@ -5,7 +5,8 @@ const initSatte = {
     newEth:0,
     incomeUsd:0,
     TotalParticipants:0,
-    userId:1
+    userId:1,
+    onlyView:false
 };
 
 

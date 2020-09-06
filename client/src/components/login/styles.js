@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import Flex from "../UI/Flex";
-import {colors} from "../UI";
 
 export const ContainerFom = styled.div`
     position:relative;

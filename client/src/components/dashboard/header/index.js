@@ -5,6 +5,10 @@ import Btn from "./../../UI/Btn";
 import { useTranslation } from 'react-i18next';
 import LanguageSelect from "./language_select";
 import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {SeTDataDash} from "../../store/actions/actionsCreators";
+// import {Link} from "react-router-dom";
+
 
 
 const Container = styled.header`
@@ -26,9 +30,12 @@ function Header(props) {
                 </Flex>
                 <Flex flex={"1 0 50%"} jc={"flex-end"} className={"pr-3"}>
                     <Flex flex={"0 0 auto"} jc={"flex-end"}>
-                        <a className={"p-2 cw "} href="">{t("presentation")}</a>
-                        <a className={"p-2 cw "} href="">{t("support")}</a>
-                        <Btn className={"ml-3"} flex={"0 0 150px"} onClick={()=>props.history.push('/login')}>
+                        {/*<Link className={"p-2 cw "} to="/dashboard">{t("presentation")}</Link>*/}
+                        {/*<Link className={"p-2 cw "} to="/dashboard">{t("support")}</Link>*/}
+                        <Btn className={"ml-3"} flex={"0 0 150px"} onClick={()=>{
+                            props.SeTDataDash({onlyView:false,minihash:""});
+                            props.history.push('/login')
+                        }}>
                             {t('logout')}
                         </Btn>
                     </Flex>
@@ -41,4 +48,7 @@ function Header(props) {
     )
 }
 
-export default React.memo(withRouter(Header));
+let MSTprops = state=> ({dashboard : state.Dashbaord});
+let MDTprops = {SeTDataDash};
+
+export default connect(MSTprops,MDTprops)(React.memo(withRouter(Header)));

@@ -12,6 +12,7 @@ import {VerificaId} from "../../crypto";
 import axios from "axios";
 import ShowModal from "../UI/ShowModal/ShowModal";
 import Fade from "./../UI/Fade";
+import {cryptoVar} from "../../config";
 
 const Container = styled.div`
     position:relative;
@@ -63,11 +64,14 @@ function Formulario(props) {
             const accounts = await web3.eth.getAccounts();
 
             // Get the contract instance.
-            const networkId       = await web3.eth.net.getId();
-            const deployedNetwork = Cryptobillions.networks[networkId];
-            const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
+            // const networkId       = await web3.eth.net.getId();
+            // const deployedNetwork = Cryptobillions.networks[networkId];
+            // const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
 
-            console.log(accounts[0])
+            const instance        = new web3.eth.Contract( Cryptobillions.abi, cryptoVar.contractAddress);
+            const nonce           = await web3.eth.getTransactionCount(accounts[0]);
+
+            console.log(accounts[0]);
             // valida si es un id o un add y consultalo
             if(accounts[0]){
                 try{
@@ -75,14 +79,52 @@ function Formulario(props) {
                     let id = await instance.methods.users(accounts[0]).call();
                     // consulta le id
                     await VerificaId(await id.id)
-                        .then(result =>{
+                        .then(async result =>{
                             console.log(result);
-                            // if(){
-                            //
-                            // }
-                            // else{
-                            //
-                            // }
+                            try{
+                                await  axios({
+                                    method: 'get',
+                                    url: `${cryptoVar.api}/api/v1/account/${id.id}`
+                                })
+                                .then(result=>{
+                                    if(result.status === 200 ){
+                                        SetS({
+                                            ...state,
+                                            loading:false,
+                                            error:false
+                                        });
+                                        return props.history.push("/dashboard/?user="+ id.id)
+                                    } else {
+                                        SetS({
+                                            ...state,
+                                            loading:false,
+                                            error:false
+                                        });
+                                        hanldeModal({
+                                            status:true,
+                                            title:"ID no encontrado.",
+                                            icon:"cancel"
+                                        })
+                                    }
+                                })
+                                .catch(()=>{
+                                    SetS({
+                                        ...state,
+                                        loading:false,
+                                        error:true,
+                                    });
+
+                                    hanldeModal({
+                                        status:true,
+                                        title:<span>No se enontró información relacionada con <b>{state.address}.</b> </span>   ,
+                                        icon:"cancel",
+                                        description: ""
+                                    })
+                                });
+                            }
+                            catch (e) {
+                                console.log(e)
+                            }
 
                          })
                         .catch(()=>{
@@ -135,7 +177,7 @@ function Formulario(props) {
             try{
                 await  axios({
                     method: 'get',
-                    url: `https://api-cryptobillions.herokuapp.com/api/v1/account/${state.address}`
+                    url: `${cryptoVar.api}/api/v1/account/${state.address}`
                 })
                     .then(result=>{
                         if(result.status === 200 ){
@@ -144,6 +186,7 @@ function Formulario(props) {
                                 loading:false,
                                 error:false
                             });
+                            props.SeTDataDash({onlyView:true});
                             return props.history.push("/dashboard/?user="+ state.address)
                         } else {
                             SetS({
