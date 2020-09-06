@@ -55,7 +55,6 @@ function Formulario(props) {
 
     let hanldeModal = x => SetM({...modal,...x});
     const TheRef = useRef(null);
-
     let onSubmitAuth = async ()=>{
         SetS({...state,loadingAuth:true});
         try{
@@ -93,8 +92,10 @@ function Formulario(props) {
                                             loading:false,
                                             error:false
                                         });
+                                        props.SeTDataDash({wallletLoged :accounts[0]});
                                         return props.history.push("/dashboard/?user="+ id.id)
-                                    } else {
+                                    }
+                                    else {
                                         SetS({
                                             ...state,
                                             loading:false,
@@ -113,7 +114,6 @@ function Formulario(props) {
                                         loading:false,
                                         error:true,
                                     });
-
                                     hanldeModal({
                                         status:true,
                                         title:<span>No se enontró información relacionada con <b>{state.address}.</b> </span>   ,
@@ -165,7 +165,6 @@ function Formulario(props) {
 
         }
     };
-
     let onSubmit = async ()=> {
         if(state.address === "" ){
             SetS({...state,loading:false,disabled:true,error:true});
@@ -221,7 +220,6 @@ function Formulario(props) {
             }
         }
     };
-
     const handleAddres = e=>{
         let {value} = e.target;
         if(value !== "" && state.error){

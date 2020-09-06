@@ -20,7 +20,7 @@ const Container = styled.div`
 `;
 
 
-function BigCard({version,activos,data,m2,onlyView }) {
+function BigCard({version,activos,data,m2,onlyView,accountLogged,getData}) {
     return (
         <Container className={"wc mb-4"}>
             <p className={"title"}>Bilions <span className={"str"}>{version}</span></p>
@@ -40,6 +40,8 @@ function BigCard({version,activos,data,m2,onlyView }) {
                                    }}
                                    lock={!data[index].active}
                                    canbuy={!item.active && (index > 0 && data[index -1 ].active) && !onlyView}
+                                   accountLogged={accountLogged}
+                                   getData={getData}
                                />
                            )
                         }else{
@@ -57,6 +59,8 @@ function BigCard({version,activos,data,m2,onlyView }) {
                                     }}
                                     lock={!data[index].active}
                                     canbuy={!item.active && (index > 0 && data[index -1 ].active) && !onlyView}
+                                    accountLogged={accountLogged}
+                                    getData={getData}
                                 />
                             )
                         }

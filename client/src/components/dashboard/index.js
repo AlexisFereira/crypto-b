@@ -23,6 +23,8 @@ function Dashboard(props) {
         loading:true,
     });
 
+    let handler = x=> setstate({...state,...x});
+
     const { t } = useTranslation();
 
     let {history} = props;
@@ -34,42 +36,42 @@ function Dashboard(props) {
 
     let addressRequeest = props.dashboard.inCommingFromRegister ?
         `${cryptoVar.api}/api/v1/accounth/${props.dashboard.minihash}`
-        :`${cryptoVar.api}/api/v1/account/${id[1]}`
+        :`${cryptoVar.api}/api/v1/account/${id[1]}`;
 
-    useEffect(()=>{
+    let getData = ()=>{
+        handler({loading:true});
         Datosgenerales()
             .then(response =>{
-                if(response.status){
-                    let {total_users,
-                        total_users_24h,
-                        total_users_eth,
-                        total_users_usd,
-                        ether_value } = response.data;
-                    props.SeTDataLanding({
-                        participants       :total_users,
-                        newEth             :total_users_24h,
-                        incomeUsd          :ether_value,
-                        TotalParticipants  :total_users_usd,
-                        ether_value        :total_users_eth
-                    })
-                }
-                else{
-                    console.log("::: No se pudo consultar ::::");
-                    return false;
-                }
+                    if(response.status){
+                        let {total_users,
+                            total_users_24h,
+                            total_users_eth,
+                            total_users_usd,
+                            ether_value } = response.data;
+                        props.SeTDataLanding({
+                            participants       :total_users,
+                            newEth             :total_users_24h,
+                            incomeUsd          :ether_value,
+                            TotalParticipants  :total_users_usd,
+                            ether_value        :total_users_eth
+                        })
+                    }
+                    else{
+                        console.log("::: No se pudo consultar ::::");
+                        return false;
+                    }
                 }
             )
             .catch(e=>{
                 console.log(e)
             });
         axios({
-                method: 'get',
-                url: addressRequeest,
-            })
+            method: 'get',
+            url: addressRequeest,
+        })
             .then(function (response) {
-                console.log(response)
+
                 if(response.status){
-                    setstate({...state,loading:false});
                     let {
                         id,
                         users,
@@ -99,19 +101,25 @@ function Dashboard(props) {
                         m2_levels,
                         m1,
                         m2,
-                    })
+                    });
+                    handler({loading:false});
                 }
                 else{
                     console.log("::: No se pudo consultar ::::")
+                    handler({loading:false});
                 }
             })
             .catch(function (error) {
                 // handle error
-                setstate({...state,loading:false})
+                handler({loading:false});
                 history.push("/login");
                 console.log("::: Error en peticion de Dashboard ::::",error);
             })
-    },[ ]);
+    };
+
+    useEffect(()=>{
+        getData();
+    },[]);
 
     return (
         <Container className={"wc bgDark"}>
@@ -167,12 +175,27 @@ function Dashboard(props) {
                             </Flex>
                         </aside>
                         <div className="content col-12 col-sm-10 col-lg-9 px-0 pl-md-4">
-                            <BigCard version={"x3"} activos={props.dashboard.m1_levels} data={props.dashboard.m1} onlyView={props.dashboard.onlyView}/>
+                            <BigCard
+                                version={"x3"}
+                                activos={props.dashboard.m1_levels}
+                                data={props.dashboard.m1}
+                                onlyView={props.dashboard.onlyView}
+                                accountLogged={props.dashboard.wallletLoged }
+                                getData={()=>getData()}
+                            />
                             <Flex jc={"flex-end"} className={"wc cw historia"}>
                                 <div className={"pl-3"}>Usuario en matriz <img src="/img/dashboard/user.png" className={"align-middle ml-2"} width={"12px"} height={"auto"}  alt=""/></div>
                                 <div className={"pl-3"}>Número de ciclos <img src="/img/dashboard/ciclo.png" className={"align-middle ml-2"} width={"12px"} height={"auto"}  alt=""/></div>
                             </Flex>
-                            <BigCard version={"x6"} activos={props.dashboard.m2_levels} data={props.dashboard.m2} onlyView={props.dashboard.onlyView} m2/>
+                            <BigCard
+                                version={"x6"}
+                                activos={props.dashboard.m2_levels}
+                                data={props.dashboard.m2}
+                                onlyView={props.dashboard.onlyView}
+                                accountLogged={props.dashboard.wallletLoged }
+                                getData={()=>getData()}
+                                m2
+                            />
                             <Flex jc={"flex-end"} className={"wc cw historia"}>
                                 <div className={"pl-3"}> <div className="color-circle"> </div> Usuario en matriz</div>
                                 <div className={"pl-3"}> <div className="color-circle"> </div> Número de ciclos</div>

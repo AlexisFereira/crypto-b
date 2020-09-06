@@ -6,13 +6,24 @@ import getWeb3 from "../../../getWeb3";
 import Cryptobillions from "../../../contracts/Cryptobillions";
 import axios from "axios";
 import {cryptoVar} from "../../../config";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import {SeTDataDash} from "../../store/actions/actionsCreators";
+import ShowModal from "../../UI/ShowModal/ShowModal";
 
-function Modulo({number,gold,lock,canbuy,data}) {
+function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,getData}) {
 
+    let [modal,setModal] = useState({
+        status:false,
+        title:"",
+        description:"",
+        icons:"",
+    });
     let [state,setState] = useState({
         loading:false
     });
 
+    let handlerModal = x => setModal({...modal,...x});
     let handler = x => setState({...state,...x});
 
     let level = gold ? 2 : 1;
@@ -31,12 +42,28 @@ function Modulo({number,gold,lock,canbuy,data}) {
 
     let buyLevel = async (index) =>{
 
-        console.log(index,":::::")
-
         handler({loading:true});
         const web3 = await getWeb3();
         // Use web3 to get the user's accounts.
         const accounts = await web3.eth.getAccounts();
+
+
+
+        if(accountLogged !== accounts[0]){
+            handler({loading:false});
+            SeTDataDash({
+                minihash:"",
+                accountLogged:"",
+                onlyView:false
+            });
+            // return history.push("/login");
+            return  handlerModal({
+                title:"Compra no permitida",
+                description:"Esta intentando hacer una compra con una cuenta diferenta a la actual, para continuar con la compra debe iniciar sesión.",
+                icon:"cancel",
+                status:true
+            });
+        }
 
         // Get the contract instance.
         // const networkId       = await web3.eth.net.getId();
@@ -72,9 +99,12 @@ function Modulo({number,gold,lock,canbuy,data}) {
         };
 
         try{
+
             let gasStimate = await instance.methods.buyNewLevel(level,number).estimateGas(optionGas);
             let compra = await instance.methods.buyNewLevel(level,number).send(optionSend(gasStimate));
-            window.location.reload();
+            console.log(compra);
+            getData();
+            // window.location.reload();
         }
         catch (e) {
             console.log(e,":::: no se hizo la compra ::::")
@@ -122,8 +152,19 @@ function Modulo({number,gold,lock,canbuy,data}) {
                     </DegCard>
                 </Flex>
             </Flex>
+            <ShowModal
+                show={modal.status}
+                title={modal.title}
+                icon={modal.icon}
+                description={modal.description}
+                callback={()=> history.push("/login")}
+                onConfirm={()=> handlerModal({status:false})}
+            />
         </Container>
     )
 }
 
-export default React.memo(Modulo);
+const MSTprops = state=> ({dashboard :state.Dashboard});
+const MDTprops = {SeTDataDash};
+
+export default connect(MSTprops,MDTprops)(withRouter(React.memo(Modulo)));

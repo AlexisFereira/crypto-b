@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import {CSSTransition} from 'react-transition-group';
 import Flex from "../Flex";
@@ -11,10 +11,16 @@ import {useTranslation} from "react-i18next";
 const Modal = props => {
     const {t} = useTranslation();
 
+    const  [rendered,setR] = useState(false);
+
     let iconos = {
         check: CHECK,
         cancel: CANCEL
     };
+
+    useEffect(()=>{
+        setR(true)
+    },[])
 
     return (
         <CSSTransition
@@ -22,7 +28,9 @@ const Modal = props => {
             timeout={600}
             classNames="fade"
             unmountOnExit
-            onExited ={props.callback ? props.callback() : null }
+            onExited={ () =>{
+                return props.callback ? (rendered && props.callback()) : null
+            }}
         >
             <Flex className={"modal-container"} direction={"column"}>
 
