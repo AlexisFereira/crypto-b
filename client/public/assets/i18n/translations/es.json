@@ -6,8 +6,8 @@
   "login": "Iniciar Sesión",
   "logout": "Cerrar sesión",
   "close": "Cerrar",
-  "earn_money": "Gane dinero",
-  "as_you_can": "hasta donde pueda imaginar",
+  "earn_money": "Sé parte de la nueva economía.",
+  "as_you_can": "Sé un cryptobillonario.",
   "Wallets_Compatibles": "Billeteras Compatibles",
   "The_number_one": "La plataforma número uno del mundo que genera más riqueza.",
   "Absence":"Ausencia de riesgo:",
@@ -122,5 +122,6 @@
   "faq_q14":"¿Qué sucede si mi compañero compra un nivel antes que yo?",
   "faq_a14":"El dinero será redirigido a su línea ascendente de la misma línea que su socio. Si compra niveles a tiempo, esto no sucederá. Si esto sucedió, no da miedo. Si encuentra esto a tiempo, luego activando el nivel, continúe recibiendo las transferencias restantes para este nivel",
   "faq_q15":"¿Qué pasará si no se extiende el nivel y está desactivado?",
-  "faq_a15":"Su cuenta permanece en el Sistema para siempre, y en cualquier momento puede extender los niveles y continuar recibiendo ingresos"
+  "faq_a15":"Su cuenta permanece en el Sistema para siempre, y en cualquier momento puede extender los niveles y continuar recibiendo ingresos",
+  "compatible": "Compatible con"
 }

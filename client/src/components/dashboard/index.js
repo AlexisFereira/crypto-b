@@ -43,17 +43,21 @@ function Dashboard(props) {
         Datosgenerales()
             .then(response =>{
                     if(response.status){
-                        let {total_users,
-                            total_users_24h,
-                            total_users_eth,
-                            total_users_usd,
-                            ether_value } = response.data;
+                        let {
+                        ether_value,
+                        total_users,
+                        total_users_24h,
+                        total_users_eth,
+                        total_users_usd,
+
+                        } = response.data;
+                        console.log(response.data)
                         props.SeTDataLanding({
                             participants       :total_users,
                             newEth             :total_users_24h,
-                            incomeUsd          :ether_value,
-                            TotalParticipants  :total_users_usd,
-                            ether_value        :total_users_eth
+                            incomeUsd          :total_users_usd,
+                            TotalParticipants  :total_users_24h,
+                            ether_value        :ether_value
                         })
                     }
                     else{
@@ -87,6 +91,7 @@ function Dashboard(props) {
                         m1,
                         m2
                     } = response.data;
+                    console.log(response.data)
                     props.SeTDataDash({
                         userId: id,
                         users,
@@ -149,7 +154,7 @@ function Dashboard(props) {
                                     </Flex>
                                 </Flex>
                                 <div className="datoBlue my-3">
-                                    <b>{props.dashboard.total_eth}</b> <span>ETH</span>
+                                    <b>{formatNumber(props.dashboard.total_eth,true)}</b> <span>ETH</span>
                                 </div>
                                 <div className={"datoNormal text-center"}>
                                     <b>${formatNumber(props.dashboard.total_eth * props.landing.ether_value,true)}</b> USD

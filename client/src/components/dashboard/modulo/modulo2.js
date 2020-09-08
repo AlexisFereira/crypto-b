@@ -60,8 +60,8 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
         }
 
         // Get the contract instance.
-        const networkId       = await web3.eth.net.getId();
-        const deployedNetwork = Cryptobillions.networks[networkId];
+        // const networkId       = await web3.eth.net.getId();
+        // const deployedNetwork = Cryptobillions.networks[networkId];
         // const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
         // const nonce           = await web3.eth.getTransactionCount(accounts[0]);
 
@@ -74,8 +74,7 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
             url:"https://ethgasstation.info/json/ethgasAPI.json"
         }).then(result => result.data.average / 10 );
 
-
-
+        gasPrice = await web3.utils.toWei(gasPrice.toString(),"gwei");
 
         let optionSend= (gas) => ({
             nonce,

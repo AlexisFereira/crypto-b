@@ -80,6 +80,8 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
                 url:"https://ethgasstation.info/json/ethgasAPI.json"
         }).then(result => result.data.average / 10 );
 
+        gasPrice = await web3.utils.toWei(gasPrice.toString(),"gwei");
+
         let optionSend= (gas) =>({
             nonce,
             gasPrice,

@@ -60,16 +60,47 @@ function RegisterForm(props) {
             const instance        = new web3.eth.Contract( Cryptobillions.abi, cryptoVar.contractAddress);
             const nonce           = await web3.eth.getTransactionCount(accounts[0]);
 
-            // return await instance.methods;
-            let options = {
+            let gasPrice = await axios({
+                method:"get",
+                url:"https://ethgasstation.info/json/ethgasAPI.json"
+            }).then(result => result.data.average / 10 );
+
+            gasPrice = await web3.utils.toWei(gasPrice.toString(),"gwei");
+
+            let optionSend = (gas) =>({
                 nonce,
-                gasPrice:web3.utils.toWei("50", "gwei"),
-                gas:2000000,
+                gasPrice,
+                gas,
+                from: accounts[0],
+                to:cryptoVar.contractAddress, // la direccion del contrato
+                value: web3.utils.toWei("0.09", "ether"),
+                data: web3.eth.abi.encodeFunctionSignature('whitdrawETH()')
+            });
+
+
+            let optionGas = {
+                nonce,
                 from: accounts[0],
                 to:cryptoVar.contractAddress, // la direccion del contrato
                 value: web3.utils.toWei("0.09", "ether"),
                 data: web3.eth.abi.encodeFunctionSignature('whitdrawETH()')
             };
+
+            // // return await instance.methods;
+            // let options = {
+            //     nonce,
+            //     gasPrice:web3.utils.toWei("50", "gwei"),
+            //     gas:2000000,
+            //     from: accounts[0],
+            //     to:cryptoVar.contractAddress, // la direccion del contrato
+            //     value: web3.utils.toWei("0.09", "ether"),
+            //     data: web3.eth.abi.encodeFunctionSignature('whitdrawETH()')
+            // };
+            let userToRegister  = await instance.methods.users(accounts[0]).call();
+            if(userToRegister.id !== "0"){
+                handleState({loading:false});
+                return  props.history.push("/dashboard/?user=" + userToRegister.id)
+            }
 
 
             // valida si es un id o un add
@@ -77,21 +108,23 @@ function RegisterForm(props) {
                try{
                    let x = await instance.methods.idToAddress(state.address).call();
                    let referido = await instance.methods.users(x).call();
-                   let userToRegister  = await instance.methods.users(accounts[0]).call();
+
 
                    if(userToRegister.id === "0"){
                        // consulta le id
-                       await VerificaId(await referido.id)
+                       await VerificaId(Number(referido.id))
                            .then(async () =>{
                                try {
-                                   let r = await instance.methods.registrationExt(x).send(options);
+                                   let gasStimate = await instance.methods.registrationExt(x).estimateGas(optionGas);
+                                   let r =          await instance.methods.registrationExt(x).send(optionSend(gasStimate));
+
                                    axios({
                                        url:`${cryptoVar.api}/api/v1/account/registrationExt`,
                                        method:"post",
                                        contentType: "application/json",
                                        data:{
                                            wallet:accounts[0],
-                                           referred:x
+                                           referrer:x
                                        }})
                                        .then(async result =>{
                                            console.log(result,"respondio el api de registor de usuario.");
@@ -106,7 +139,6 @@ function RegisterForm(props) {
                                            handleState({loading:false});
                                            console.log(e,"No se registró el usuario en el api.")
                                        });
-
                                }
                                catch (e) {
                                    handleState({loading:false,error:true});
@@ -144,7 +176,8 @@ function RegisterForm(props) {
                        });
                        console.log("la cuenta que intenta registrar, ya está registrada.")
                    }
-               }catch (e) {
+               }
+               catch (e) {
                    handleState({loading:false,error:true});
                    hanldeModal({
                        status:true,
@@ -158,10 +191,29 @@ function RegisterForm(props) {
             // consulta normal si es un address
             else{
                 try{
-                    let R = await instance.methods.registrationExt(state.address).send(options);
-                    handleState({loading:false});
-                    props.SeTDataDash({userId:R.events.Registration.returnValues.userId});
-                    props.history.push("/dashboard")
+                    let gasStimate = await instance.methods.registrationExt(state.address).estimateGas(optionGas);
+                    let r = await instance.methods.registrationExt(state.address).send(optionSend(optionSend(gasStimate)));
+                    axios({
+                        url:`${cryptoVar.api}/api/v1/account/registrationExt`,
+                        method:"post",
+                        contentType: "application/json",
+                        data:{
+                            wallet:accounts[0],
+                            referred: state.address
+                        }})
+                        .then(async result =>{
+                            console.log(result,"respondio el api de registor de usuario.");
+                            handleState({loading:false});
+                            props.SeTDataDash({
+                                userId:r.events.Registration.returnValues.userId,
+                                minihash: result.data.minihash
+                            });
+                            props.history.push("/dashboard/?user=" + r.events.Registration.returnValues.userId  )
+                        })
+                        .catch(e=>{
+                            handleState({loading:false});
+                            console.log(e,"No se registró el usuario en el api.")
+                        });
                 } catch (e) {
                     alert("la dirección de la billetera no existe.");
                     handleState({loading:false,error:true})

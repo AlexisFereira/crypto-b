@@ -24,12 +24,17 @@ function Login(props) {
                 <Flex className="logo" flex={"0 0 50px"} onClick={()=>props.history.push("/")}>
                     <img src="img/logo.png" alt=""/>
                 </Flex>
-                <Flex className={"wc"} flex={"1 0 auto"}>
+                <Flex className={"wc"} flex={"1 0 auto"} direction={"column"}>
                     {props.register ?
                        <RegisterForm/>
                         :
                         <Formulario />
                     }
+                    <Flex className={"wc pt-3 cw"}>
+                        <small className={"d-block"} style={{fontSize:"11px"}}>{t("compatible")}
+                            <img src="/img/metamask.png" alt="" height={"30px"} width={"auto"} className={"mx-auto"}/>
+                        </small>
+                    </Flex>
                 </Flex>
                 <Flex flex={"0 0 80px"} className={" gold-movil wc d-md-none"}>
                     <img src="/img/gold-icon.png" alt="" className={"position-relative z900"}/>

@@ -68,7 +68,7 @@ function Formulario(props) {
             // const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
 
             const instance        = new web3.eth.Contract( Cryptobillions.abi, cryptoVar.contractAddress);
-            const nonce           = await web3.eth.getTransactionCount(accounts[0]);
+            // const nonce           = await web3.eth.getTransactionCount(accounts[0]);
 
             console.log(accounts[0]);
             // valida si es un id o un add y consultalo

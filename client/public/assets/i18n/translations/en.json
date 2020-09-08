@@ -7,8 +7,8 @@
   "login": "login",
   "logout": "Logout",
   "close": "Close",
-  "earn_money": "Earn money",
-  "as_you_can": "as far as you can imagine",
+  "earn_money": "Be part of the new economy.",
+  "as_you_can": "Be a crypto billionaire.",
   "Wallets_Compatibles": "Wallets Compatibles",
   "The_number_one": "The number one platform in the world that generates more wealth",
   "Absence": "Absence of Risk:",
@@ -94,9 +94,9 @@
   "user_registered": "Usuario registrado.",
   "telegram_chanel": "Telegram Channel",
   "faq_q1": "What is Crypto Billions?",
-  "faq_a1": "Neun.io can be divided into 2 concepts: first: Is a smart contract or application running on a cryptocurrency network Ethereum. The application code is programmed to distribute incoming transfersamong participants according to a specific algorithm. Second: This is the site itself, providing an interface for the convenience of working with a smart contract.\n",
+  "faq_a1": "Cryptobillions.io can be divided into 2 concepts: first: Is a smart contract or application running on a cryptocurrency network Ethereum. The application code is programmed to distribute incoming transfersamong participants according to a specific algorithm. Second: This is the site itself, providing an interface for the convenience of working with a smart contract.\n",
   "faq_q2": "Who is the project administrator?",
-  "faq_a2": "In Crypto Billions there is no administrator. There is a creator who uploaded the contract code to the cryptocurrency blockchain Ethereum. Since then, the smart contract has been part of the overall network, which is supported by miners. No one has the right to affect the operation of a smart contract, delete it or stop it. Any attempt to make unauthorized changes will be rejected due to inconsistency with previous copies in the blockchain.\n",
+  "faq_a2": "In Cryptobillions there is no administrator. There is a creator who uploaded the contract code to the cryptocurrency blockchain Ethereum. Since then, the smart contract has been part of the overall network, which is supported by miners. No one has the right to affect the operation of a smart contract, delete it or stop it. Any attempt to make unauthorized changes will be rejected due to inconsistency with previous copies in the blockchain.\n",
   "faq_q3": "Can a transaction remain in the balance of a smart contract?",
   "faq_a3": "Ruled out. The contract was programmed so as not to accumulate funds, but to serve only as a transmitter. The balance of the contract is always zero, anyone can verify this. It simply lacks the function of taking funds to your balance. Any transaction will reach the desired goal safe and sound.",
   "faq_q4": "What currency does the project work with?",
@@ -122,5 +122,6 @@
   "faq_q14": "What happens if my partner buys a level before me?",
   "faq_a14": "The money will be redirected to your upline of the same line as your partner. If you buy levels on time, this will not happen. If this happened, it’s not scary. If you find this in time, then after activating the level, continue to receive the remaining transfers for this level.\n",
   "faq_q15": "What will happen if you do not extend the level and it is deactivated?",
-  "faq_a15": "Your account remains in the System forever, and at any time you can extend the levels and continue to receive income\n"
+  "faq_a15": "Your account remains in the System forever, and at any time you can extend the levels and continue to receive income\n",
+  "compatible": "Compatible with"
 }

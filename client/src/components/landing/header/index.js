@@ -22,8 +22,8 @@ function Header(props) {
                 <Flex className={"menu"} jc={"flex-start"}>
                     <Flex flex={"1 0 350px"} className="menu d-none d-lg-flex">
                         <button onClick={()=>scrollT("home")} className={"link cw px-2"} >{t('home')}</button>
-                        <button onClick={()=>scrollT("how")} className={"link cw px-2"} >{t('how_this')}</button>
-                        <button onClick={()=>scrollT("faq")} className={"link cw px-2"} >{t('faqs')}</button>
+                        <button onClick={()=>scrollT("faq")} className={"link cw px-2"} >{t('how_this')}</button>
+                        {/*<button onClick={()=>scrollT("faq")} className={"link cw px-2"} >{t('faqs')}</button>*/}
                         <button onClick={()=>scrollT("faq2")} className={"link cw px-2"} >{t('etherum_fqas')}</button>
                     </Flex>
                     <Flex className={"main-btns pr-3 "}>

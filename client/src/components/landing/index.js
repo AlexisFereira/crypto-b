@@ -23,19 +23,17 @@ function Landing(props) {
 
     let getData = async ()=>{
         await axios(
-            {
-                method: 'get',
-                url: `${cryptoVar.api}api/v1/contract/globalstats`,
-            }
+            { method: 'get', url: `${cryptoVar.api}/api/v1/contract/globalstats`,}
         )
             .then(function (response) {
                 if(response.status){
                     let data = response.data;
                     props.SeTDataLanding({
-                        participants      : data.total_users,
-                        newEth            : data.total_users_24h,
-                        incomeUsd         : data.total_users_eth,
-                        TotalParticipants : data.total_users_usd,
+                        participants       :data.total_users,
+                        newEth             :data.total_users_24h,
+                        incomeUsd          :data.total_users_usd,
+                        TotalParticipants  :data.total_users_24h,
+                        ether_value        :data.ether_value
                     })
                 }else{
                     console.log("::: No se pudo consultar ::::")

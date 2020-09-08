@@ -6,11 +6,24 @@ import {SeTDataLanding} from "../../store/actions/actionsCreators";
 import {connect} from "react-redux";
 import {Container,CifraCont} from "./styles";
 
-export function formatNumber(num,decimales) {
+export function formatNumber(num,decimales,count=2) {
+
+    // if(decimales){
+    //     // num = Number.parseFloat(num);
+    //     num = num.toString().split(",");
+    //     num = num[0] + num[1];
+    //     return num;
+    // }
+
+    let val = num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     if(decimales){
-        num = Number.parseFloat(num).toFixed(2);
+            val = val.split(",");
+            let cola = val[1] ? new String(val[1]).substring(0,count) : "";
+            val = val[0] + "," + cola
+
     }
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+
+    return val
 }
 
 const Cifra = ({text,number,big,flex="1 0 22%",decimales})=>{
