@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "./header";
 import BannerInicio from "./bannerInicio";
 import BigCoin from "./bigCoin";
@@ -15,11 +15,47 @@ import {SeTDataLanding} from "../store/actions/actionsCreators";
 import axios from "axios";
 import {withRouter} from "react-router-dom";
 import {cryptoVar} from "../../config";
+import Flex from "../UI/Flex";
+import LoadingHex from "./../UI/LoadingHex";
 
 function Landing(props) {
 
+    let [state,setState] = useState({
+        loading:true
+    });
+
+    let search = props.history.location.search;
+    let invitation = new URLSearchParams(search);
+    let {SeTDataLanding} = props;
 
     let Register = ()=> props.history.push("/register");
+
+    let consultInvitation = async ()=>{
+        let id = invitation.get("invitation");
+        if(!id){
+            setState({...state,loading:false});
+            return console.log("No hay ID.")
+        }
+        try{
+            await axios(
+                { method: 'get', url: `http://api-test.cryptobillions.io/api/v1/contract/invitation/${id}`,}
+            ).then(result => {
+                if(result.data){
+                    setState({...state,loading:false});
+                    SeTDataLanding({canRegister:true})
+                }
+                else{
+                    setState({...state,loading:false});
+                    SeTDataLanding({canRegister:false})
+                }
+            })
+        }
+        catch (e) {
+            SeTDataLanding({canRegister:false});
+            setState({...state,loading:false});
+        }
+
+    };
 
     let getData = async ()=>{
         await axios(
@@ -47,34 +83,41 @@ function Landing(props) {
 
      useEffect(()=>{
          getData();
-     },[]);
-
-
+         consultInvitation();
+     },[ ]);
 
     return (
         <Container className={"bgDark"}>
-            <Menumovil    />
+            {state.loading ?
+                    <Flex style={{minHeight:"100vh"}}>
+                        <LoadingHex/>
+                    </Flex>
+                    :
+                    <>
+                        <Menumovil    />
 
-            <div className={"wc "} name={"home"}/>
+                        <div className={"wc "} name={"home"}/>
 
-            <Header  register={()=>Register()}/>
-            <BannerInicio register={()=>Register()} />
+                        <Header  register={()=>Register()} canRegister={props.landing.canRegister}/>
+                        <BannerInicio register={()=>Register()} canRegister={props.landing.canRegister} />
 
-            <div className={"wc "} name={"how"}/>
+                        <div className={"wc "} name={"how"}/>
 
-            <BigCoin  />
-            <Datos  />
-            <Carrusel />
+                        <BigCoin  />
+                        <Datos  />
+                        <Carrusel />
 
-            <div className={"wc "} name={"faq"}/>
+                        <div className={"wc "} name={"faq"}/>
 
-            <Crowfunding   />
-            <MarketingPlan register={()=>Register()} />
+                        <Crowfunding   />
+                        <MarketingPlan register={()=>Register()} canRegister={props.landing.canRegister} />
 
-            <div className={"wc "} name={"faq2"}/>
+                        <div className={"wc "} name={"faq2"}/>
 
-            <Faq    />
-            <Footer />
+                        <Faq    />
+                        <Footer />
+                    </>
+            }
         </Container>
     )
 }

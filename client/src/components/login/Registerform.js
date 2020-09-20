@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState , useEffect} from "react";
 import Btn from "./../UI/Btn";
 import {useTranslation} from "react-i18next";
 import Field from "./../UI/field";
@@ -15,6 +15,13 @@ import axios from "axios";
 import {cryptoVar} from "../../config";
 
 function RegisterForm(props) {
+
+
+    if(!props.landing.canRegister){
+        props.history.push("/")
+    }
+
+
     const {t} = useTranslation();
 
     const [state,SetS] = useState({
@@ -32,13 +39,14 @@ function RegisterForm(props) {
         icon:""
     });
 
+
+
+    //https://cryptobillions.io/register/?minihas=eb044cc2
+    //https://cryptobillions.io/register/?minihas=48babd74
+
     let hanldeModal = x => SetM({...modal,...x});
     const handleState = x => SetS({...state,...x});
 
-    // registrationEx
-    // users
-    // idToAddress
-    // buyNewLevel
 
     let onSubmit = async ()=>{
         SetS({...state,loading:true});
@@ -50,8 +58,6 @@ function RegisterForm(props) {
             const web3 = await getWeb3();
             // Use web3 to get the user's accounts.
             const accounts = await web3.eth.getAccounts();
-
-            // Get the contract instance.
 
             // const networkId       = await web3.eth.net.getId();
             // const deployedNetwork = Cryptobillions.networks[networkId];
@@ -220,7 +226,8 @@ function RegisterForm(props) {
                 }
             }
          // console.log(options)
-        }catch (e) {
+        }
+        catch (e) {
             console.log(e)
         }
     };
@@ -239,6 +246,34 @@ function RegisterForm(props) {
             })
         }
     };
+
+    let query =  new URLSearchParams(props.history.location.search);
+
+    let consultaMHASh = async ()=>{
+
+        if(query.get("minihash")){
+            handleState({disabled:true});
+            await axios({
+                method:"get",
+                url:`http://api-test.cryptobillions.io/api/v1/accounth/${query.get("minihash")}`,
+            }).then(async  result => {
+                if(result.status){
+                    console.log(result.data.wallet)
+                    await handleState({address:result.data.wallet});
+                }
+            });
+        }
+    };
+
+    useEffect(()=>{
+        consultaMHASh()
+    },[]);
+
+    useEffect(()=>{
+        if(query.get("minihash") && state.address){
+            onSubmit();
+        }
+    },[state.address]);
 
     return (
        <Fade>
@@ -286,7 +321,7 @@ function RegisterForm(props) {
        </Fade>
     )
 }
-const MSTprops = state => ({ state : state.Dashboard});
+const MSTprops = state => ({ state : state.Dashboard,landing:state.Landing});
 const MDTprops = {SeTDataDash};
 
 export default connect(MSTprops,MDTprops)(withRouter(React.memo(RegisterForm)));

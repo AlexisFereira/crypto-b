@@ -47,11 +47,10 @@ function Dashboard(props) {
                         ether_value,
                         total_users,
                         total_users_24h,
-                        total_users_eth,
+                        //total_users_eth,
                         total_users_usd,
 
                         } = response.data;
-                        console.log(response.data)
                         props.SeTDataLanding({
                             participants       :total_users,
                             newEth             :total_users_24h,
@@ -91,12 +90,12 @@ function Dashboard(props) {
                         m1,
                         m2
                     } = response.data;
-                    console.log(response.data)
+
                     props.SeTDataDash({
                         userId: id,
                         users,
                         minihash,
-                        link,
+                        link:`https://cryptobillions.io/register/?minihash=${minihash}`,
                         wallet,
                         referred,
                         total_eth,
@@ -122,9 +121,10 @@ function Dashboard(props) {
             })
     };
 
+
     useEffect(()=>{
         getData();
-    },[]);
+    },[ ]);
 
     return (
         <Container className={"wc bgDark"}>
@@ -179,6 +179,8 @@ function Dashboard(props) {
                                 </Flex>
                             </Flex>
                         </aside>
+
+
                         <div className="content col-12 col-sm-10 col-lg-9 px-0 pl-md-4">
                             <BigCard
                                 version={"x3"}
