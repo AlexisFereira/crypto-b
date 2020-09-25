@@ -34,7 +34,7 @@ function Landing(props) {
         let id = invitation.get("invitation");
         if(!id){
             setState({...state,loading:false});
-            return console.log("No hay ID.")
+            return ""
         }
         try{
             await axios(

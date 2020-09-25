@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,7 +12,21 @@ import './i18n';
 import {SeTDataDash} from "./components/store/actions/actionsCreators";
 import {connect} from "react-redux";
 
+
 function App() {
+
+    const [state,setState] = useState({
+        loading:false,
+        tronWeb:null
+    });
+
+    const getTronweb = async ()=>{
+        setState({loading:true});
+    };
+
+    useEffect(()=>{
+        getTronweb();
+    },[ ]);
 
   return (
     <div className="main-container bgDark" id={"scroll"}>

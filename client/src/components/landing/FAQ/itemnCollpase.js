@@ -58,7 +58,7 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                     <p className={"question cw mb-0"}>{text}</p>
                     <div className={"wc pt-3 d-none d-md-block"}>
                         <Collapse isOpened={open}>
-                            <div className="desc" usedangerouslysetinnerhtml>
+                            <div className="desc" usedangerouslysetinnerhtml={"true"}>
                                  {desc}
                             </div>
                         </Collapse>
@@ -75,7 +75,7 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                 </Flex>
                 <div className={"wc pt-3 d-md-none"}>
                     <Collapse isOpened={open}>
-                        <div className="desc" usedangerouslysetinnerhtml={true}>
+                        <div className="desc" usedangerouslysetinnerhtml={"true"} >
                             {desc}
                         </div>
                     </Collapse>
