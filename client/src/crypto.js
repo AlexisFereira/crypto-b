@@ -6,29 +6,10 @@ import {cryptoVar} from "./config";
 export const Crypto = async (options,parametros,metodo)=>{
     let response = {};
 
-    let funciones = {
-        compra:{
-            name:"buyNewLevel(uint8,uint8)",
-            parameters :[{type:"uint8",value: parametros[0]},{type:"uint8",value: parametros[1]}]
-        },
-        register:{
-            name:"registrationExt(address)",
-            parameters: parametros[0]
-        },
-        idToAddress: {
-            name:"idToAddress(uint8)",
-            parameters: [{type:"uint8",value:parametros[0]}]
-        }
-    };
 
     try{
         var tronWeb = await window.tronWeb;
 
-        // LOS VALORES DE COMPRA
-        const VALORES = {
-            ...options,
-            shouldPollResponse:true,
-        };
 
 
         let contract_address = "TQkwZ63jC9515utL2Xox2xUu7XP2SWP5hq" ;
@@ -50,13 +31,35 @@ export const Crypto = async (options,parametros,metodo)=>{
                 response = result;
                 return response;
             }
+            if(metodo === "getUserAddress"){
+                let user = await tronWeb.defaultAddress.base58;
+                response = user;
+                return response;
+            }
         }
-        else{
+        else {
 
-            const parameters = funciones[metodo].parameters;
+            let funciones = {
+                compra:{
+                    name:"buyNewLevel(uint8,uint8)",
+                    param :[{type:"uint8",value: parametros[0]},{type:"uint8",value: parametros[1]}]
+                },
+                register:{
+                    name:"registrationExt(address)",
+                    param: [{type:"address",value: parametros[0]}]
+                },
+            };
+
+            // LOS VALORES DE COMPRA
+            const VALORES = {
+                ...options,
+                shouldPollResponse:true,
+            };
+
+
+            const parameters = funciones[metodo].param;
             const issuerAddress = tronWeb.defaultAddress.base58;
             const functionSelector = funciones[metodo].name;
-
 
             let transactionObject = await tronWeb.transactionBuilder.triggerSmartContract (
                 contract_address,
@@ -92,22 +95,21 @@ export const Crypto = async (options,parametros,metodo)=>{
 };
 
 export const VerificaId = async (id)=>{
-
     let response = {};
+
     await axios({
         method: 'get',
         url: `${cryptoVar.api}/api/v1/account/${id}`
     })
     .then(result =>{
         response.status = true;
-        response.data = result;
-        return result;
+        response.data = result.data;
     })
     .catch(e=>{
         response.status = false;
-        return response;
     })
 
+    return response;
 };
 
 export const Datosgenerales = async () =>{

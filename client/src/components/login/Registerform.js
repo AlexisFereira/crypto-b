@@ -9,7 +9,7 @@ import {ContainerFom} from "./styles";
 import ShowModal from "../UI/ShowModal/ShowModal";
 import Fade from "./../UI/Fade";
 import axios from "axios";
-import {Crypto,Datosgenerales,VerificaId} from "../../crypto";
+import {Crypto,VerificaId} from "../../crypto";
 
 function RegisterForm(props) {
 
@@ -53,27 +53,37 @@ function RegisterForm(props) {
             return ""
         } try{
                 let address = state.address;
+                let id = state.address;
 
                 //VALIDA SI ES UN ID
                 if(address.length < 44){
-                    address = await Crypto(null,[address],"addressId")
-                    console.log(address);
+                    address = await Crypto(null,[address],"idToAddress");
                 }
-                // 41bc5998b3f9b2ffac34fcc25f82a5ba289fe1ef6e
-
                 //VALIDA SI EXISTE
+                let registrado = await VerificaId(id);
+                   if(registrado.status){
 
-                // DEJALO PASAR
-                // let prueba = await Crypto({
-                //     feeLimit: 1000000000,
-                //     callValue: 1200000000,
-                // },[
-                //     // direcion del wallet referido
-                //     {type:'address',value: "TT97NPy8GSL9db974fpzWdURyVjX6h7XyT" }
-                // ],"register");
-
+                       // DEJALO PASAR
+                       let registro = await Crypto({
+                           feeLimit: 1000000000,
+                           callValue: 1200000000,
+                       },[
+                           address  // direcion del wallet referido
+                       ],"register");
+                        if(registro.result){
+                            // llevalo al dashbaord
+                        }
+                        else{
+                            // no se realizao la transacción
+                            SetS({...state,loading:false});
+                        }
+                   }
+                   else{
+                       SetS({...state,loading:false});
+                   }
         }
         catch (e) {
+            SetS({...state,loading:false});
             console.log(e)
         }
 
