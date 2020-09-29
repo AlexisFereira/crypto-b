@@ -20,5 +20,7 @@
     "chalk": "^2.4.1",
     "lite-server": "^2.5.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
 }

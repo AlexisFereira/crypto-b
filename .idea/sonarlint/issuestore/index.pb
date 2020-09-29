@@ -41,3 +41,5 @@ A
 tronbox-config.js,e/0/e0abb11ab6f76132c520ee5151d6102bef0bace0
 9
 	yarn.lock,5/3/53585a096fe3a3b96321113856ae62602995a33b
+W
+'client/src/components/minutoswataime.js,5/3/533dfa8db3b15bddbfacd3f22830659f5a1aeb69

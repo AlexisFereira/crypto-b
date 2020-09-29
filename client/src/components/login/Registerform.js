@@ -6,15 +6,10 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {SeTDataDash} from "../store/actions/actionsCreators";
 import {ContainerFom} from "./styles";
-import getWeb3 from "../../getWeb3";
-import Cryptobillions from "../../contracts/Cryptobillions";
-import {VerificaId} from "../../crypto";
 import ShowModal from "../UI/ShowModal/ShowModal";
 import Fade from "./../UI/Fade";
 import axios from "axios";
-import {cryptoVar} from "../../config";
-import TronWeb from "tronweb";
-import {abi} from "../../abi";
+import {Crypto,Datosgenerales,VerificaId} from "../../crypto";
 
 function RegisterForm(props) {
 
@@ -56,49 +51,32 @@ function RegisterForm(props) {
         if(state.address === ""){
             handleState({disabled:true,error:true});
             return ""
-        }
-        try{
+        } try{
+                let address = state.address;
 
-            var tronWeb = window.tronWeb;
+                //VALIDA SI ES UN ID
+                if(address.length < 44){
+                    address = await Crypto(null,[address],"addressId")
+                    console.log(address);
+                }
+                // 41bc5998b3f9b2ffac34fcc25f82a5ba289fe1ef6e
 
-            const options = {
-                feeLimit: 1000000000,
-                callValue: 700000000,
-                shouldPollResponse:true,
-            };
+                //VALIDA SI EXISTE
 
-            let contract_address = "4154d664c08e65a7e60e4ce3e0d40dcbcf53dfb00e";
-            const parameters = [{type:'address',value:'TT97NPy8GSL9db974fpzWdURyVjX6h7XyT'}];
-            const issuerAddress = tronWeb.defaultAddress.base58;
-            const functionSelector = 'registrationExt(address)';
-
-
-            let transactionObject = await tronWeb.transactionBuilder.triggerSmartContract (
-                contract_address,
-                functionSelector,
-                options,
-                parameters,
-                tronWeb.address.toHex(issuerAddress)
-            );
-
-            if (!transactionObject.result || !transactionObject.result.result)
-                return console.error('Unknown error: ', null, 2);
-
-            // Signing the transaction
-            const signedTransaction = await tronWeb.trx.sign(transactionObject.transaction);
-
-            if (!signedTransaction.signature) {
-                return console.error('Transaction was not signed properly');
-            }
-
-            // Broadcasting the transaction
-            const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
-            console.log(`broadcast:`,broadcast);
+                // DEJALO PASAR
+                // let prueba = await Crypto({
+                //     feeLimit: 1000000000,
+                //     callValue: 1200000000,
+                // },[
+                //     // direcion del wallet referido
+                //     {type:'address',value: "TT97NPy8GSL9db974fpzWdURyVjX6h7XyT" }
+                // ],"register");
 
         }
         catch (e) {
             console.log(e)
         }
+
     };
     const handleAddres = e=>{
         let {value} = e.target;
@@ -164,7 +142,7 @@ function RegisterForm(props) {
                        error={state.error}
                        value={state.address}
                        onChange={e => {
-                           let value  = e.target.value.replace(/[^0-9a-zA-Z]/g,"").substring(0,24);
+                           let value  = e.target.value.replace(/[^0-9a-zA-Z]/g,"").substring(0,42);
                            let obj = {target:{value}};
                            handleAddres(obj)
                        }}

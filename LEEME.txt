@@ -184,13 +184,8 @@ docker run -it --rm \
                     handleState({loading:false,error:true})
                 }
             }
-
-    (base58) TFVd396i4jC5Xwbgn8VouTUiDLzprso5zq
-    (hex) 413c992c02fcfe98620124c87ee5af52f4817c066c
-
-
-
-
+ (base58) TFVd396i4jC5Xwbgn8VouTUiDLzprso5zq
+ (hex) 413c992c02fcfe98620124c87ee5af52f4817c066c
 
 // direccion del contrato
 THhnbVsnygkapcJ7pwfjqfzNNiG3jDBHUB
@@ -202,3 +197,45 @@ ab40e95a2f99cc0a119903f3bbe4329d97f1b7a65186cb83df34677d86c427fe
 
 
 https://shasta.tronscan.org/#/contract/TQYRYRMDCc18NxsbJL4pife5fTxXkoB9md
+
+
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+
+var tronWeb = window.tronWeb;
+
+            const options = {
+                feeLimit: 1000000000,
+                callValue: 700000000,
+                shouldPollResponse:true,
+            };
+
+            let contract_address = "4154d664c08e65a7e60e4ce3e0d40dcbcf53dfb00e";
+            const parameters = [{type:'address',value:'TT97NPy8GSL9db974fpzWdURyVjX6h7XyT'}];
+            const issuerAddress = tronWeb.defaultAddress.base58;
+            const functionSelector = 'registrationExt(address)';
+
+
+            let transactionObject = await tronWeb.transactionBuilder.triggerSmartContract (
+                contract_address,
+                functionSelector,
+                options,
+                parameters,
+                tronWeb.address.toHex(issuerAddress)
+            );
+
+            if (!transactionObject.result || !transactionObject.result.result)
+                return console.error('Unknown error: ', null, 2);
+
+            // Signing the transaction
+            const signedTransaction = await tronWeb.trx.sign(transactionObject.transaction);
+
+            if (!signedTransaction.signature) {
+                return console.error('Transaction was not signed properly');
+            }
+
+            // Broadcasting the transaction
+            const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
+            console.log(`broadcast:`,broadcast);
