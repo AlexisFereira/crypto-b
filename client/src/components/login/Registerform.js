@@ -9,11 +9,11 @@ import {ContainerFom} from "./styles";
 import ShowModal from "../UI/ShowModal/ShowModal";
 import Fade from "./../UI/Fade";
 import axios from "axios";
-import {Crypto,VerificaId} from "../../crypto";
+import {Crypto,VerificaId,RegistroManual} from "../../crypto";
 
 function RegisterForm(props) {
 
-
+    let {history} = props;
     // if(!props.landing.canRegister){
     //     props.history.push("/")
     // }
@@ -36,55 +36,73 @@ function RegisterForm(props) {
         icon:""
     });
 
-
-
-    //https://cryptobillions.io/register/?minihas=eb044cc2
-    //https://cryptobillions.io/register/?minihas=48babd74
-
     let hanldeModal = x => SetM({...modal,...x});
     const handleState = x => SetS({...state,...x});
-
-
+    let setModal = (title,description,icon= "cancel",callBack = null)=> hanldeModal({
+        status:true, title, description, callBack, icon,});
 
     let onSubmit = async ()=>{
         SetS({...state,loading:true});
+
         if(state.address === ""){
             handleState({disabled:true,error:true});
             return ""
-        } try{
+        }
+
+        try{
                 let address = state.address;
-                let id = state.address;
+                let id;
 
-                //VALIDA SI ES UN ID
-                if(address.length < 44){
+                // VALIDA SI ES UN ID
+                if(address.length < 34){
+                    id = address;
                     address = await Crypto(null,[address],"idToAddress");
+                }else{
+                    id = await Crypto(null,[address],"addressId");
                 }
-                //VALIDA SI EXISTE
-                let registrado = await VerificaId(id);
-                   if(registrado.status){
 
-                       // DEJALO PASAR
-                       let registro = await Crypto({
-                           feeLimit: 1000000000,
-                           callValue: 1200000000,
-                       },[
-                           address  // direcion del wallet referido
-                       ],"register");
-                        if(registro.result){
-                            // llevalo al dashbaord
+                // VALIDA SI EXISTE
+               let registrado = await VerificaId(id);
+               if(registrado.status){
+
+                   // INTENTA REGISTRARLO
+                   let registro = await Crypto({
+                       feeLimit: 1000000000,
+                       callValue: 1200000000,
+                   },[
+                       address  // DIRECCION DEL REFERIDO
+                   ],"register");
+
+                    if(registro.result){
+                        //LLEVALO AL DASHBOARD
+                        let userRegistered = registro.usuario;
+                        let registroManual = await RegistroManual(userRegistered,address);
+                        if(registroManual.status){
+                            console.log(registroManual,":::");
+                            props.SeTDataDash({
+                                minihash:registroManual.data.data.minihash,
+                                isCommingFromRegister:true
+                            });
+                            history.push(`/dashboard`)
+                        }else{
+                            history.push(`/login`)
                         }
-                        else{
-                            // no se realizao la transacción
-                            SetS({...state,loading:false});
-                        }
-                   }
-                   else{
-                       SetS({...state,loading:false});
-                   }
+                    }
+                    else{
+                        //NO SE PUDO REALIZAR LA TRANSACCIÓN
+                        SetS({...state,loading:false});
+                        setModal("Error de transacción.","Lo sentimos pero no se pudo realizar el registro.")
+                    }
+               }
+               else{
+                   //SI NO EXIUTE EL REFERIDO SE JODIÓ
+                   SetS({...state,loading:false});
+                   handleState({error:"Referido no registrado."})
+               }
         }
         catch (e) {
             SetS({...state,loading:false});
-            console.log(e)
+            handleState({error:"Error: intente más tarde."})
         }
 
     };

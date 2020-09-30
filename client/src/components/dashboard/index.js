@@ -10,7 +10,7 @@ import {SeTDataDash,SeTDataLanding} from "../store/actions/actionsCreators";
 import {connect} from "react-redux";
 import {Container} from "./styles";
 import {formatNumber} from "./../landing/datos";
-import {Datosgenerales} from "../../crypto";
+import {Datosgenerales,getDataDash} from "../../crypto";
 import {withRouter} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import Telegram from "./../UI/telegramBtn";
@@ -19,9 +19,7 @@ import {cryptoVar} from "../../config";
 
 function Dashboard(props) {
 
-    const [state,setstate ] =useState({
-        loading:true,
-    });
+    const [state,setstate ] =useState({loading:true});
 
     let handler = x=> setstate({...state,...x});
 
@@ -33,98 +31,56 @@ function Dashboard(props) {
         props.history.push('/login')
     }
 
-
-    let addressRequeest = props.dashboard.inCommingFromRegister ?
+    let addressRequeest = props.dashboard.isCommingFromRegister ?
         `${cryptoVar.api}/api/v1/accounth/${props.dashboard.minihash}`
         :`${cryptoVar.api}/api/v1/account/${id[1]}`;
 
-    let getData = ()=>{
+    let getData = async ()=>{
         handler({loading:true});
-        Datosgenerales()
-            .then(response =>{
-                    if(response.status){
-                        let {
-                        ether_value,
-                        total_users,
-                        total_users_24h,
-                        //total_users_eth,
-                        total_users_usd,
 
-                        } = response.data;
-                        props.SeTDataLanding({
-                            participants       :total_users,
-                            newEth             :total_users_24h,
-                            incomeUsd          :total_users_usd,
-                            TotalParticipants  :total_users_24h,
-                            ether_value        :ether_value
-                        })
+        try {
+            await Datosgenerales()
+                .then(response =>{
+                        if(response.status){
+                            let {
+                                ether_value,
+                                total_users,
+                                total_users_24h,
+                                total_users_usd,
+
+                            } = response.data;
+                            props.SeTDataLanding({
+                                participants       :total_users,
+                                newEth             :total_users_24h,
+                                incomeUsd          :total_users_usd,
+                                TotalParticipants  :total_users_24h,
+                                ether_value        :ether_value
+                            })
+                        }
+                        else{
+                            console.log("::: No se pudo consultar ::::");
+                            return false;
+                        }
                     }
-                    else{
-                        console.log("::: No se pudo consultar ::::");
-                        return false;
-                    }
-                }
-            )
-            .catch(e=>{
-                console.log(e)
-            });
-        axios({
-            method: 'get',
-            url: addressRequeest,
-        })
-            .then(function (response) {
+                )
+                .catch(e=>{
+                    console.log(e)
+                });
 
-                if(response.status){
-                    let {
-                        id,
-                        users,
-                        minihash,
-                        link,
-                        wallet,
-                        referred,
-                        total_eth,
-                        m1_total_eth,
-                        m2_total_eth,
-                        m1_levels,
-                        m2_levels,
-                        m1,
-                        m2
-                    } = response.data;
+            let Data = await getDataDash(addressRequeest)
+            if(Data.status){
+                console.log(Data)
+            }
+        }
+       catch (e) {
 
-                    props.SeTDataDash({
-                        userId: id,
-                        users,
-                        minihash,
-                        link:`https://cryptobillions.io/register/?minihash=${minihash}`,
-                        wallet,
-                        referred,
-                        total_eth,
-                        m1_total_eth,
-                        m2_total_eth,
-                        m1_levels,
-                        m2_levels,
-                        m1,
-                        m2,
-                    });
-                    handler({loading:false});
-                }
-                else{
-                    console.log("::: No se pudo consultar ::::")
-                    handler({loading:false});
-                }
-            })
-            .catch(function (error) {
-                // handle error
-                handler({loading:false});
-                history.push("/login");
-                console.log("::: Error en peticion de Dashboard ::::",error);
-            })
+       }
     };
 
 
     useEffect(()=>{
         getData();
-    },[ ]);
+    },[]);
 
     return (
         <Container className={"wc bgDark"}>

@@ -2,14 +2,11 @@ import React, {useState} from "react";
 import Flex from "./../../UI/Flex";
 import {DegCard} from "../helper";
 import {Container,ThreePoints} from "./styles";
-import getWeb3 from "../../../getWeb3";
-import Cryptobillions from "../../../contracts/Cryptobillions";
-import {cryptoVar} from "../../../config";
-import axios from "axios";
 import {connect} from "react-redux";
 import {SeTDataDash} from "../../store/actions/actionsCreators";
 import {withRouter} from "react-router-dom";
 import ShowModal from "../../UI/ShowModal/ShowModal";
+import {CompraNivel} from "../../../crypto";
 
 
 function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,getData}) {
@@ -22,87 +19,30 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
     });
     let handlerModal = x => setModal({...modal,...x});
 
-    let values = [0.045,
-        0.09,
-        0.18,
-        0.36,
-        0.72,
-        1.44,
-        2.88,
-        5.76,
-        11.52];
-    let level = gold ? 2 : 1;
+    let values = [0.045, 0.09, 0.18, 0.36, 0.72, 1.44, 2.88, 5.76, 11.52];
 
     let [state,setState] = useState({loading:false});
     let handler = x => setState({...state,...x});
-    let buyLevel = async (index) =>{
 
+    let modalSet = (title,description,icon= "cancel",callBack = null)=> handlerModal({
+        status:true, title, description, callBack, icon,});
+
+    let Matrix = gold ? 2 : 1;
+
+    let buyLevel = async (nivel) => {
         handler({loading:true});
-        const web3 = await getWeb3();
-        // Use web3 to get the user's accounts.
-        const accounts = await web3.eth.getAccounts();
-
-
-        if(accountLogged !== accounts[0]){
-            handler({loading:false});
-            SeTDataDash({
-                minihash:"",
-                accountLogged:"",
-                onlyView:false
-            });
-            // return history.push("/login");
-            return  handlerModal({
-                title:"Compra no permitida",
-                description:"Esta intentando hacer una compra con una cuenta diferenta a la actual, para continuar con la compra debe iniciar sesión.",
-                icon:"cancel",
-                status:true
-            });
-        }
-
-        // Get the contract instance.
-        // const networkId       = await web3.eth.net.getId();
-        // const deployedNetwork = Cryptobillions.networks[networkId];
-        // const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
-        // const nonce           = await web3.eth.getTransactionCount(accounts[0]);
-
-        const instance        = new web3.eth.Contract( Cryptobillions.abi, cryptoVar.contractAddress);
-        const nonce           = await web3.eth.getTransactionCount(accounts[0]);
-
-        // snow core cash bring dumb race toilet spice drill near invest grace
-        let gasPrice = await axios({
-            method:"get",
-            url:"https://ethgasstation.info/json/ethgasAPI.json"
-        }).then(result => result.data.average / 10 );
-
-        gasPrice = await web3.utils.toWei(gasPrice.toString(),"gwei");
-
-        let optionSend= (gas) => ({
-            nonce,
-            gasPrice,
-            gas,
-            from: accounts[0],
-            to:cryptoVar.contractAddress, // la direccion del contrato
-            value: web3.utils.toWei(values[index].toString(), "ether"),
-            data: web3.eth.abi.encodeFunctionSignature('whitdrawETH()')
-        });
-
-        let optionGas = {
-            nonce,
-            from: accounts[0],
-            to:cryptoVar.contractAddress, // la direccion del contrato
-            value: web3.utils.toWei(values[index].toString(), "ether"),
-            data: web3.eth.abi.encodeFunctionSignature('whitdrawETH()')
-        };
-
         try{
-            let gasStimate = await instance.methods.buyNewLevel(level,number).estimateGas(optionGas);
-            let compra = await instance.methods.buyNewLevel(level,number).send(optionSend(gasStimate));
-            console.log(compra)
-            getData();
-            // window.location.reload();
+            let compra = await CompraNivel(Matrix,nivel);
+            if(compra.status){
+                modalSet("Compra realizada con éxito","Lo sentimos pero no se pudo realizar la compra.","check");
+                handler({loading:false});
+            }else{
+                modalSet("Error de compra","Lo sentimos pero no se pudo realizar la compra.");
+                handler({loading:false});
+            }
         }
         catch (e) {
-            console.log(e,":::: no se hizo la compra ::::")
+            modalSet("Error de compra","Lo sentimos pero no se pudo realizar la compra.");
             handler({loading:false});
         }
     };
@@ -159,7 +99,11 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
                 <div className="lock">
                     <Flex className={"cart"} direction={"column"}>
                         {canbuy &&
-                        <button className="shop" onClick={()=>buyLevel(Number(number) - 1)}>
+                        <button
+                            className="shop"
+                            onClick={()=>buyLevel(Number(number) - 1)}
+                            disabled={state.loading}
+                        >
                             {state.loading ? <span className="loading"> </span> :
                                 <img src="/img/dashboard/cart.png" alt="" className={"imgr"}/>
                             }

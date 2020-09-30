@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Flex from "../UI/Flex";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import 'react-tippy/dist/tippy.css'
 import {
     Tooltip,
@@ -13,7 +13,9 @@ export const DegCard = styled.div`
     border-radius:12px;
 `;
 
-export const CopyUrl = ({url,name,id,message})=> {
+export const CopyUrl = ({url=" ",name,id,message})=> {
+
+    let [ready,setR] = useState(false);
 
     let [tool, setT] = useState(false);
 
@@ -35,9 +37,13 @@ export const CopyUrl = ({url,name,id,message})=> {
         }, 6000)
     }
 
+    useEffect(()=>{
+        setR(true);
+    },[])
+
     return (
         <Flex className="enlaces mb-3">
-            <input type="text" value={url} id={id} style={{position:"absolute",opacity:"0",zIndex:0,width:"20px"}}/>
+            {ready &&  <input type="text" value={url || ""} id={id}  style={{position:"absolute",opacity:"0",zIndex:0,width:"20px"}}/>}
             <Flex flex={"1 0 60%"} className="enlace pr-2" jc={"flex-start"} style={{overflow: "hidden"}}>
                 <small className={"cw wc"}> {name} </small>
                 <small className={"cb"}>{url}</small>
@@ -55,3 +61,4 @@ export const CopyUrl = ({url,name,id,message})=> {
         </Flex>
     )
 };
+

@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 import {colors} from "../index";
-// import {Collapse} from "react-collapse"
+import {Collapse} from "react-collapse"
 
-// const ShowError = ({error})=>{
-//     return (
-//         <Collapse isOpened={error ? true :  false } className={"wc"}>
-//             <small className={"error"}>{error}</small>
-//         </Collapse>
-//     )
-// };
+const ShowError = ({error})=>{
+    return (
+        <Collapse isOpened={!!error} className={"wc ro"}>
+            <small className={"error"}>{error}</small>
+        </Collapse>
+    )
+};
 
 const Container = styled.div`
     position:relative;
@@ -32,8 +32,6 @@ const Container = styled.div`
             opacity:.6;
         } 
     }
- 
-    
     textarea{
         height:70px;
     }
@@ -74,7 +72,7 @@ function Field({
                     disabled={disabled}
                 />
             }
-            {/*<ShowError error={error}/>*/}
+            <ShowError error={error}/>
         </Container>
     )
 }

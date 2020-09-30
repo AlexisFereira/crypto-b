@@ -43,3 +43,15 @@ A
 	yarn.lock,5/3/53585a096fe3a3b96321113856ae62602995a33b
 W
 'client/src/components/minutoswataime.js,5/3/533dfa8db3b15bddbfacd3f22830659f5a1aeb69
+W
+'client/contracts/CryptobillionsTron.sol,7/b/7b42cb1113511342f38c2fb5cddeef0c7ca2b9e1
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+;
+client/.env,1/9/191d1665d4d8dc07f4bbf6e35a0d742096ce6a38
+E
+client/src/index.scss,e/b/eb126afb59bfa2a2a10a1b507c1c11f47fbe619e
+V
+&client/src/components/UI/Fade/index.js,a/9/a998664b2dade3ee4f9ac4ecfc66ab02a0d766b7
+D
+client/src/crypto.js,9/6/96d640a7f6129ab1a8340347d5e6ffcd4067f53a

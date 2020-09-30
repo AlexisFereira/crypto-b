@@ -6,13 +6,11 @@ import Field from "./../UI/field";
 import {connect} from "react-redux";
 import {SeTDataDash} from "../store/actions/actionsCreators";
 import {Link, withRouter} from "react-router-dom";
-import getWeb3 from "../../getWeb3";
-import Cryptobillions from "../../contracts/Cryptobillions";
-import {VerificaId} from "../../crypto";
 import axios from "axios";
 import ShowModal from "../UI/ShowModal/ShowModal";
 import Fade from "./../UI/Fade";
 import {cryptoVar} from "../../config";
+import {Crypto, VerificaId} from "../../crypto";
 
 const Container = styled.div`
     position:relative;
@@ -58,102 +56,19 @@ function Formulario(props) {
     let onSubmitAuth = async ()=>{
         SetS({...state,loadingAuth:true});
         try{
-            const web3 = await getWeb3();
-            // Use web3 to get the user's accounts.
-            const accounts = await web3.eth.getAccounts();
-
-            // Get the contract instance.
-            // const networkId       = await web3.eth.net.getId();
-            // const deployedNetwork = Cryptobillions.networks[networkId];
-            // const instance        = new web3.eth.Contract( Cryptobillions.abi, deployedNetwork && deployedNetwork.address);
-
-            const instance        = new web3.eth.Contract( Cryptobillions.abi, cryptoVar.contractAddress);
-            // const nonce           = await web3.eth.getTransactionCount(accounts[0]);
-
-            console.log(accounts[0]);
-            // valida si es un id o un add y consultalo
-            if(accounts[0]){
-                try{
-                    // valida el id
-                    let id = await instance.methods.users(accounts[0]).call();
-                    // consulta le id
-                    await VerificaId(await id.id)
-                        .then(async result =>{
-                            console.log(result);
-                            try{
-                                await  axios({
-                                    method: 'get',
-                                    url: `${cryptoVar.api}/api/v1/account/${id.id}`
-                                })
-                                .then(result=>{
-                                    if(result.status === 200 ){
-                                        SetS({
-                                            ...state,
-                                            loading:false,
-                                            error:false
-                                        });
-                                        props.SeTDataDash({wallletLoged :accounts[0]});
-                                        return props.history.push("/dashboard/?user="+ id.id)
-                                    }
-                                    else {
-                                        SetS({
-                                            ...state,
-                                            loading:false,
-                                            error:false
-                                        });
-                                        hanldeModal({
-                                            status:true,
-                                            title:"ID no encontrado.",
-                                            icon:"cancel"
-                                        })
-                                    }
-                                })
-                                .catch(()=>{
-                                    SetS({
-                                        ...state,
-                                        loading:false,
-                                        error:true,
-                                    });
-                                    hanldeModal({
-                                        status:true,
-                                        title:<span>No se enontró información relacionada con <b>{state.address}.</b> </span>   ,
-                                        icon:"cancel",
-                                        description: ""
-                                    })
-                                });
-                            }
-                            catch (e) {
-                                console.log(e)
-                            }
-
-                         })
-                        .catch(()=>{
-                            SetS({
-                                ...state,
-                                loadingAuth:false,
-                            });
-                            hanldeModal({
-                                status:true,
-                                title:"Dirección no enctontrada",
-                                description: <span>La dirección de wallet <b>{accounts[0].substring(0,22) + "..."}</b> no se encuentra registrada, haga clic <Link to="/register"><b>acá</b></Link> para registrarse</span>,
-                                icon:"cancel",
-                            })
-                        })
+           let UserTron = await Crypto(null,null,"getUserAddress");
+           let id = await Crypto(null,[UserTron],"addressId");
+            if(id){
+                // Verifica si existe
+                let exists = await VerificaId(id.id);
+                if(exists.status){
+                        props.history.push(`/dashboard?user=${exists.data.id}`)
+                    }else{
+                        SetS({...state,loadingAuth:false});
+                    }
                 }
-                catch (e) {
-                }
+
             }
-            // consulta normal si es un address
-            else{
-                SetS({...state,loadingAuth:false});
-                hanldeModal({
-                    status:true,
-                    title:"Error de wallet",
-                    description: <span>No se encontró ninguna billetera conectada a su meta mask.</span>,
-                    icon:"cancel",
-                })
-            }
-        }
         catch (e) {
             SetS({...state,loadingAuth:false});
             hanldeModal({
@@ -174,46 +89,7 @@ function Formulario(props) {
         else{
             SetS({...state,loading:true});
             try{
-                await  axios({
-                    method: 'get',
-                    url: `${cryptoVar.api}/api/v1/account/${state.address}`
-                })
-                    .then(result=>{
-                        if(result.status === 200 ){
-                            SetS({
-                                ...state,
-                                loading:false,
-                                error:false
-                            });
-                            props.SeTDataDash({onlyView:true});
-                            return props.history.push("/dashboard/?user="+ state.address)
-                        } else {
-                            SetS({
-                                ...state,
-                                loading:false,
-                                error:false
-                            });
-                            hanldeModal({
-                                status:true,
-                                title:"ID no encontrado.",
-                                icon:"cancel"
-                            })
-                        }
-                    })
-                    .catch(()=>{
-                        SetS({
-                            ...state,
-                            loading:false,
-                            error:true,
-                        });
 
-                        hanldeModal({
-                            status:true,
-                            title:<span>No se enontró información relacionada con <b>{state.address}.</b> </span>   ,
-                            icon:"cancel",
-                            description: ""
-                        })
-                    });
             }
             catch (e) {
                 console.log(e)
