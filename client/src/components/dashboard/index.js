@@ -69,11 +69,32 @@ function Dashboard(props) {
 
             let Data = await getDataDash(addressRequeest)
             if(Data.status){
-                console.log(Data)
+                handler({loading:false});
+                let {id, users, minihash, link, wallet, referred, total_eth, m1_total_eth, m2_total_eth, m1_levels,
+                    m2_levels, m1, m2
+                } = Data.data;
+
+                props.SeTDataDash({
+                    userId: id,
+                    users,
+                    minihash,
+                    link:`https://cryptobillions.io/register/?minihash=${minihash}`,
+                    wallet,
+                    referred,
+                    total_eth,
+                    m1_total_eth,
+                    m2_total_eth,
+                    m1_levels,
+                    m2_levels,
+                    m1,
+                    m2,
+                });
+            }else{
+                handler({loading:false});
             }
         }
        catch (e) {
-
+           handler({loading:false});
        }
     };
 
