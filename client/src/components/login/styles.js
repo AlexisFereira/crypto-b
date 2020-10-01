@@ -34,6 +34,10 @@ export const Container = styled(Flex)`
         z-index:9999;
     }
     
+    .logo{
+        cursor:pointer;
+    }
+    
     .sombra{
         opacity:.8;
     }

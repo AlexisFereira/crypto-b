@@ -32,7 +32,7 @@ function Login(props) {
                     }
                     <Flex className={"wc pt-3 cw"}>
                         <small className={"d-block"} style={{fontSize:"11px"}}>{t("compatible")}
-                            <img src="/img/metamask.png" alt="" height={"30px"} width={"auto"} className={"mx-auto"}/>
+                            <img src="/img/logoTron.png" alt="" height={"30px"} width={"auto"} className={"mx-auto"}/>
                         </small>
                     </Flex>
                 </Flex>

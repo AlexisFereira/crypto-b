@@ -102,7 +102,7 @@
 .fade-down-enter-active {
   opacity: 1;
   transform:scale(1);
-  transition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
+  transition: all 1s cubic-bezier(0.190, 1.000, 0.220, 1.000);
 }
 .fade-down-exit {
   opacity: 1;

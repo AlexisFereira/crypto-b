@@ -60,11 +60,22 @@ function RegisterForm(props) {
                 }else{
                     id = await Crypto(null,[address],"addressId");
                 }
+                let currentAdd = await Crypto(null,null,"getUserAddress");
+                let currenId = await Crypto(null,[currentAdd],"addressId");
+                let idDecimal = await Crypto(null,[currenId.id["_hex"]],"toDecimal")
+                let currentUSer  = await VerificaId(idDecimal);
+                if(currentUSer.status){
+                        props.SeTDataDash({logueado:currentAdd});
+                    return(
+                        history.push(`/dashboard?user=${idDecimal}`)
+                    )
+                }
 
                 // VALIDA SI EXISTE
                let registrado = await VerificaId(id);
-               if(registrado.status){
 
+
+               if(registrado.status){
                    // INTENTA REGISTRARLO
                    let registro = await Crypto({
                        feeLimit: 1000000000,
@@ -78,7 +89,6 @@ function RegisterForm(props) {
                         let userRegistered = registro.usuario;
                         let registroManual = await RegistroManual(userRegistered,address);
                         if(registroManual.status){
-                            console.log(registroManual,":::");
                             props.SeTDataDash({
                                 minihash:registroManual.data.data.minihash,
                                 isCommingFromRegister:true

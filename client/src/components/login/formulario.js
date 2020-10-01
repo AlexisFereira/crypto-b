@@ -58,10 +58,12 @@ function Formulario(props) {
         try{
            let UserTron = await Crypto(null,null,"getUserAddress");
            let id = await Crypto(null,[UserTron],"addressId");
+
             if(id){
                 // Verifica si existe
                 let exists = await VerificaId(id.id);
                 if(exists.status){
+                        props.SeTDataDash({onlyView : false,logueado: UserTron});
                         props.history.push(`/dashboard?user=${exists.data.id}`)
                     }else{
                         SetS({...state,loadingAuth:false});

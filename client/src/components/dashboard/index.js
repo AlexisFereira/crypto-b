@@ -39,40 +39,49 @@ function Dashboard(props) {
         handler({loading:true});
 
         try {
-            await Datosgenerales()
-                .then(response =>{
-                        if(response.status){
-                            let {
-                                ether_value,
-                                total_users,
-                                total_users_24h,
-                                total_users_usd,
+            let DGlobales = await Datosgenerales();
+            if(DGlobales.status){
+                let {
+                    total_users,
+                    total_users_24h,
+                    total_users_coin,
+                    total_users_usd,
+                    coin_value
+                } = DGlobales.data.data;
 
-                            } = response.data;
-                            props.SeTDataLanding({
-                                participants       :total_users,
-                                newEth             :total_users_24h,
-                                incomeUsd          :total_users_usd,
-                                TotalParticipants  :total_users_24h,
-                                ether_value        :ether_value
-                            })
-                        }
-                        else{
-                            console.log("::: No se pudo consultar ::::");
-                            return false;
-                        }
-                    }
-                )
-                .catch(e=>{
-                    console.log(e)
-                });
+                props.SeTDataLanding({
+                    participants       : total_users,
+                    newEth             : total_users_24h,
+                    incomeUsd          : total_users_usd,
+                    TotalParticipants  : total_users_coin,
+                    ether_value        : coin_value
+                })
+            }
 
-            let Data = await getDataDash(addressRequeest)
+            let Data = await getDataDash(addressRequeest);
             if(Data.status){
                 handler({loading:false});
-                let {id, users, minihash, link, wallet, referred, total_eth, m1_total_eth, m2_total_eth, m1_levels,
-                    m2_levels, m1, m2
+
+
+                let {id,
+                    users,
+                    minihash,
+                    link,
+                    wallet,
+                    user_b58,
+                    referrer,
+                    referrerId,
+                    referrer_b58,
+                    total_coin,
+                    m1_total_coin,
+                    m2_total_coin,
+                    m1_levels,
+                    m2_levels,
+                    m1,
+                    m2,
                 } = Data.data;
+
+                console.log(wallet,"este es el wallet")
 
                 props.SeTDataDash({
                     userId: id,
@@ -80,16 +89,17 @@ function Dashboard(props) {
                     minihash,
                     link:`https://cryptobillions.io/register/?minihash=${minihash}`,
                     wallet,
-                    referred,
-                    total_eth,
-                    m1_total_eth,
-                    m2_total_eth,
+                    referred:referrer_b58,
+                    total_eth:total_coin,
+                    m1_total_eth:m1_total_coin,
+                    m2_total_eth:m2_total_coin,
                     m1_levels,
                     m2_levels,
                     m1,
                     m2,
                 });
-            }else{
+            }
+            else{
                 handler({loading:false});
             }
         }
@@ -131,22 +141,22 @@ function Dashboard(props) {
                                     </Flex>
                                 </Flex>
                                 <div className="datoBlue my-3">
-                                    <b>{formatNumber(props.dashboard.total_eth,true)}</b> <span>ETH</span>
+                                    <b>{formatNumber(props.dashboard.total_eth,true).toString()}</b> <span>TRON</span>
                                 </div>
                                 <div className={"datoNormal text-center"}>
-                                    <b>${formatNumber(props.dashboard.total_eth * props.landing.ether_value,true)}</b> USD
+                                    <b>${formatNumber(props.dashboard.TotalParticipants * props.landing.ether_value,true)}</b> USD
                                 </div>
                             </DegCard>
                             <Flex className={"wc pt-3"} alg={"flex-start"}>
                                 <Flex className={"col-12 col-sm-6 col-lg-12 px-0"}>
                                     <div className="section py-2 py-lg-3">
                                         <p className={"mb-0"}>BILLIONS <b>X3</b></p>
-                                        <div className="datoBlue"><b>{props.dashboard.m1_total_eth}</b> ETH</div>
+                                        <div className="datoBlue"><b>{props.dashboard.m1_total_eth}</b> TRON</div>
                                         <span className={"text-center mr-1"}>${formatNumber(props.dashboard.m1_total_eth * props.landing.ether_value,true)}</span><b>USD</b>
                                     </div>
                                     <div className="section py-2 py-lg-3 mb-lg-5">
                                         <p className={"mb-0"}>BILLIONS <b> <span className={"cg"}>X6</span></b></p>
-                                        <div className="datoBlue"><b>{props.dashboard.m2_total_eth}</b>ETH</div>
+                                        <div className="datoBlue"><b>{props.dashboard.m2_total_eth}</b>TRON</div>
                                         <span className={"text-center mr-1"}>${formatNumber(props.dashboard.m2_total_eth * props.landing.ether_value,true)}</span><b>USD</b>
                                     </div>
                                 </Flex>

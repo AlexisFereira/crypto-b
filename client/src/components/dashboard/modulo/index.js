@@ -7,8 +7,9 @@ import {withRouter} from "react-router-dom";
 import {SeTDataDash} from "../../store/actions/actionsCreators";
 import ShowModal from "../../UI/ShowModal/ShowModal";
 import {CompraNivel} from "../../../crypto";
+import {Crypto} from "../../../crypto";
 
-function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,getData}) {
+function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,getData,dashboard}) {
 
     let [modal,setModal] = useState({
         status:false,
@@ -22,8 +23,10 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
 
     let handlerModal = x => setModal({...modal,...x});
     let handler = x => setState({...state,...x});
-    let modalSet = (title,description,icon= "cancel",callBack = null)=> handlerModal({
-        status:true, title, description, callBack, icon,});
+    let modalSet = (title,description,icon= "cancel",callBack = null)=>
+        handlerModal({
+                status:true, title, description, callBack, icon,
+        });
 
     let values = [600, 1200, 2400, 4800, 9600, 19200, 38400, 76800, 153600];
     let matrix = gold ? 2 : 1;
@@ -31,17 +34,32 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
     let buyLevel = async (nivel) => {
         handler({loading:true});
         try{
+
+            let currentW  = await Crypto(null,null,"getUserAddress");
+
+            if(dashboard.logueado !== currentW){
+                handler({loading:false});
+                return(modalSet(
+                    "Error Wallet no encontrada.",
+                    "Para realizar compra de niveeles deve iniciar seción con su actual direcciñon de wallet.",
+                    "cancel",
+                ))
+            }
+
+
             let compra = await CompraNivel(matrix,nivel);
-            if(compra.status){
-                modalSet("Compra realizada con éxito","Lo sentimos pero no se pudo realizar la compra.","check");
+            if(compra.result){
+                modalSet(
+                    "Compra realizada con éxito",
+                    <span>La compra del nivel <b>{nivel + 1}</b> de la matrix <b>{matrix  === 1 ? "X3" : "X6"}</b> se realizó con éxito.</span>,
+                    "check"
+                );
                 handler({loading:false});
             }else{
-                modalSet("Error de compra","Lo sentimos pero no se pudo realizar la compra.");
                 handler({loading:false});
             }
         }
         catch (e) {
-            modalSet("Error de compra","Lo sentimos pero no se pudo realizar la compra.");
             handler({loading:false});
         }
     };
@@ -71,7 +89,7 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
                             {canbuy &&
                             <button
                                 className="shop"
-                                onClick={()=> buyLevel(Number(number) - 1)}
+                                onClick={()=> buyLevel(Number(number))}
                                 disabled={state.loading}
                             >
                                 {state.loading ? <span className="loading"> </span> :
@@ -86,7 +104,7 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
                 <Flex flex={"0 0 20px"}> </Flex>
                 <Flex flex={"1 0 50%"} className={"mt-2 px-2"}>
                     <DegCard className={"wc text-center"}>
-                        <small><b>{values[Number(number)-1]}</b> ETH</small>
+                        <small><b>{values[Number(number)-1]}</b> TRON</small>
                     </DegCard>
                 </Flex>
             </Flex>
@@ -95,7 +113,7 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
                 title={modal.title}
                 icon={modal.icon}
                 description={modal.description}
-                callback={()=> history.push("/login")}
+                callback={modal.callBack}
                 onConfirm={()=> handlerModal({status:false})}
             />
         </Container>

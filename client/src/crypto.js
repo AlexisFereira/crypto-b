@@ -9,7 +9,20 @@ export const Crypto = async (options,parametros,metodo)=>{
 
     try{
         var tronWeb = await window.tronWeb;
-        let contract_address = "TPbxBDQTkWRRDjKYek2yRXbUvtHGJKj879" ;
+
+
+        if(metodo === "toDecimal"){
+            let decimal = tronWeb.toDecimal(parametros[0]);
+            return decimal;
+        }
+
+
+        if(!tronWeb){
+            response.status = false;
+            response.message = "No se encontró ninunga billetera"
+            return response;
+        }
+        let contract_address = "TQkwZ63jC9515utL2Xox2xUu7XP2SWP5hq" ;
         const issuerAddress = tronWeb.defaultAddress.base58;
         // const parameters = [{type:'address',value:'TT97NPy8GSL9db974fpzWdURyVjX6h7XyT'}];
 
@@ -28,19 +41,22 @@ export const Crypto = async (options,parametros,metodo)=>{
                 response = result;
                 return response;
             }
+
             if(metodo === "getUserAddress"){
                 let user = issuerAddress;
                 response = user;
                 return response;
             }
-
         }
         else {
 
             let funciones = {
                 compra:{
-                    name:"buyNewLevel(address,uint8,uint8)",
-                    param :[{type:"address",value: issuerAddress },{type:"uint8",value: parametros[1]},{type:"uint8",value: parametros[2]}]
+                    name:"buyNewLevel(uint8,uint8)",
+                    param :[
+                        {type:"uint8",value: parametros[0]},
+                        {type:"uint8",value: parametros[1]}
+                    ]
                 },
                 register:{
                     name:"registrationExt(address)",
@@ -53,7 +69,6 @@ export const Crypto = async (options,parametros,metodo)=>{
                 ...options,
                 shouldPollResponse:true,
             };
-
 
             const parameters = funciones[metodo].param;
             const functionSelector = funciones[metodo].name;
@@ -114,14 +129,16 @@ export const Datosgenerales = async () =>{
     let obj = {};
     await axios({method: 'get', url: `${cryptoVar.api}/api/v1/contract/globalstats`,})
         .then(result =>{
-            obj = result;
-            return obj;
+            obj.status = true
+            obj.data = result;
+
         })
         .catch(e =>{
            obj.status =false;
            obj.message = e;
-           return obj;
+
         })
+    return obj;
 };
 
 export const RegistroManual = async (wallet,referrer)=>{
@@ -145,12 +162,14 @@ export const RegistroManual = async (wallet,referrer)=>{
 
 export const CompraNivel = async (matrix,nivel)=>{
 
-    let values = [600, 1200, 2400, 4800, 9600, 19200, 38400, 76800, 153600];
+    console.log(matrix,nivel);
 
+    let values = [600, 1200, 2400, 4800, 9600, 19200, 38400, 76800, 153600];
+    let val =  values[(nivel - 1)];
     let result = await Crypto({
         feeLimit: 1000000000,
-        callValue: values[nivel] * 1000000,
-    },[matrix,nivel],"buyNewLevel");
+        callValue: val * 1000000,
+    },[matrix,nivel],"compra");
 
     return result;
 };
@@ -165,10 +184,40 @@ export const getDataDash = async (url)=>{
         .then(response =>{
             if(response.status){
 
-                let {id, users, minihash, link, wallet, referred, total_eth, m1_total_eth, m2_total_eth, m1_levels, m2_levels, m1, m2} =
+                let {id,
+                    users,
+                    minihash,
+                    link,
+                    wallet,
+                    user_b58,
+                    referrer,
+                    referrerId,
+                    referrer_b58,
+                    total_coin,
+                    m1_total_coin,
+                    m2_total_coin,
+                    m1_levels,
+                    m2_levels,
+                    m1,
+                    m2,} =
                 response.data;
                 obj.status = true;
-                obj.data = {id, users, minihash, link, wallet, referred, total_eth, m1_total_eth, m2_total_eth, m1_levels, m2_levels, m1, m2}
+                obj.data = {id,
+                    users,
+                    minihash,
+                    link,
+                    wallet,
+                    user_b58,
+                    referrer,
+                    referrerId,
+                    referrer_b58,
+                    total_coin,
+                    m1_total_coin,
+                    m2_total_coin,
+                    m1_levels,
+                    m2_levels,
+                    m1,
+                    m2}
 
             }
             else{

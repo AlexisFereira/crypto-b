@@ -103,6 +103,12 @@ export const Container = styled(Flex)`
        z-index:3;
        background:rgba(0,0,0,.6);
        border-radius:10px;
+       
+       button{
+            &:disabled{
+                cursor:not-allowed
+            }
+       }
     }
     
     .loading{
