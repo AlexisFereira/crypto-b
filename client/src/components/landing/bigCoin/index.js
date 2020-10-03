@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useRef} from "react";
 import styled from "@emotion/styled";
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
+import Bigcoin from "./../../img/bigCoinTron.png";
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
+
 
 const Container = styled.div`
     position:relative;
@@ -10,6 +14,7 @@ const Container = styled.div`
     background-repeat:no-repeat;
     background-size:140% auto;
     background-position: center 70%;
+    overflow:hidden;
  
     
     .text{
@@ -23,27 +28,39 @@ const Container = styled.div`
     }
     
     .coin{
-        max-width:800px;
+        max-width:600px;
         margin:auto;
     }
 `;
 
-function BigCoin() {
-    const { t} = useTranslation();
+function BigCoin(props) {
+    const {t} = useTranslation();
+
+    let offset = 0;
+
+    let CoinRef = useRef();
 
     return (
-        <Container className={"px-3 px-xl-0"}>
+        <Container className={"px-3 px-xl-0"} id={"bigCoin"} ref={CoinRef}>
             <div className="text">
-                <div className="header-title mb-3">
-                    {t('the_best_smart')}
-                </div>
-                <p className={"cw"}>
-                    {t('the_best_smart_desc')}
-                </p>
+                <Fade top>
+                    <div className="header-title mb-3">
+                        {t('the_best_smart')}
+                    </div>
+                </Fade>
+                <Fade bottom>
+                    <p className={"cw"}>
+                        {t('the_best_smart_desc')}
+                    </p>
+                </Fade>
             </div>
-            <div className="coin">
-                <img src="img/landing/moneda.png" alt="" className={"imgr"}/>
-            </div>
+
+           <Fade>
+               <div className="coin">
+                   <img src={Bigcoin} alt="" className={"imgr"}/>
+               </div>
+           </Fade>
+
         </Container>
     )
 }

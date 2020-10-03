@@ -17,6 +17,7 @@ import {withRouter} from "react-router-dom";
 import {cryptoVar} from "../../config";
 import Flex from "../UI/Flex";
 import LoadingHex from "./../UI/LoadingHex";
+import Telegram from "./../UI/telegramBtn";
 
 function Landing(props) {
 
@@ -103,7 +104,7 @@ function Landing(props) {
 
                         <div className={"wc "} name={"how"}/>
 
-                        <BigCoin  />
+                        <BigCoin  scroll={props.scroll} />
                         <Datos  />
                         <Carrusel />
 
@@ -116,6 +117,8 @@ function Landing(props) {
 
                         <Faq    />
                         <Footer />
+
+                        <Telegram/>
                     </>
             }
         </Container>

@@ -7,6 +7,8 @@ import {SeTDataDash} from "../../store/actions/actionsCreators";
 import {withRouter} from "react-router-dom";
 import ShowModal from "../../UI/ShowModal/ShowModal";
 import {CompraNivel, Crypto} from "../../../crypto";
+import Fade from 'react-reveal/Fade';
+import {animated} from "react-spring";
 
 
 function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,getData,dashboard}) {
@@ -60,9 +62,11 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
 
 
     return (
-        <Container className={"px-1 mb-2 mb-lg-3 "}>
+        <Container className={"px-1 mb-2 mb-lg-3"}>
             <Flex className={"number pr-2"} flex={"0 0 20px"}>
-                {number}
+               <span>
+                    {number}
+               </span>
             </Flex>
             <Flex flex={"1 0 80%"} className={"p-2 bcard bgb "}>
 
@@ -122,7 +126,6 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
                     </Flex>
                 </div>}
             </Flex>
-
             <Flex className={"wc"}>
                 <Flex flex={"0 0 20px"}> </Flex>
                 <Flex flex={"1 0 50%"} className={"mt-2 px-2"}>
@@ -131,7 +134,6 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
                     </DegCard>
                 </Flex>
             </Flex>
-
             <ShowModal
                 show={modal.status}
                 title={modal.title}

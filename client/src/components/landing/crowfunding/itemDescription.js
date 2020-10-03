@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import {colors} from "../../UI";
+import Fade from 'react-reveal/Fade';
 
 
 const Container = styled.div`
@@ -35,15 +36,17 @@ const Container = styled.div`
 
 function ItemDesc({name,desc}) {
     return (
-        <Container className={"wc"}>
-            <div className="point bgc"> </div>
-            <div className="title-name ">
-                {name}
-            </div>
-            <div className="desc">
-                {desc}
-            </div>
-        </Container>
+       <Fade bottom>
+           <Container className={"wc"}>
+               <div className="point bgc"> </div>
+               <div className="title-name ">
+                   {name}
+               </div>
+               <div className="desc">
+                   {desc}
+               </div>
+           </Container>
+       </Fade>
     )
 }
 

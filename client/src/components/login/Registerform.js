@@ -18,7 +18,6 @@ function RegisterForm(props) {
     //     props.history.push("/")
     // }
 
-
     const {t} = useTranslation();
 
     const [state,SetS] = useState({
@@ -45,7 +44,10 @@ function RegisterForm(props) {
         SetS({...state,loading:true});
 
         if(state.address === ""){
-            handleState({disabled:true,error:true});
+            handleState({
+                disabled:true,
+                error:"Debe ingresar un wallet de referido."
+            });
             return ""
         }
 
@@ -135,7 +137,6 @@ function RegisterForm(props) {
     let query =  new URLSearchParams(props.history.location.search);
 
     let consultaMHASh = async ()=>{
-
         if(query.get("minihash")){
             handleState({disabled:true});
             await axios({
@@ -143,7 +144,6 @@ function RegisterForm(props) {
                 url:`http://api-test.cryptobillions.io/api/v1/accounth/${query.get("minihash")}`,
             }).then(async  result => {
                 if(result.status){
-                    console.log(result.data.wallet)
                     await handleState({address:result.data.wallet});
                 }
             });

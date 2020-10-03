@@ -1,42 +1,33 @@
-import getWeb3 from "./getWeb3";
-import Cryptobillions from "./contracts/Cryptobillions";
 import axios from "axios";
 import {cryptoVar} from "./config";
 
 export const Crypto = async (options,parametros,metodo)=>{
     let response = {};
-
-
     try{
         var tronWeb = await window.tronWeb;
-
+        let contract = await tronWeb.contract().at('TQkwZ63jC9515utL2Xox2xUu7XP2SWP5hq');
 
         if(metodo === "toDecimal"){
             let decimal = tronWeb.toDecimal(parametros[0]);
             return decimal;
         }
-
-
-        if(!tronWeb){
-            response.status = false;
-            response.message = "No se encontró ninunga billetera"
-            return response;
-        }
         let contract_address = "TQkwZ63jC9515utL2Xox2xUu7XP2SWP5hq" ;
         const issuerAddress = tronWeb.defaultAddress.base58;
-        // const parameters = [{type:'address',value:'TT97NPy8GSL9db974fpzWdURyVjX6h7XyT'}];
+        if(!issuerAddress){
+            response.status = false;
+            response.message = "No se encontró ninunga billetera.";
+            return response;
+        }
 
         //METODOS DE CONSULTA SIN TRANSACCIÓN
         if(!options){
             if(metodo === "idToAddress"){
-                let contract = await tronWeb.contract().at('TQkwZ63jC9515utL2Xox2xUu7XP2SWP5hq');
                 let result = await contract.idToAddress(parametros[0]).call();
                 response = result;
                 return response;
             }
 
             if(metodo === "addressId"){
-                let contract = await tronWeb.contract().at('TQkwZ63jC9515utL2Xox2xUu7XP2SWP5hq');
                 let result = await contract.users(parametros[0]).call();
                 response = result;
                 return response;
@@ -93,9 +84,9 @@ export const Crypto = async (options,parametros,metodo)=>{
 
             // Broadcasting the transaction
             const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
-            console.log(`broadcast:`,broadcast);
+            // console.log(`broadcast:`,broadcast);
             response = broadcast;
-            response.usuario = issuerAddress
+            response.usuario = issuerAddress;
             return response;
         }
     }
@@ -109,7 +100,6 @@ export const Crypto = async (options,parametros,metodo)=>{
 
 export const VerificaId = async (id)=>{
     let response = {};
-
     await axios({
         method: 'get',
         url: `${cryptoVar.api}/api/v1/account/${id}`
@@ -118,10 +108,9 @@ export const VerificaId = async (id)=>{
         response.status = true;
         response.data = result.data;
     })
-    .catch(e=>{
+    .catch(() =>{
         response.status = false;
     });
-
     return response;
 };
 
@@ -129,15 +118,14 @@ export const Datosgenerales = async () =>{
     let obj = {};
     await axios({method: 'get', url: `${cryptoVar.api}/api/v1/contract/globalstats`,})
         .then(result =>{
-            obj.status = true
+            obj.status = true;
             obj.data = result;
 
         })
         .catch(e =>{
            obj.status =false;
            obj.message = e;
-
-        })
+        });
     return obj;
 };
 
@@ -156,27 +144,21 @@ export const RegistroManual = async (wallet,referrer)=>{
             response.message = e;
             return response;
         });
-
     return response
 };
 
 export const CompraNivel = async (matrix,nivel)=>{
-
-    console.log(matrix,nivel);
-
     let values = [600, 1200, 2400, 4800, 9600, 19200, 38400, 76800, 153600];
     let val =  values[(nivel - 1)];
     let result = await Crypto({
         feeLimit: 1000000000,
         callValue: val * 1000000,
     },[matrix,nivel],"compra");
-
     return result;
 };
 
 export const getDataDash = async (url)=>{
     let obj ={};
-
     await axios({
         url,
         method:"get"
@@ -231,7 +213,6 @@ export const getDataDash = async (url)=>{
             obj.message ="No se pudo consultar la data";
             obj.error =e;
 
-        })
-
+        });
     return obj;
 };

@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
-
 import Slider from "react-slick";
 import CardDatos from "./cardDatos";
 import {useTranslation} from "react-i18next";
 import {Icon} from "../bannerInicio/helpers";
+import Fade from 'react-reveal/Fade';
 
 
 const Container = styled.div`
@@ -127,18 +127,22 @@ function Carrusel() {
     const { t} = useTranslation();
     return (
         <Container className={"wc px-3"}>
-            <div className="header-title text-center">
-                {t("PARTICIPANTS_RESULTS")}
-            </div>
-            <div className="cont-slider">
-                <Slider {...settings}>
-                    <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
-                    <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
-                    <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
-                    <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
-                    <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
-                </Slider>
-            </div>
+            <Fade top>
+                <div className="header-title text-center">
+                    {t("PARTICIPANTS_RESULTS")}
+                </div>
+            </Fade>
+            <Fade>
+                <div className="cont-slider">
+                    <Slider {...settings}>
+                        <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
+                        <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
+                        <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
+                        <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
+                        <CardDatos id={"10708"} eth={"342.625"} mx3={"458.84"} mx6={"458.85"} usd={"801.475"}/>
+                    </Slider>
+                </div>
+            </Fade>
         </Container>
     )
 }

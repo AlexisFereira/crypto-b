@@ -9,7 +9,7 @@ import {Container} from "./styles";
 import {withRouter} from "react-router-dom";
 import Telegram from "./../UI/telegramBtn"
 import {useTranslation} from "react-i18next";
-
+import Fade from 'react-reveal/Fade';
 
 function Login(props) {
     const {t} = useTranslation();
@@ -21,9 +21,11 @@ function Login(props) {
             <Flex direction={"column"} className="col-12 col-md-6 area-login ">
                 <Flex flex={"0 0 50px"} className={"wc d-none d-md-flex"}> </Flex>
                 <Flex flex={"0 0 20px"} className={"wc d-md-none"}> </Flex>
-                <Flex className="logo" flex={"0 0 50px"} onClick={()=>props.history.push("/")}>
-                    <img src="img/logo.png" alt=""/>
-                </Flex>
+                <Fade top>
+                    <Flex className="logo" flex={"0 0 50px"} onClick={()=>props.history.push("/")}>
+                        <img src="img/logo.png" alt=""/>
+                    </Flex>
+                </Fade>
                 <Flex className={"wc"} flex={"1 0 auto"} direction={"column"}>
                     {props.register ?
                        <RegisterForm/>
@@ -31,9 +33,11 @@ function Login(props) {
                         <Formulario />
                     }
                     <Flex className={"wc pt-3 cw"}>
-                        <small className={"d-block"} style={{fontSize:"11px"}}>{t("compatible")}
-                            <img src="/img/logoTron.png" alt="" height={"30px"} width={"auto"} className={"mx-auto"}/>
-                        </small>
+                     <Fade bottom>
+                         <small className={"d-block"} style={{fontSize:"11px"}}>{t("compatible")}
+                             <img src="/img/logoTron.png" alt="" height={"30px"} width={"auto"} className={"mx-auto"}/>
+                         </small>
+                     </Fade>
                     </Flex>
                 </Flex>
                 <Flex flex={"0 0 80px"} className={" gold-movil wc d-md-none"}>
@@ -48,18 +52,24 @@ function Login(props) {
                     <Redes/>
                 </Flex>
                 <Flex className="pie wc pt-3 pb-3 pb-md-0" flex={"0 0 50px"}>
-                    <Flex flex={"1 0 100px"} >
-                        <div className={"wc text-center"}><small className={"d-block"}><b className={"wc cw"}>Cryptobillions smart-contract:</b></small></div>
-                        <small className={"d-block"}><b className={"wc cb"}>sijd3idncopdj1236543ddvc333csp33kmcs</b></small>
-                    </Flex>
+                   <Fade bottom>
+                       <Flex flex={"1 0 100px"} >
+                           <div className={"wc text-center"}><small className={"d-block"}><b className={"wc cw"}>Cryptobillions smart-contract:</b></small></div>
+                           <small className={"d-block"}><b className={"wc cb"}>sijd3idncopdj1236543ddvc333csp33kmcs</b></small>
+                       </Flex>
+                   </Fade>
                 </Flex>
                 <Flex flex={"0 0 40px"} className={" d-none d-md-flex"} jc={"flex-start"}>
-                    <Redes/>
+                    <Fade left>
+                        <Redes/>
+                    </Fade>
                 </Flex>
             </Flex>
             <Flex direction={"column"} className="col-12 col-md-6 d-none d-md-flex area-foto">
                 <div className="sombra bgDark pa"> </div>
-                <img src="img/gold-icon.png" alt="" className={"position-relative z900"}/>
+                <Fade>
+                    <img src="img/gold-icon.png" alt="" className={"position-relative z900"}/>
+                </Fade>
             </Flex>
             <Telegram className={"d-none d-md-block"}/>
         </Container>

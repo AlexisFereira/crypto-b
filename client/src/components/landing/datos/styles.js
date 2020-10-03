@@ -24,7 +24,8 @@ export const Container = styled.div`
         
         .scroll{
             min-width:600px;
-            flex-flow:row nowrap
+            flex-flow:row nowrap;
+            min-height:116px;
         }
     }
     
@@ -38,13 +39,14 @@ export const CifraCont = styled.div`
     flex:${props=> props.flex};
     text-transform:uppercase;
     padding-top:25px;
-    
+    transition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
     
     .textos{
         width:auto;
         margin:auto;
         opacity:${props=> props.opacity}; 
         font-size:${props=> props.fontS};
+        transition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
     }
     
     .point{
@@ -56,6 +58,7 @@ export const CifraCont = styled.div`
         height:10px;
         border-radius:50%;
         background:${colors.cian};
+        transition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
     }
     
      .pointB{
@@ -76,6 +79,8 @@ export const CifraCont = styled.div`
             border-radius:50%;
         }
     }
+    
+   
     
     .title{
         font-size:.6em;    

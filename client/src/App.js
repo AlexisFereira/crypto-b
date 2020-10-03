@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,11 +13,13 @@ import {SeTDataDash} from "./components/store/actions/actionsCreators";
 import {connect} from "react-redux";
 
 
-function App() {
+
+function App(props) {
 
     const [state,setState] = useState({
         loading:false,
-        tronWeb:null
+        tronWeb:null,
+        scroll:0
     });
 
     const getTronweb = async ()=>{
@@ -26,13 +28,14 @@ function App() {
 
     useEffect(()=>{
         getTronweb();
-    },[ ]);
+
+    },[]);
 
   return (
     <div className="main-container bgDark" id={"scroll"}>
       <Router>
         <Switch>
-            <Route exact path={"/"} render={()=> <Landing/> } />
+            <Route exact path={"/"} render={()=> <Landing /> } />
             <Route exact path={"/login"} render={()=>   <Login    /> } />
             <Route exact path={"/register"} render={()=> <Login register /> } />
             <Route exact path={"/dashboard"} render={()=> <Dashboard/> } />

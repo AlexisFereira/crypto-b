@@ -5,11 +5,9 @@ import {useTranslation} from "react-i18next";
 import Field from "./../UI/field";
 import {connect} from "react-redux";
 import {SeTDataDash} from "../store/actions/actionsCreators";
-import {Link, withRouter} from "react-router-dom";
-import axios from "axios";
+import {withRouter} from "react-router-dom";
 import ShowModal from "../UI/ShowModal/ShowModal";
 import Fade from "./../UI/Fade";
-import {cryptoVar} from "../../config";
 import {Crypto, VerificaId} from "../../crypto";
 
 const Container = styled.div`
@@ -52,7 +50,10 @@ function Formulario(props) {
     });
 
     let hanldeModal = x => SetM({...modal,...x});
+    let handler = x => SetS({...modal,...x});
+
     const TheRef = useRef(null);
+
     let onSubmitAuth = async ()=>{
         SetS({...state,loadingAuth:true});
         try{
@@ -69,7 +70,6 @@ function Formulario(props) {
                         SetS({...state,loadingAuth:false});
                     }
                 }
-
             }
         catch (e) {
             SetS({...state,loadingAuth:false});
@@ -82,22 +82,43 @@ function Formulario(props) {
 
         }
     };
+
     let onSubmit = async ()=> {
+
+        let address = state.address;
+
         if(state.address === "" ){
-            SetS({...state,loading:false,disabled:true,error:true});
+            handler({
+                loading:false,
+                disabled:true,
+                error:"Ingrese un id o Dirección de wallet.",
+            });
             return "";
         }
+        handler({loading:true});
 
-        else{
-            SetS({...state,loading:true});
-            try{
+        if(address.length >= 34 ){
+            address = await Crypto(null,[address],"addressId");
+            address = await Crypto(null, [address.id._hex],"toDecimal");
+        }
+        try {
+           let validacion = await VerificaId(address);
+            if(validacion.status){
+                props.SeTDataDash({onlyView:true})
+                props.history.push(`/dashboard?user=${address}`)
 
-            }
-            catch (e) {
-                console.log(e)
+            }else{
+                handler({
+                    loading:false,
+                    error:"Wallet no encontrado."
+                })
             }
         }
+        catch (e) {
+
+        }
     };
+
     const handleAddres = e=>{
         let {value} = e.target;
         if(value !== "" && state.error){
@@ -152,7 +173,7 @@ function Formulario(props) {
                      error={state.error}
                      value={state.address}
                      onChange={e =>{
-                         let value  = e.target.value.replace(/[^0-9a-zA-Z]/g,"").substring(0,24);
+                         let value  = e.target.value.replace(/[^0-9a-zA-Z]/g,"").substring(0,50);
                          let obj = {target:{value}};
                          handleAddres(obj)
                      }}

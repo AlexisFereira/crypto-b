@@ -5,6 +5,7 @@ import 'react-tippy/dist/tippy.css'
 import {
     Tooltip,
 } from 'react-tippy';
+import Fade from 'react-reveal/Fade';
 
 
 export const DegCard = styled.div`
@@ -12,6 +13,7 @@ export const DegCard = styled.div`
     background: linear-gradient(90deg, rgba(5,25,71,1) 0%, rgba(9,49,98,1) 100%);
     border-radius:12px;
 `;
+
 
 export const CopyUrl = ({url=" ",name,id,message})=> {
 
@@ -45,8 +47,12 @@ export const CopyUrl = ({url=" ",name,id,message})=> {
         <Flex className="enlaces mb-3">
             {ready &&  <input type="text" defaultValue={url || ""} id={id}  style={{position:"absolute",opacity:"0",zIndex:0,width:"20px"}}/>}
             <Flex flex={"1 0 60%"} className="enlace pr-2" jc={"flex-start"} style={{overflow: "hidden"}}>
-                <small className={"cw wc"}> {name} </small>
-                <small className={"cb"}>{url}</small>
+               <Fade bottom>
+                   <small className={"cw wc"}> {name} </small>
+               </Fade>
+                <Fade right>
+                    <small className={"cb"}>{url}</small>
+                </Fade>
             </Flex>
             <Tooltip
                 // options

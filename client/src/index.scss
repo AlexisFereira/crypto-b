@@ -90,6 +90,14 @@ button,select,input,textarea{
 .ro{border: 1px solid red;}
 .tr{transition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);}
 
+.offset{
+  position:absolute;
+  top:0;
+  right:0;
+  color: white;
+  padding: 20px;
+}
+
 small.error{
   color:#ffcdd2;
   text-align: left!important;

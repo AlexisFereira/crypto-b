@@ -4,6 +4,8 @@ import {UnmountClosed} from "react-collapse";
 import Flex from "./../../UI/Flex";
 import { useTranslation } from 'react-i18next';
 import {BtnFlag} from "./helpers";
+import Fade from 'react-reveal/Fade';
+
 
 
 const Container = styled.div`
@@ -53,25 +55,26 @@ function LanguageSelect() {
         i18n.changeLanguage(value)
     };
 
-
     return (
         <Container>
-            <Flex className="changeF" onClick={()=> setOpen({...menuL,open:!menuL.open})}>
-                <Flex className="flag " direction={"column"}>
-                    <img src={`img/flags/${i18n.language}.png`} alt="" />
+            <Fade right>
+                <Flex className="changeF" onClick={()=> setOpen({...menuL,open:!menuL.open})}>
+                    <Flex className="flag " direction={"column"}>
+                        <img src={`img/flags/${i18n.language}.png`} alt="" />
+                    </Flex>
+                    <div className="caret ">
+                        <img src="img/landing/caret-lang.png" alt=""/>
+                    </div>
+                    <div className="menu-flags bgDark br6" >
+                        <UnmountClosed isOpened={menuL.open === true} className={"p-1"}>
+                            <BtnFlag action={changeLanguage} flag={"en"} value={"en"} name={"english"}  activo={i18n.language} />
+                            <BtnFlag action={changeLanguage} flag={"es"} value={"es"} name={"spanish"}  activo={i18n.language} />
+                            <BtnFlag action={changeLanguage} flag={"rus"} value={"rus"} name={"russian"} activo={i18n.language} />
+                            <BtnFlag action={changeLanguage} flag={"chi"} value={"chi"} name={"chines"}  activo={i18n.language} />
+                        </UnmountClosed>
+                    </div>
                 </Flex>
-                <div className="caret ">
-                    <img src="img/landing/caret-lang.png" alt=""/>
-                </div>
-                <div className="menu-flags bgDark br6" >
-                   <UnmountClosed isOpened={menuL.open === true} className={"p-1"}>
-                       <BtnFlag action={changeLanguage} flag={"en"} value={"en"} name={"english"}  activo={i18n.language} />
-                       <BtnFlag action={changeLanguage} flag={"es"} value={"es"} name={"spanish"}  activo={i18n.language} />
-                       <BtnFlag action={changeLanguage} flag={"rus"} value={"rus"} name={"russian"} activo={i18n.language} />
-                       <BtnFlag action={changeLanguage} flag={"chi"} value={"chi"} name={"chines"}  activo={i18n.language} />
-                   </UnmountClosed>
-                </div>
-            </Flex>
+            </Fade>
         </Container>
     )
 }
