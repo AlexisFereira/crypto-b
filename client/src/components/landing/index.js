@@ -22,7 +22,7 @@ import ShowModal from "../UI/ShowModal/ShowModal";
 import ReactPlayer from 'react-player';
 import ButtonGost from "./../UI/gostButton";
 import Fade from 'react-reveal/Fade';
-
+import FormaVideo from "./../img/formaVideo.png";
 
 
 function Landing(props) {
@@ -146,14 +146,17 @@ function Landing(props) {
                 onOpen={()=> setState({...state,play:true})}
             >
                 <div id="player" className={"wc bgDark position-relative"}>
-                    <ReactPlayer
-                        url={urlVideo}
-                        width = "896px"
-                        height = "504px"
-                        controls
-                        playing={state.play}
-                        onEnded={()=> setState({...state,modal:false})}
-                    />
+                    <img src={FormaVideo} alt="" className={"imgr"}/>
+                   <div className={"videopos"}>
+                       <ReactPlayer
+                           url={urlVideo}
+                           width = "100%"
+                           height = "100%"
+                           controls
+                           playing={state.play}
+                           onEnded={()=> setState({...state,modal:false})}
+                       />
+                   </div>
                   <Fade left>
                       <ButtonGost action={()=> setState({...state,modal:false,play:false})}/>
                   </Fade>

@@ -1,13 +1,2 @@
 
-cjavascript:S1481I";Remove the declaration of the unused 'referrerId' variable.(şâØÓûÿÿÿÿ8‡Ç‹Î.
-`javascript:S1854I"8Remove this useless assignment to variable "referrerId".(şâØÓûÿÿÿÿ8‡Ç‹Î.
-[javascript:S1481"8Remove the declaration of the unused 'history' variable.(Â¿ê8úÈ´éÍ.
-\javascript:S1481H"9Remove the declaration of the unused 'referrer' variable.(ä—¼”8‡Ç‹Î.
-Ojavascript:S1117B",'id' is already declared in the upper scope.(ĞÅú¯8íÂÂéÍ.
-Xjavascript:S1854"5Remove this useless assignment to variable "history".(Â¿ê8úÈ´éÍ.
-ajavascript:S1481G"9Remove the declaration of the unused 'user_b58' variable.(ªÙ¢†şÿÿÿÿ8‡Ç‹Î.
-^javascript:S1854G"6Remove this useless assignment to variable "user_b58".(ªÙ¢†şÿÿÿÿ8‡Ç‹Î.
-]javascript:S1481E"5Remove the declaration of the unused 'link' variable.(½„Ñàúÿÿÿÿ8‡Ç‹Î.
-Yjavascript:S1854H"6Remove this useless assignment to variable "referrer".(ä—¼”8‡Ç‹Î.
-Mjavascript:S1128"%Remove this unused import of 'axios'.(íöóÛşÿÿÿÿ8‹Ñ·éÍ.
-Zjavascript:S1854E"2Remove this useless assignment to variable "link".(½„Ñàúÿÿÿÿ8‡Ç‹Î.
+Ojavascript:S1117A",'id' is already declared in the upper scope.(ĞÅú¯8íÂÂéÍ.

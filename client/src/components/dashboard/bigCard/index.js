@@ -23,9 +23,9 @@ const Container = styled.div`
 
 
 function BigCard({version,activos,data,m2,onlyView,accountLogged,getData}) {
-    
+
     return (
-        <Container className={"wc mb-4"}>
+        <Container className={"wc mb-4 mt-4 pt-3"}>
             <p className={"title"}>
                 <Fade>
                     <span>Bilions </span>

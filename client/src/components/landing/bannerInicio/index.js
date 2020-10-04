@@ -25,7 +25,7 @@ const Container = styled(Flex)`
     
     @media all and (max-width: 480px){
         .title-main{
-            font-size:24px;
+            font-size:30px;
         }
         
         .des-t{
@@ -74,9 +74,9 @@ function BannerInicio(props) {
     return (
         <Container direction={"column"} className={"col-12 col-xl-10 mx-auto"}>
             <Flex flex={"1 0 100%"} direction={"column"}>
-                <Flex className={"wc d-lg-none"} flex={"1 0 35vh"}> </Flex>
-                <Flex className="text wc px-3 pb-4 pl-xl-0" direction={"column"} alg={"flex-start"} flex={"1 0 50%"}>
-                    <h1 data-title-scrambler data-scramble-text={async ()=> await t('earn_money')}  className={"cw title-main"}>
+                <Flex className={"wc d-lg-none"} flex={"1 0 5vh"}> </Flex>
+                <Flex className="text wc pb-4 pl-xl-0" direction={"column"} alg={"flex-start"} flex={"1 0 50%"}>
+                    <h1 data-scramble-text={async ()=> await t('earn_money')}  className={"cw title-main"}>
                         <b><Scrambler characters={"010101010100011"}  renderIn={1500} text={ t('earn_money')}/></b> <br/>
                         <Scrambler characters={"010101010100011"}  renderIn={1500} text={ t('as_you_can')}/>
                     </h1>

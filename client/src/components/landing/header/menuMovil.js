@@ -40,12 +40,13 @@ const Container = styled.div`
     
     .btnMenu{
         position:absolute;
-        top:5px;
-        right:5px;
+        top:10px;
+        right:10px;
         width:40px;
-        height;40px;
+        height:40px;
         background:rgba(0,0,0,.2);
         z-index:1111;
+        border-radius:4px;
     }
 `;
 
@@ -59,7 +60,7 @@ export const scrollT = (element,offset= 0)=> {
     })
 };
 
-function Menumovil() {
+function Menumovil(props) {
 
     const [open, SetoOpen] = useState(false);
     const {t} = useTranslation();
@@ -104,8 +105,8 @@ function Menumovil() {
                         }}>
                         {t('etherum_fqas')}</button>
                     <div className={"wc separator py-2"}> </div>
-                    <Btn className={"mb-1"}>  {t('login')}</Btn>
-                    <Btn className={"mb-2"} type={"line"} gold >  {t('register')} </Btn>
+                    <Btn className={"mb-1"} onClick={()=> props.history.push("/login")}>  {t('login')}</Btn>
+                    <Btn className={"mb-2"} type={"line"} gold  onClick={()=> props.history.push("/register")}>  {t('register')} </Btn>
                     <div className={"cw p-2 text-center"} onClick={() => SetoOpen(!open)}>
                         {t('close')}
                     </div>

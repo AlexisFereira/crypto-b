@@ -23,13 +23,13 @@ const Container = styled.header`
 function Header(props) {
     const { t } = useTranslation();
     return (
-        <Container className={"wc py-3 py-md-4 mb-5"}>
+        <Container className={"wc py-3 py-md-4 mb-5 position-relative "}  style={{zIndex:"999999"}}>
             <Flex className={"col-12 col-xl-10 mx-auto px-0"} clasName={"wc"}>
                 <Flex flex={"0 0 250px"} jc={"flex-start"} onClick={()=>props.history.push("/")}>
                     <img src="/img/logo.png" alt=""/>
                 </Flex>
-                <Flex flex={"1 0 50%"} jc={"flex-end"} className={"pr-3"}>
-                    <Flex flex={"0 0 auto"} jc={"flex-end"}>
+                <Flex flex={"1 0 50%"} className={"pr-3 justify-content-center justify-content-sm-end pt-3 pt-sm-0"}>
+                    <Flex flex={"0 0 150px"} jc={"flex-end"} className={" mr-3"}>
                         {/*<Link className={"p-2 cw "} to="/dashboard">{t("presentation")}</Link>*/}
                         {/*<Link className={"p-2 cw "} to="/dashboard">{t("support")}</Link>*/}
                         <Btn className={"ml-3"} flex={"0 0 150px"} onClick={()=>{
@@ -39,9 +39,9 @@ function Header(props) {
                             {t('logout')}
                         </Btn>
                     </Flex>
-                </Flex>
-                <Flex flex={"0 0 45px"}>
-                    <LanguageSelect/>
+                    <Flex flex={"0 0 45px"}  >
+                        <LanguageSelect/>
+                    </Flex>
                 </Flex>
             </Flex>
         </Container>

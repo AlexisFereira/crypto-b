@@ -110,7 +110,7 @@ function Dashboard(props) {
 
     return (
         <Container className={"wc bgDark"}>
-           <div className={"col-12"}>
+           <div className={"col-12 position-relative "}  style={{zIndex:"999999"}} >
               <Fade>
                   <Header/>
               </Fade>
@@ -164,11 +164,8 @@ function Dashboard(props) {
                                    </Fade>
                                 </Flex>
                                 <Flex className={"col-12 col-sm-6 col-lg-12"}>
-
-                                       <CopyUrl id={"02"} name={"Link de afiliado"} url={props.dashboard.link} message={t("linkcopied")}/>
-
-                                        <CopyUrl id={"01"} name={"The etherum wallet"} url={props.dashboard.wallet} message={t("walletCopied")}/>
-
+                                     <CopyUrl id={"02"} name={"Link de afiliado"} url={props.dashboard.link} message={t("linkcopied")}/>
+                                     <CopyUrl id={"01"} name={"The etherum wallet"} url={props.dashboard.wallet} message={t("walletCopied")}/>
                                 </Flex>
                             </Flex>
                         </aside>
