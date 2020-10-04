@@ -8,7 +8,7 @@ import {SeTDataDash} from "../store/actions/actionsCreators";
 import {withRouter} from "react-router-dom";
 import ShowModal from "../UI/ShowModal/ShowModal";
 import Fade from "./../UI/Fade";
-import {Crypto, VerificaId} from "../../crypto";
+import {Crypto, getDataFromWallet, VerificaId} from "../../crypto";
 
 const Container = styled.div`
     position:relative;
@@ -58,17 +58,26 @@ function Formulario(props) {
         SetS({...state,loadingAuth:true});
         try{
            let UserTron = await Crypto(null,null,"getUserAddress");
-           let id = await Crypto(null,[UserTron],"addressId");
 
-            if(id){
+            if(UserTron){
                 // Verifica si existe
-                let exists = await VerificaId(id.id);
+                let exists = await getDataFromWallet(UserTron);
+
                 if(exists.status){
-                        props.SeTDataDash({onlyView : false,logueado: UserTron});
-                        props.history.push(`/dashboard?user=${exists.data.id}`)
+                        await sessionStorage.setItem("logueado", UserTron);
+                        await props.SeTDataDash({onlyView : false,logueado: UserTron});
+                        props.history.push("/dashboard")
                     }else{
                         SetS({...state,loadingAuth:false});
                     }
+                }
+                else{
+                    hanldeModal({
+                        status:true,
+                        title:"Error de wallet",
+                        description: <span>No se encontró ninguna billetera conectada a su TRONLINK.</span>,
+                        icon:"cancel",
+                    })
                 }
             }
         catch (e) {

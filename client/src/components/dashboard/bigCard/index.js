@@ -50,7 +50,7 @@ function BigCard({version,activos,data,m2,onlyView,accountLogged,getData}) {
                                             circles:data[index].circles,
                                         }}
                                         lock={!data[index].active}
-                                        canbuy={!item.active && (index > 0 && data[index -1 ].active) && !onlyView}
+                                        canbuy={!item.active && (index > 0 && data[index - 1].active) && !onlyView && !data[index].active}
                                         accountLogged={accountLogged}
                                         getData={getData}
                                     />

@@ -8,8 +8,11 @@ import {SeTDataDash} from "../../store/actions/actionsCreators";
 import ShowModal from "../../UI/ShowModal/ShowModal";
 import {CompraNivel} from "../../../crypto";
 import {Crypto} from "../../../crypto";
+import Timer from "./timer";
 
 function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,getData,dashboard}) {
+
+    let puedeComprar = canbuy;
 
     let [modal,setModal] = useState({
         status:false,
@@ -18,7 +21,10 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
         icons:"",
     });
     let [state,setState] = useState({
-        loading:false
+        loading:false,
+        puedeComprar:false,
+        procesandoCompra:false
+
     });
 
     let handlerModal = x => setModal({...modal,...x});
@@ -27,7 +33,7 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
         handlerModal({
                 status:true, title, description, callBack, icon,
         });
-
+    let logueado  =  sessionStorage.getItem("logueado");
     let values = [600, 1200, 2400, 4800, 9600, 19200, 38400, 76800, 153600];
     let matrix = gold ? 2 : 1;
 
@@ -37,51 +43,70 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
 
             let currentW  = await Crypto(null,null,"getUserAddress");
 
-            if(dashboard.logueado !== currentW){
+
+            if(logueado !== currentW){
                 handler({loading:false});
                 return(modalSet(
                     "Error Wallet no encontrada.",
-                    "Para realizar compra de niveeles deve iniciar seción con su actual direcciñon de wallet.",
+                    "Para realizar compra de niveles deve iniciar seción con su actual dirección de wallet.",
                     "cancel",
+                    ()=> history.push("/login")
                 ))
             }
 
 
             let compra = await CompraNivel(matrix,nivel);
             if(compra.result){
-
-                let compra = {nivel,matrix};
-
-                sessionStorage.setItem("compra2",JSON.stringify(compra));
-
+                let compra = {nivel,matrix,wallet:logueado};
+                sessionStorage.setItem("compra",JSON.stringify(compra));
                 modalSet(
                     "Compra realizada con éxito",
-                    <span>La compra del nivel <b>{nivel + 1}</b> de la matrix <b>{matrix  === 1 ? "X3" : "X6"}</b> se realizó con éxito.</span>,
+                    <span>La compra del nivel <b>{number}</b> de la matrix <b>{matrix  === 1 ? "X3" : "X6"}</b> se realizó con éxito.</span>,
                     "check"
                 );
+                puedeComprar = false;
+                handler({loading:false,puedeComprar:false,procesandoCompra:true});
+            }
+            else{
                 handler({loading:false});
-            }else{
-                handler({loading:false});
+                console.log(compra)
             }
         }
         catch (e) {
             handler({loading:false});
+            console.log(e)
         }
     };
 
 
+
     let verificaCompra = ()=>{
         let compra = JSON.parse(sessionStorage.getItem("compra"));
-        if(compra){
-            if(compra.nivel === number && compra.matrix === 1 && canbuy){
-                canbuy = false
+
+        if(compra && compra.wallet === logueado ){
+            if(compra.nivel === number && canbuy && lock){
+                console.log("aqui men")
+                handler({
+                    puedeComprar     : false,
+                    procesandoCompra : true
+                })
             }
+            else{
+                handler({
+                    puedeComprar: canbuy
+                })
+            }
+        }
+        else{
+            handler({
+                puedeComprar: canbuy
+            })
         }
     };
 
     useEffect(()=>{
         verificaCompra();
-    },[])
+    },[ ]);
 
     return (
         <Container className={"px-1 mb-2 mb-lg-3 "}>
@@ -103,9 +128,9 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
                     <small className={"d-inline-block mx-1"}><b>{data.ciclos}</b> <img src="/img/dashboard/ciclo.png" width={"12px"} height={"auto"} className={"align-middle"} alt=""/></small>
                 </Flex>
                     {lock &&
-                    <div className="lock">
+                    <div className={`lock ${state.procesandoCompra && "watingShop"}`}>
                         <Flex className={"cart"} direction={"column"}>
-                            {canbuy &&
+                            {state.puedeComprar &&
                             <button
                                 className="shop"
                                 onClick={()=> buyLevel(Number(number))}
@@ -115,6 +140,10 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
                                     <img src="/img/dashboard/cart.png" alt="" className={"imgr"}/>
                                 }
                             </button>}
+
+                            {state.procesandoCompra &&
+                                <Timer/>
+                            }
                         </Flex>
                     </div>}
             </Flex>

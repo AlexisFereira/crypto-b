@@ -148,5 +148,13 @@ small.error{
   to{transform: rotate(360deg);}
 }
 
+@keyframes lighting {
+  from{box-shadow: 0 0 0 #176BF2; }
+  to{box-shadow: 0 0 20px #176BF2;}
+}
+
+.watingShop {
+  animation: lighting 1s ease-out alternate infinite;
+}
 
 

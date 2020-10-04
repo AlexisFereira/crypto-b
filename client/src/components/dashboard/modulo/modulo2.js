@@ -7,11 +7,11 @@ import {SeTDataDash} from "../../store/actions/actionsCreators";
 import {withRouter} from "react-router-dom";
 import ShowModal from "../../UI/ShowModal/ShowModal";
 import {CompraNivel, Crypto} from "../../../crypto";
-import Fade from 'react-reveal/Fade';
-import {animated} from "react-spring";
+import Timer from "./timer";
 
 
 function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,getData,dashboard}) {
+    let puedeComprar = canbuy;
 
     let [modal,setModal] = useState({
         status:false,
@@ -23,16 +23,16 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
 
     let values = [600, 1200, 2400, 4800, 9600, 19200, 38400, 76800, 153600];
 
-    let [state,setState] = useState({loading:false});
-    let handler = x => setState({...state,...x});
+    let [state,setState] = useState({
+        loading:false,
+        puedeComprar: false
+    });
 
+    let handler = x => setState({...state,...x});
     let modalSet = (title,description,icon= "cancel",callBack = null)=> handlerModal({
         status:true, title, description, callBack, icon,});
-
+    let logueado = sessionStorage.getItem("logueado");
     let Matrix = gold ? 2 : 1;
-
-
-
 
     let buyLevel = async (nivel) => {
         handler({loading:true});
@@ -40,11 +40,12 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
 
             let currentW  = await Crypto(null,null,"getUserAddress");
 
-            if(dashboard.logueado !== currentW){
+
+            if(logueado !== currentW){
                 handler({loading:false});
                 return(modalSet(
                     "Error Wallet no encontrada.",
-                    "Para realizar compra de niveeles deve iniciar seción con su actual direcciñon de wallet.",
+                    "Para realizar compra de niveles deve iniciar seción con su actual dirección de wallet.",
                     "cancel",
                     ()=> history.push("/login")
                 ))
@@ -52,11 +53,11 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
 
             let compra = await CompraNivel(Matrix,nivel);
             if(compra.result){
-                let compra = {nivel,matrix:Matrix};
-
+                let compra = {nivel,matrix:Matrix,wallet:logueado};
                 sessionStorage.setItem("compra2",JSON.stringify(compra));
-                modalSet("Compra realizada con éxito","La transacción ha sido realizada conéxito, para verla reflajada en tu dashbaord debes esperar unos minutos.","check");
-                handler({loading:false});
+                modalSet("Compra realizada con éxito","La transacción ha sido realizada con éxito, para verla reflajada en tu dashboard debes esperar unos minutos.","check");
+                handler({procesandoCompra : true, puedeComprar:false, loading:false });
+
             }else{
                 handler({loading:false});
             }
@@ -68,16 +69,25 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
 
     let verificaCompra = ()=>{
         let compra = JSON.parse(sessionStorage.getItem("compra2"));
-        if(compra){
-             if(compra.nivel === number && compra.matrix === 2 && canbuy){
-                 canbuy = false
+        if(compra && compra.wallet === logueado){
+             if(compra.nivel === number && canbuy && lock){
+                 console.log(number, compra.nivel,canbuy, "no puede comprar:::::")
+                 handler({
+                     puedeComprar     : false,
+                     procesandoCompra : true
+                 })
+             }
+             else{
+                 handler({
+                     puedeComprar: canbuy
+                 })
              }
         }
     };
 
     useEffect(()=>{
         verificaCompra();
-    },[])
+    },[ ]);
 
 
     return (
@@ -130,9 +140,9 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
                     <small className={"d-inline-block mx-1"}><b>{data.ciclos}</b> <img src="/img/dashboard/ciclo.png" width={"12px"} height={"auto"} className={"align-middle"} alt=""/></small>
                 </Flex>
                 {lock &&
-                <div className="lock">
+                <div className={`lock ${state.procesandoCompra && "watingShop"}`}>
                     <Flex className={"cart"} direction={"column"}>
-                        {canbuy &&
+                        {state.puedeComprar &&
                         <button
                             className="shop"
                             onClick={()=>buyLevel(Number(number))}
@@ -141,7 +151,11 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
                             {state.loading ? <span className="loading"> </span> :
                                 <img src="/img/dashboard/cart.png" alt="" className={"imgr"}/>
                             }
+
                         </button>}
+                        {state.procesandoCompra &&
+                        <Timer/>
+                        }
                     </Flex>
                 </div>}
             </Flex>

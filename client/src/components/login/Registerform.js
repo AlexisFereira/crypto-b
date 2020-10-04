@@ -88,10 +88,11 @@ function RegisterForm(props) {
 
                     if(registro.result){
                         //LLEVALO AL DASHBOARD
+                        await sessionStorage.clear();
                         let userRegistered = registro.usuario;
                         let registroManual = await RegistroManual(userRegistered,address);
                         if(registroManual.status){
-                            sessionStorage.setItem("addressRegister",userRegistered);
+                            sessionStorage.setItem("logueado",userRegistered);
                             props.SeTDataDash({
                                 minihash:registroManual.data.data.minihash,
                                 logueado: userRegistered,
@@ -114,6 +115,7 @@ function RegisterForm(props) {
                    handleState({error:"Referido no registrado."})
                }
         }
+
         catch (e) {
             SetS({...state,loading:false});
             handleState({error:"Error: intente más tarde."})

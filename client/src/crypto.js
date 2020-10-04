@@ -84,7 +84,6 @@ export const Crypto = async (options,parametros,metodo)=>{
 
             // Broadcasting the transaction
             const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
-            // console.log(`broadcast:`,broadcast);
             response = broadcast;
             response.usuario = issuerAddress;
             return response;
@@ -223,10 +222,39 @@ export const getDataFromWallet = async (wallet)=>{
         method:"get",
         url:`${cryptoVar.api}/api/v1/accountw/${wallet}`
     }).then(data=>{
-
+        if(data.status === 200){
+            obj.status = true;
+        }else{
+            obj.status = false;
+            obj.message = "El usuario no está registrado."
+        }
     })
         .catch(e=>{
-            obj.status = false
+            obj.status = false;
             obj.message = e
         })
+    return obj;
 }
+
+export const verificaCompra = (number,lock,canbuy, handler,modulo)=> {
+    let compra = JSON.parse(sessionStorage.getItem(modulo));
+
+    if(compra){
+        if(compra.nivel === number && canbuy && lock){
+            handler({
+                puedeComprar     : false,
+                procesandoCompra : true
+            })
+        }
+        else{
+            handler({
+                puedeComprar: canbuy
+            })
+        }
+    }
+    else{
+        handler({
+            puedeComprar: canbuy
+        })
+    }
+};

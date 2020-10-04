@@ -25,18 +25,22 @@ function Dashboard(props) {
 
     const { t } = useTranslation();
 
-    let id = props.history.location.search.split('=');
-    if(!id[0] && !props.dashboard.minihash){
+    let search = window.location.search;
+    let id = search && new URLSearchParams(search).get("user");
+
+    if(!id && props.dashboard.onlyView){
         props.history.push('/login')
     }
 
-    let addressRequeest = props.dashboard.isCommingFromRegister ?
-        `${cryptoVar.api}/api/v1/api/v1/accountw/${props.dashboard.logueado}`
-        :`${cryptoVar.api}/api/v1/account/${id[1]}`;
+    let logueado = sessionStorage.getItem("logueado");
+
+    let addressRequeest = props.dashboard.onlyView ?
+        `${cryptoVar.api}/api/v1/account/${id}` :
+        `${cryptoVar.api}/api/v1/accountw/${logueado}`;
+
 
     let getData = async ()=>{
         handler({loading:true});
-
         try {
             let DGlobales = await Datosgenerales();
             if(DGlobales.status){
@@ -59,24 +63,9 @@ function Dashboard(props) {
 
             let Data = await getDataDash(addressRequeest);
             if(Data.status){
-                handler({loading:false});
 
-
-                let {id,
-                    users,
-                    minihash,
-                    wallet,
-                    referrer_b58,
-                    total_coin,
-                    m1_total_coin,
-                    m2_total_coin,
-                    m1_levels,
-                    m2_levels,
-                    m1,
-                    m2,
+                let {id, users, minihash, wallet, referrer_b58, total_coin, m1_total_coin, m2_total_coin, m1_levels, m2_levels, m1, m2,
                 } = Data.data;
-
-                console.log(wallet,"este es el wallet")
 
                 props.SeTDataDash({
                     userId: id,
@@ -93,6 +82,8 @@ function Dashboard(props) {
                     m1,
                     m2,
                 });
+
+                handler({loading:false});
             }
             else{
                 handler({loading:false});
