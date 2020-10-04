@@ -49,6 +49,11 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
 
             let compra = await CompraNivel(matrix,nivel);
             if(compra.result){
+
+                let compra = {nivel,matrix};
+
+                sessionStorage.setItem("compra2",JSON.stringify(compra));
+
                 modalSet(
                     "Compra realizada con éxito",
                     <span>La compra del nivel <b>{nivel + 1}</b> de la matrix <b>{matrix  === 1 ? "X3" : "X6"}</b> se realizó con éxito.</span>,

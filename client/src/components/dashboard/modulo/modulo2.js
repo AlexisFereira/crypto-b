@@ -54,7 +54,7 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
             if(compra.result){
                 let compra = {nivel,matrix:Matrix};
 
-                sessionStorage.setItem("compra",JSON.stringify(compra));
+                sessionStorage.setItem("compra2",JSON.stringify(compra));
                 modalSet("Compra realizada con éxito","La transacción ha sido realizada conéxito, para verla reflajada en tu dashbaord debes esperar unos minutos.","check");
                 handler({loading:false});
             }else{
@@ -67,7 +67,7 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
     };
 
     let verificaCompra = ()=>{
-        let compra = JSON.parse(sessionStorage.getItem("compra"));
+        let compra = JSON.parse(sessionStorage.getItem("compra2"));
         if(compra){
              if(compra.nivel === number && compra.matrix === 2 && canbuy){
                  canbuy = false
