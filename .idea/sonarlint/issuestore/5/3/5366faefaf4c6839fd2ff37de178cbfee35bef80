@@ -1,6 +1,5 @@
 
-Vjavascript:S1117"5'SeTDataDash' is already declared in the upper scope.(ãŞıÿÿÿÿ
-Fjavascript:S1128
-"$Remove this unused import of 'Fade'.(Í±Ì~8Ì¦Ë…Ï.
-Rjavascript:S11177"0'compra' is already declared in the upper scope.(”†ƒ-8«ëå‰Ï.
-Kjavascript:S1128"(Remove this unused import of 'animated'.(í¡›˜8éëé…Ï.
+Vjavascript:S1117"5'SeTDataDash' is already declared in the upper scope.(ãŞıÿÿÿÿ
+Sjavascript:S11178"0'compra' is already declared in the upper scope.(ô‚¢ü8«ëå‰Ï.
+`javascript:S1481"=Remove the declaration of the unused 'puedeComprar' variable.(’Èõ8É÷ï¨Ï.
+]javascript:S1854":Remove this useless assignment to variable "puedeComprar".(’Èõ8àôÓ§Ï.

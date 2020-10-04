@@ -30,8 +30,10 @@ const Cifra = ({text,number=0,big,flex="1 0 22%",decimales,unidad,prefix,hover,h
 
 
    useEffect(()=>{
-       set({number: number});
-       stop();
+      setTimeout(()=>{
+          set({number: number});
+          stop();
+      },1500)
    },[])
 
     return(

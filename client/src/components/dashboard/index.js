@@ -108,7 +108,8 @@ function Dashboard(props) {
            </div>
             {state.loading ?
                 <div className={"wc cw text-center"}>
-                    {t("processing")}
+                    <img src="img/iso-logo.png" alt="" width={"50px"} height={"auto"} className={"mb-3"}/>
+                    <p>{t("processing")}</p>
                 </div>
             :
                 <React.Fragment>
@@ -133,7 +134,7 @@ function Dashboard(props) {
                                         <b>{formatNumber(props.dashboard.total_eth,true).toString()}</b> <span>TRON</span>
                                     </div>
                                     <div className={"datoNormal text-center"}>
-                                        <b>${formatNumber(props.dashboard.TotalParticipants * props.landing.ether_value,true)}</b> USD
+                                        <b>${formatNumber(props.dashboard.total_eth * props.landing.ether_value,true)}</b> USD
                                     </div>
                                 </DegCard>
                             </Fade>
@@ -160,8 +161,6 @@ function Dashboard(props) {
                                 </Flex>
                             </Flex>
                         </aside>
-
-
                         <div className="content col-12 col-sm-10 col-lg-9 px-0 pl-md-4">
                             <BigCard
                                 version={"x3"}

@@ -83,6 +83,11 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
                  })
              }
         }
+        else{
+            handler({
+                puedeComprar: canbuy
+            })
+        }
     };
 
     useEffect(()=>{
@@ -154,7 +159,7 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
 
                         </button>}
                         {state.procesandoCompra &&
-                        <Timer/>
+                            <Timer/>
                         }
                     </Flex>
                 </div>}

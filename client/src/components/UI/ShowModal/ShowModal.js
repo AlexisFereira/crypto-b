@@ -20,12 +20,16 @@ const Modal = props => {
 
     useEffect(()=>{
         setR(true)
-    },[])
+    },[]);
 
     return (
         <CSSTransition
             in={props.show}
-            timeout={600}
+            timeout={{
+                appear: 500,
+                enter: 1000,
+                exit: 500,
+            }}
             classNames={ props.animation ? props.animation : "fade"}
             unmountOnExit
             onExited={ () =>{

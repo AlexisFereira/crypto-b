@@ -36,29 +36,31 @@ function Landing(props) {
     let invitation = new URLSearchParams(search);
     let {SeTDataLanding} = props;
 
+    let video = sessionStorage.getItem("video") === "true";
+
     let Register = () => props.history.push("/register");
 
     let consultInvitation = async () => {
         let id = invitation.get("invitation");
-        // if(!id){
-        //     setState({...state,loading:false,modal:true});
-        //     return ""
-        // }
+        if(!id){
+            setState({...state,loading:false,modal:!video});
+            return ""
+        }
         try {
             await axios(
                 {method: 'get', url: `http://api-test.cryptobillions.io/api/v1/contract/invitation/${id}`,}
             ).then(result => {
                 if (result.data) {
-                    setState({...state, loading: false, modal: true});
+                    setState({...state, loading: false, modal: !video});
                     SeTDataLanding({canRegister: true})
                 } else {
-                    setState({...state, loading: false, modal: true});
+                    setState({...state, loading: false, modal: !video});
                     SeTDataLanding({canRegister: false})
                 }
             })
         } catch (e) {
             SeTDataLanding({canRegister: false});
-            setState({...state, loading: false, modal: true});
+            setState({...state, loading: false, modal: !video});
         }
 
     };
@@ -87,7 +89,7 @@ function Landing(props) {
             })
     };
 
-    let userLang
+    let userLang;
 
     if (window.navigator.language !== "en") {
         userLang = window.navigator.language
@@ -96,6 +98,7 @@ function Landing(props) {
     let urlVideo  = !userLang.includes("es") ?
         "https://www.youtube.com/watch?v=uGpzm149ZI8&t=1s&ab_channel=CRYPTOBILLIONS" :
         "https://www.youtube.com/watch?v=yEW_ozi1lLE&feature=youtu.be&ab_channel=CRYPTOBILLIONS";
+
 
 
     useEffect(() => {
@@ -158,7 +161,10 @@ function Landing(props) {
                        />
                    </div>
                   <Fade left>
-                      <ButtonGost action={()=> setState({...state,modal:false,play:false})}/>
+                      <ButtonGost action={()=> {
+                          sessionStorage.setItem("video","true");
+                          setState({...state, modal: false, play: false})
+                      }}/>
                   </Fade>
                 </div>
             </ShowModal>

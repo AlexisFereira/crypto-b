@@ -104,9 +104,12 @@ function BannerInicio(props) {
                 <FadeSrprin direction={"0, 30px"}>
                     <Flex className={"wc mt-3"} jc={"flex-start"} flex={"0 0 80px"}>
                         <div className="row col-12 col-md-8 col-lg-6 ">
-                            <Btn flex={"1 0 120px"} mw={"150"} className={" mb-2 mr-2"} onClick={() => props.history.push("/login")}>{t('login')}</Btn>
+                            <Btn flex={"1 0 120px"} mw={"150px"} className={" mb-2 mr-2"} onClick={() => props.history.push("/login")}>{t('login')}</Btn>
+                            {props.canRegister &&
                             <Btn flex={"1 0 120px"}  mw={"150"} className={"mr-sm-2 mb-2"} type={"line"} onClick={()=>props.register()}>{t('register')}</Btn>
-                            <Flex flex={"0 0 180px"} className={"cc pl-sm-3 px-0 py-4 py-sm-0"}><small><b><a href="https://www.tronlink.org/" target={"_blank"}>{t('Wallets_Compatibles')}</a></b></small></Flex>
+                            }
+                            <Flex flex={"0 0 180px"} className={"cc pl-sm-3 px-0 py-4 py-sm-0"}><small><b><a href="https://www.tronlink.org/" target={"_blank"}>{t('Wallets_Compatibles')}
+                                <i className="icon-angle-double-right"> </i></a></b></small></Flex>
                         </div>
                     </Flex>
                 </FadeSrprin>

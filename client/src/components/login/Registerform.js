@@ -14,9 +14,9 @@ import {Crypto,VerificaId,RegistroManual} from "../../crypto";
 function RegisterForm(props) {
 
     let {history} = props;
-    // if(!props.landing.canRegister){
-    //     props.history.push("/")
-    // }
+    if(!props.landing.canRegister){
+        props.history.push("/")
+    }
 
     const {t} = useTranslation();
 

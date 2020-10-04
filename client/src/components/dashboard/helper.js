@@ -41,11 +41,11 @@ export const CopyUrl = ({url=" ",name,id,message})=> {
 
     useEffect(()=>{
         setR(true);
-    },[])
+    },[]);
 
     return (
         <Flex className="enlaces mb-3">
-            {ready &&  <input type="text" defaultValue={url || ""} id={id}  style={{position:"absolute",opacity:"0",zIndex:0,width:"20px"}}/>}
+            {ready &&  <input type="text" defaultValue={url || ""} id={id}  style={{position:"absolute",opacity:"0",zIndex:0,width:"1px",height:"1px"}}/>}
             <Flex flex={"1 0 60%"} className="enlace pr-2" jc={"flex-start"} style={{overflow: "hidden"}}>
                <Fade bottom>
                    <small className={"cw wc"}> {name} </small>

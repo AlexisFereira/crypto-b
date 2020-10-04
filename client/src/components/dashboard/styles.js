@@ -61,6 +61,9 @@ export const Container = styled.div`
             width:100%;
             text-overflow:ellipsis;
         }
+        input{
+        
+        }
     
         button{
             background:transparent;

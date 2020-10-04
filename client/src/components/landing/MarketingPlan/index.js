@@ -162,11 +162,13 @@ function MarketingPlan(props) {
                         </div>
                     </div>
                 </Fade>
+                {props.canRegister &&
                 <Fade bottom>
                     <div className={"text-center"}>
                         <Btn className={"mx-auto"} mw={"220px"} onClick={()=> props.register()}> {t('register')} </Btn>
                     </div>
                 </Fade>
+                }
             </div>
         </Container>
     )

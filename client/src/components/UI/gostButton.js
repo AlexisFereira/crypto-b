@@ -26,16 +26,12 @@ const Container = styled.div`
         width:100%;       
         border-radius:6px;
        padding: 7px 10px;
-       
+       text-align:center;       
         &:hover{
             color:${colors.blue};
             background:white;    
         }
-    
     }
-    
-   
-    
 `;
 
 function ButtonGost({action}) {
@@ -54,12 +50,12 @@ function ButtonGost({action}) {
             <Container>
               <Fade left>
                   <button onClick={action}>
-                      SKIP >>
+                      SKIP <i className="icon-angle-double-right"> </i>
                   </button>
               </Fade>
             </Container>
                 :
-            <div></div>
+            <div> </div>
         }
         </>
     )

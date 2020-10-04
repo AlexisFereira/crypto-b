@@ -15,6 +15,7 @@ const Container = styled.div`
     .redes{
         a{
             padding:5px;
+            color:white;
         }
     }
     
@@ -29,40 +30,16 @@ export const Redes = ()=>{
     return(
         <Flex flex={"0 0 150px"} className={"cw redes"}>
             <a target={"_blank"} href="https://www.instagram.com/invites/contact/?i=w0fnvoicorvp&utm_content=221nkz4" rel="noopener noreferrer" >
-                <Icon
-                    url={"/img/landing/redes.png"}
-                    nIcons={"5"}
-                    w={"20"}
-                    h={"20"}
-                    number={"1"}
-                />
+                <i className={" cw icon-instagram"}> </i>
             </a>
             <a target={"_blank"} href="https://www.facebook.com/Crypto-Billions-108685800961946" rel="noopener noreferrer" >
-                <Icon
-                    url={"/img/landing/redes.png"}
-                    nIcons={"5"}
-                    w={"20"}
-                    h={"20"}
-                    number={"2"}
-                />
+                <i className=" cw icon-facebook"> </i>
             </a>
             <a target={"_blank"} href="https://twitter.com/CryptoBillions3" rel="noopener noreferrer" >
-                <Icon
-                    url={"/img/landing/redes.png"}
-                    nIcons={"5"}
-                    w={"20"}
-                    h={"20"}
-                    number={"5"}
-                />
+                <i className=" cw icon-twitter"> </i>
             </a>
             <a target={"_blank"} href="https://www.youtube.com/channel/UCi4jHPjlgJQoofiq8VCNT7Q/about?edit_links=1&disable_polymer=1#c4-primary-header-contents" rel="noopener noreferrer" >
-                <Icon
-                    url={"/img/landing/redes.png"}
-                    nIcons={"5"}
-                    w={"20"}
-                    h={"20"}
-                    number={"4"}
-                />
+                <i className=" cw icon-youtube"> </i>
             </a>
         </Flex>
     )

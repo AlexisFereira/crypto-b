@@ -29,6 +29,7 @@ function Header(props) {
                                     className={"link cw px-2"}>{t('etherum_fqas')}</button>
                         </Flex>
                         <Flex className={"main-btns pr-3 "}>
+                            {props.canRegister &&
                             <div className={"col-6 px-0 pr-2"}>
                                 <Btn
                                     type={"line"} gold flex={"0 0 100%"}
@@ -37,6 +38,7 @@ function Header(props) {
                                     {t('register')}
                                 </Btn>
                             </div>
+                            }
                             <div className={"col-6 px-0 pl-2"}>
                                 <Btn
                                     flex={"0 0 100%"}

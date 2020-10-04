@@ -66,14 +66,8 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                            </Collapse>
                        </div>
                    </Flex>
-                   <Flex flex={"0 0 10px"} className={open ? "active" : ""}>
-                       <Icon
-                           number={"8"}
-                           nIcons={"8"}
-                           w={"40"}
-                           h={"40"}
-                           url={"/img/landing/icons_02.png"}
-                       />
+                   <Flex flex={"0 0 10px"} className={open ? "active" : "" }>
+                       <i className=" cw icon-angle-down"> </i>
                    </Flex>
                    <div className={"wc pt-3 d-md-none"}>
                        <Collapse isOpened={open}>

@@ -87,8 +87,6 @@ U
 ,client/src/components/landing/datos/index.js,9/3/93bc25ee01dfa7e1dd35fa330d384ca0959f7a27
 `
 0client/src/components/dashboard/modulo/styles.js,0/b/0b76947fadd94eb28568b09f4cbb6dad11b50dcf
-K
-client/Crytobillions(1).sol,8/e/8e201281de09c05d3ad6ad9b1d397e4c922ebfa0
 c
 3client/src/components/landing/bannerInicio/index.js,3/2/32804b92c06127b7bac09998ecd6f133917b5cc1
 _
@@ -123,16 +121,6 @@ O
 client/src/components/helper.js,d/9/d967d722704a6914d6f9aaf1ff7e220be1690724
 B
 client/src/i18n.js,b/6/b688d52ad8b958eea6dabaa0a1c73298a41b7d02
-_
-/client/build/static/css/main.8d955a55.chunk.css,7/2/72d288533daf9e85d9406ffc901be22d306951a7
-c
-3client/build/static/css/main.8d955a55.chunk.css.map,1/0/10c6b340f86ee5796f5b9a10c462d0127bc60fcf
-Z
-*client/build/static/js/2.e6df7933.chunk.js,c/0/c08749f8e5484723e3b46a86b73527dcd0702e16
-f
-6client/build/static/js/2.e6df7933.chunk.js.LICENSE.txt,b/e/beca4aeb2cd9a541506b948ef756103e0316e411
-^
-.client/build/static/js/2.e6df7933.chunk.js.map,b/3/b327564ac17dfe3e8591597fdd618c39b6709940
 P
  client/build/asset-manifest.json,4/a/4aa7ab607ec8fc41629530450477e49cb5c4b4ea
 G
@@ -143,3 +131,9 @@ N
 .client/src/components/landing/Youtube/index.js,2/8/289c304928dea48cc4a46405cc0fc552e29e17a4
 V
 &client/src/components/UI/gostButton.js,b/e/be7783acf750214b4cf91cdd40b0f83e983c9767
+W
+'client/src/components/landing/styles.js,e/c/ecc0525d887f71f131210e08f7c23e3949746d8a
+a
+1client/src/components/landing/header/menuMovil.js,a/1/a1c5195b2477e1107df24bfe02f4712a77180e7e
+_
+/client/src/components/dashboard/modulo/timer.js,b/4/b4c6f44059fff6cdf427c3b2b585d9d1accb6874

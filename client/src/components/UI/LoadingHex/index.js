@@ -17,7 +17,7 @@ function LoadingHex() {
     return (
         <Container>
             <div className="hexagonal text-center">
-                <img src="/img/logo.png" alt="" className={"hexa"}/>
+                <img src="/img/iso-logo.png" alt="" className={"hexa"}/>
             </div>
         </Container>
     )
