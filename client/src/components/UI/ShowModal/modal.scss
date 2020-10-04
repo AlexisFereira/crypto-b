@@ -28,7 +28,6 @@
   .area{
     transform-style: preserve-3d;
     perspective: 1500px;
-
   }
 
   .card,.gira{
@@ -93,6 +92,25 @@
   transition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
 }
 
+.scale-enter {
+  opacity: 0;
+  transform:scale(.9);
+}
+.scale-enter-active {
+  opacity: 1;
+  transform:scale(1);
+  transition: all 500ms cubic-bezier(0.075, 0.820, 0.165, 1.000);
+}
+.scale-exit {
+  opacity: 1;
+  transform:scale(1);
+}
+.scale-exit-active {
+  opacity: 0;
+  transform:scale(.9);
+  transition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
+}
+
 
 
 .fade-down-enter {
@@ -136,6 +154,32 @@
     transform:scale(.5);
   }
 }
+
+
+.scale-enter-done{
+  .card,.gira{
+    opacity: 1;
+    transform:scale(1) rotateX(0);
+  }
+
+  .cColombia{
+    transform:scale(1);
+    opacity: 1;
+  }
+}
+
+.scale-exit{
+  .card,.gira{
+    opacity: 0;
+    transform:scale(.9);
+  }
+  .cColombia{
+    opacity: 0;
+    transform:scale(.5);
+  }
+}
+
+
 
 .desenfocar{
   filter: blur(1.5rem);

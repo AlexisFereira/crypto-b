@@ -91,8 +91,10 @@ function RegisterForm(props) {
                         let userRegistered = registro.usuario;
                         let registroManual = await RegistroManual(userRegistered,address);
                         if(registroManual.status){
+                            sessionStorage.setItem("addressRegister",userRegistered);
                             props.SeTDataDash({
                                 minihash:registroManual.data.data.minihash,
+                                logueado: userRegistered,
                                 isCommingFromRegister:true
                             });
                             history.push(`/dashboard`)

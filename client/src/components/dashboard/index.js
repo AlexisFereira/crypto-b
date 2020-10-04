@@ -31,7 +31,7 @@ function Dashboard(props) {
     }
 
     let addressRequeest = props.dashboard.isCommingFromRegister ?
-        `${cryptoVar.api}/api/v1/accounth/${props.dashboard.minihash}`
+        `${cryptoVar.api}/api/v1/api/v1/accountw/${props.dashboard.logueado}`
         :`${cryptoVar.api}/api/v1/account/${id[1]}`;
 
     let getData = async ()=>{

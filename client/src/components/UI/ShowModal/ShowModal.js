@@ -26,10 +26,13 @@ const Modal = props => {
         <CSSTransition
             in={props.show}
             timeout={600}
-            classNames="fade"
+            classNames={ props.animation ? props.animation : "fade"}
             unmountOnExit
             onExited={ () =>{
                 return props.callback ? (rendered && props.callback()) : null
+            }}
+            onEntered={()=>{
+               return  props.onOpen ? props.onOpen() : null;
             }}
         >
             <Flex className={"modal-container"} direction={"column"}>
@@ -62,7 +65,7 @@ const Modal = props => {
                         }
                     </div>
                         :
-                    <div className={` wc gira`}>
+                    <div className={` wc gira `} style={props.style}>
                         {props.children}
                     </div>
                     }

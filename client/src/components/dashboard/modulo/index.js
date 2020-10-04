@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Flex from "./../../UI/Flex";
 import {DegCard} from "../helper";
 import {Container,Lines} from "./styles";
@@ -63,6 +63,20 @@ function Modulo({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,
             handler({loading:false});
         }
     };
+
+
+    let verificaCompra = ()=>{
+        let compra = JSON.parse(sessionStorage.getItem("compra"));
+        if(compra){
+            if(compra.nivel === number && compra.matrix === 1 && canbuy){
+                canbuy = false
+            }
+        }
+    };
+
+    useEffect(()=>{
+        verificaCompra();
+    },[])
 
     return (
         <Container className={"px-1 mb-2 mb-lg-3 "}>

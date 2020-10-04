@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,15 +19,17 @@ function App(props) {
     const [state,setState] = useState({
         loading:false,
         tronWeb:null,
-        scroll:0
+        scroll:0,
     });
 
     const getTronweb = async ()=>{
         setState({loading:true});
     };
 
+
     useEffect(()=>{
         getTronweb();
+
 
     },[]);
 

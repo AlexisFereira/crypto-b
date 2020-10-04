@@ -212,7 +212,21 @@ export const getDataDash = async (url)=>{
             obj.status =false;
             obj.message ="No se pudo consultar la data";
             obj.error =e;
-
         });
     return obj;
 };
+
+export const getDataFromWallet = async (wallet)=>{
+    let obj ={};
+
+    await axios({
+        method:"get",
+        url:`${cryptoVar.api}/api/v1/accountw/${wallet}`
+    }).then(data=>{
+
+    })
+        .catch(e=>{
+            obj.status = false
+            obj.message = e
+        })
+}
