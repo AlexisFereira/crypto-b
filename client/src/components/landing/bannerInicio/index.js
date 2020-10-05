@@ -76,7 +76,7 @@ function BannerInicio(props) {
             <Flex flex={"1 0 100%"} direction={"column"}>
                 <Flex className={"wc d-lg-none"} flex={"1 0 5vh"}> </Flex>
                 <Flex className="text wc pb-4 pl-xl-0" direction={"column"} alg={"flex-start"} flex={"1 0 50%"}>
-                    <h1 data-scramble-text={async ()=> await t('earn_money')}  className={"cw title-main"}>
+                    <h1 className={"cw title-main"}>
                         <b><Scrambler characters={"010101010100011"}  renderIn={1500} text={ t('earn_money')}/></b> <br/>
                         <Scrambler characters={"010101010100011"}  renderIn={1500} text={ t('as_you_can')}/>
                     </h1>

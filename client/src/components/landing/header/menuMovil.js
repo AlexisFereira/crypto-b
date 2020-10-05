@@ -97,13 +97,6 @@ function Menumovil(props) {
                         }}>
                     {t('faqs')}
                     </button>
-                    <button
-                        className={"link mb-1"}
-                        onClick={()=> {
-                                scrollT("faq2");
-                                SetoOpen(!open)
-                        }}>
-                        {t('etherum_fqas')}</button>
                     <div className={"wc separator py-2"}> </div>
                     <Btn className={"mb-1"} onClick={()=> props.history.push("/login")}>  {t('login')}</Btn>
                     <Btn className={"mb-2"} type={"line"} gold  onClick={()=> props.history.push("/register")}>  {t('register')} </Btn>

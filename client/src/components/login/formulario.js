@@ -58,11 +58,9 @@ function Formulario(props) {
         SetS({...state,loadingAuth:true});
         try{
            let UserTron = await Crypto(null,null,"getUserAddress");
-
-            if(UserTron){
+            if(UserTron && typeof UserTron === "string"){
                 // Verifica si existe
                 let exists = await getDataFromWallet(UserTron);
-
                 if(exists.status){
                         await sessionStorage.setItem("logueado", UserTron);
                         await props.SeTDataDash({onlyView : false,logueado: UserTron});
@@ -78,6 +76,7 @@ function Formulario(props) {
                         description: <span>No se encontró ninguna billetera conectada a su TRONLINK.</span>,
                         icon:"cancel",
                     })
+                    handler({loading:false})
                 }
             }
         catch (e) {
@@ -180,7 +179,7 @@ function Formulario(props) {
                      placeholder={t('Enter_ETH')}
                      className={"mb-3"}
                      error={state.error}
-                     value={state.address}
+                     value={state.address || ""}
                      onChange={e =>{
                          let value  = e.target.value.replace(/[^0-9a-zA-Z]/g,"").substring(0,50);
                          let obj = {target:{value}};

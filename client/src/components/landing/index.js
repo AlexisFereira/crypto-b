@@ -34,6 +34,7 @@ function Landing(props) {
 
     let search = props.history.location.search;
     let invitation = new URLSearchParams(search);
+
     let {SeTDataLanding} = props;
 
     let video = sessionStorage.getItem("video") === "true";
@@ -48,7 +49,7 @@ function Landing(props) {
         }
         try {
             await axios(
-                {method: 'get', url: `http://api-test.cryptobillions.io/api/v1/contract/invitation/${id}`,}
+                {method: 'get', url: `${cryptoVar.api}/api/v1/contract/invitation/${id}`,}
             ).then(result => {
                 if (result.data) {
                     setState({...state, loading: false, modal: !video});

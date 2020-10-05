@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,29 +9,12 @@ import Landing from "./components/landing";
 import Login from "./components/login";
 import Dashboard from "./components/dashboard";
 import './i18n';
-import {SeTDataDash} from "./components/store/actions/actionsCreators";
-import {connect} from "react-redux";
 
 
 
-function App(props) {
 
-    const [state,setState] = useState({
-        loading:false,
-        tronWeb:null,
-        scroll:0,
-    });
+function App() {
 
-    const getTronweb = async ()=>{
-        setState({loading:true});
-    };
-
-
-    useEffect(()=>{
-        getTronweb();
-
-
-    },[]);
 
   return (
     <div className="main-container bgDark" id={"scroll"}>
@@ -48,5 +31,5 @@ function App(props) {
   );
 };
 
-const MDTP = {SeTDataDash};
-export default connect(null,MDTP)(App)
+
+export default App;

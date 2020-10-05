@@ -36,6 +36,7 @@ export const Crypto = async (options,parametros,metodo)=>{
             if(metodo === "getUserAddress"){
                 let user = issuerAddress;
                 response = user;
+                console.log(response,":::: ::::")
                 return response;
             }
         }

@@ -10,8 +10,7 @@ import {CompraNivel, Crypto} from "../../../crypto";
 import Timer from "./timer";
 
 
-function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash,getData,dashboard}) {
-    let puedeComprar = canbuy;
+function Modulo2({number,gold,lock,canbuy,data,history,}) {
 
     let [modal,setModal] = useState({
         status:false,
@@ -53,8 +52,8 @@ function Modulo2({number,gold,lock,canbuy,data,accountLogged,history,SeTDataDash
 
             let compra = await CompraNivel(Matrix,nivel);
             if(compra.result){
-                let compra = {nivel,matrix:Matrix,wallet:logueado};
-                sessionStorage.setItem("compra2",JSON.stringify(compra));
+                let comprado = {nivel,matrix:Matrix,wallet:logueado};
+                sessionStorage.setItem("compra2",JSON.stringify(comprado));
                 modalSet("Compra realizada con éxito","La transacción ha sido realizada con éxito, para verla reflajada en tu dashboard debes esperar unos minutos.","check");
                 handler({procesandoCompra : true, puedeComprar:false, loading:false });
 
