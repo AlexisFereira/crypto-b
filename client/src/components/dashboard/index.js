@@ -15,11 +15,14 @@ import {useTranslation} from "react-i18next";
 import Telegram from "./../UI/telegramBtn";
 import {cryptoVar} from "../../config";
 import Fade from 'react-reveal/Fade';
-
+import moment from "moment";
 
 function Dashboard(props) {
 
-    const [state,setstate ] =useState({loading:true});
+    const [state,setstate ] =useState({
+        loading:true,
+        canRefer: true
+    });
 
     let handler = x=> setstate({...state,...x});
 
@@ -97,6 +100,7 @@ function Dashboard(props) {
 
     useEffect(()=>{
         getData();
+
     },[]);
 
     return (
@@ -113,7 +117,7 @@ function Dashboard(props) {
                 </div>
             :
                 <React.Fragment>
-                    <Datos noDescrtiption />
+                    <Datos noDescrtiption onLoad={true} when={!state.loading} />
                     <Flex alg={"flex-start"} className={"col-12 col-xl-10 mx-auto cw pt-4"}>
                         <aside className={"col-12 col-sm-10 col-lg-3 mx-auto pt-md-5 mt-md-2 pb-5 px-0"}>
                             <Fade bottom>
@@ -155,10 +159,12 @@ function Dashboard(props) {
                                        </div>
                                    </Fade>
                                 </Flex>
-                                <Flex className={"col-12 col-sm-6 col-lg-12"}>
-                                     <CopyUrl id={"02"} name={"Link de afiliado"} url={props.dashboard.link} message={t("linkcopied")}/>
-                                     <CopyUrl id={"01"} name={"The etherum wallet"} url={props.dashboard.wallet} message={t("walletCopied")}/>
-                                </Flex>
+                                { moment().isAfter('2020-10-07') &&
+                                    <Flex className={"col-12 col-sm-6 col-lg-12"}>
+                                        <CopyUrl id={"02"} name={"Link de afiliado"} url={props.dashboard.link} message={t("linkcopied")}/>
+                                        <CopyUrl id={"01"} name={"The TRON wallet"} url={props.dashboard.wallet} message={t("walletCopied")}/>
+                                    </Flex>
+                                }
                             </Flex>
                         </aside>
                         <div className="content col-12 col-sm-10 col-lg-9 px-0 pl-md-4">
@@ -188,10 +194,10 @@ function Dashboard(props) {
                                 m2
                             />
                             <Flex jc={"flex-end"} className={"wc cw historia"}>
-                                <div className={"pl-3"}> <div className="color-circle"> </div> Usuario en matriz</div>
-                                <div className={"pl-3"}> <div className="color-circle"> </div> Número de ciclos</div>
-                                <div className={"pl-3"}> <div className="color-circle"> </div> Número de ciclos</div>
-                                <div className={"pl-3"}> <div className="color-circle"> </div> Número de ciclos</div>
+                                <div className={"pl-3"}> <div className="color-circle "> </div> Usuario en matriz</div>
+                                <div className={"pl-3"}> <div className="color-circle purple"> </div> Número de ciclos</div>
+                                <div className={"pl-3"}> <div className="color-circle cian"> </div> Número de ciclos</div>
+                                <div className={"pl-3"}> <div className="color-circle gold"> </div> Número de ciclos</div>
                             </Flex>
                         </div>
                     </Flex>

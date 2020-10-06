@@ -38,6 +38,10 @@ export const Container = styled.div`
         margin-right:8px;
     }
     
+    .color-circle.cian{background-color:${colors.cian}};
+    .color-circle.purple{background-color:${colors.cPurple}};
+    .color-circle.gold{background-color:${colors.cGold}};
+    
     .datoBlue{
         background:${colors.cian};
         border-radius:6px;

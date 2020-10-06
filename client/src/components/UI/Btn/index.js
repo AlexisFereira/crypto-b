@@ -3,6 +3,21 @@ import styled from "@emotion/styled";
 import {colors} from "./../index";
 import Flex from "../Flex";
 
+export const Mylink = styled.a`
+  display:block;
+  flex:${props=>props.flex};
+  border-radius: 6px;
+  border:2px solid ${colors.blue};
+  cursor:pointer;
+  font-size:15px;
+  padding:0 7px;
+  
+  &:hover{
+    color:white;
+    background:rgba(0,0,0,.3);
+  }    
+`;
+
 const Btnt = styled.div`
     width:100%;
     flex: ${props=>  props.theme.flex};

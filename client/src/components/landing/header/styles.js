@@ -13,10 +13,6 @@ export const Container = styled.header`
         }
     }
     
-    .main-btns{
-        flex:1 0 250px;
-    }
-    
     .cont-logo{
        flex : 0 0 200px;
     }

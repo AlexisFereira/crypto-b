@@ -19,7 +19,6 @@ const Container = styled.div`
     background: rgb(9,49,98);
     background: linear-gradient(183deg, rgba(9,49,98,0) 50%, rgba(9,49,98,1) 100%);
     
-  
     .title{
         font-weight:300;
         font-size:40px;

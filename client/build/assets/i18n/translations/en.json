@@ -13,7 +13,7 @@
   "The_number_one": "The number one platform in the world that generates more wealth",
   "Absence": "Absence of Risk:",
   "no_human": "No human Factor",
-  "Etherrum": "Ethereum:",
+  "Etherrum": "Tron:",
   "highest": "Highest Profitable Cryptocurrency",
   "smartContract": "Smart Contract:",
   "nothing_can": "Nothing Can Stop it",
@@ -21,7 +21,7 @@
   "Participants": "Participants Overflow",
   "wallets": "wallets Compatibles",
   "the_best_smart": "The best smart contrat",
-  "the_best_smart_desc": "Ethereum Smart Contract This is the best earning system that mankind come up with in recent years.The most secure, decentralized money machine is now available to everyone!",
+  "the_best_smart_desc": "Tron Smart Contract This is the best earning system that mankind come up with in recent years. The most secure, decentralized money machine is now available to everyone!",
   "total_participants": "total participants",
   "new_participants": "new entrants 24h",
   "income": "Income usd",
@@ -30,10 +30,10 @@
   "PARTICIPANTS_RESULTS": "PARTICIPANTS RESULTS",
   "balance": "balance",
   "gain": "gain",
-  "CROWDFUNDING": "CROWDFUNDING ETHEREUM SMART CONTRACT",
+  "CROWDFUNDING": "CROWDFUNDING TRON SMART CONTRACT",
   "crow_a": {
     "title": "Absolutely no risk",
-    "desc": "Open source smart contract uploaded\nto the Ethereum Blockchain. One of the most\nsecure and popular cryptocurrencies in the\nmarket."
+    "desc": "Open source smart contract uploaded\nto the Tron Blockchain. One of the most\nsecure and popular cryptocurrencies in the\nmarket."
   },
   "crow_b": {
     "title": "The system cannot be hacked",
@@ -49,7 +49,7 @@
   },
   "crow_e": {
     "title": "Transactional Surety",
-    "desc": "Ethereum network nodes irrevocably record and\nstore the transactional history of all Neun network\nparticipants on the Blockchain."
+    "desc": "Tron network nodes irrevocably record and\nstore the transactional history of all Neun network\nparticipants on the Blockchain."
   },
   "crow_f": {
     "title": "Instant payouts, cheating excluded",
@@ -57,20 +57,20 @@
   },
   "crow_g": {
     "title": "Inclusive entry",
-    "desc": "Entrance cost - 0.09 ETH ($XX.XX USD)"
+    "desc": "Entrance cost - 1200 TRX ($XX.XX USD)"
   },
   "crow_h": {
     "title": "Indefinite term",
-    "desc": "Smart contract will exist as long as the Ethereum blockchain exists, and even the\ncreators of a smart contract will not be able\nto delete or change its terms."
+    "desc": "Smart contract will exist as long as the Tron blockchain exists, and even the\ncreators of a smart contract will not be able\nto delete or change its terms."
   },
   "crow_i": {
     "title": "Easy Start",
-    "desc": "- Smart user experience { <br/> } - Unique promotional tools { <br/> }- 100% Automated { <br/>}- Winning Guarante { <br/>}"
+    "desc": "- Smart user experience <br/> - Unique promotional tools <br/> - 100% Automated <br/> - Winning Guarante"
   },
   "MARKETING_PLAN": " MARKETING PLAN - SMART AND SIMPLE PAYOUT SYSTEM",
-  "Automatic_downline": "Automatic downline participant commissions paid instantly to your ETH wallet",
+  "Automatic_downline": "Automatic downline participant commissions paid instantly to your TRX wallet",
   "By_completing": "By completing your matrix, the contract generates a new matrix that will allow you to have spaces for new participants.",
-  "Automatic_commissions": "Automatic commissions from your second tier participants are instantly paid to your ETH wallet.",
+  "Automatic_commissions": "Automatic commissions from your second tier participants are instantly paid to your TRX wallet.",
   "All_data_is": "All data is is stored on the blockchain and publicly accessible at etherscan.io",
   "only": "only",
   "During_register": "During register Cryptobillion.io automatically will create both matrices (x3 and x6) for you.",
@@ -79,7 +79,7 @@
   "Automatic_login": "Automatic login with wallet:",
   "Login_automatically": "Login automatically",
   "Entern_manually": "Enter manually",
-  "Enter_ETH": "Enter ETH address or system ID",
+  "Enter_ETH": "Enter TRX address or system ID",
   "Enter_the_number": "Enter the number of your referral",
   "linkcopied": "Link copied!",
   "walletCopied": "Wallet address copied!",
@@ -94,23 +94,23 @@
   "user_registered": "Usuario registrado.",
   "telegram_chanel": "Telegram Channel",
   "faq_q1": "What is Crypto Billions?",
-  "faq_a1": "Cryptobillions.io can be divided into 2 concepts: first: Is a smart contract or application running on a cryptocurrency network Ethereum. The application code is programmed to distribute incoming transfersamong participants according to a specific algorithm. Second: This is the site itself, providing an interface for the convenience of working with a smart contract.\n",
+  "faq_a1": "<strong>Cryptobillions.io</strong> can be divided into 2 concepts:<br/><br/> first: Is a smart contract or application running on a cryptocurrency network Tron. The application code is programmed to distribute incoming transfersamong participants according to a specific algorithm. <br/><br/> Second: This is the site itself, providing an interface for the convenience of working with a smart contract.\n",
   "faq_q2": "Who is the project administrator?",
-  "faq_a2": "In Cryptobillions there is no administrator. There is a creator who uploaded the contract code to the cryptocurrency blockchain Ethereum. Since then, the smart contract has been part of the overall network, which is supported by miners. No one has the right to affect the operation of a smart contract, delete it or stop it. Any attempt to make unauthorized changes will be rejected due to inconsistency with previous copies in the blockchain.\n",
+  "faq_a2": "<strong>In Cryptobillions there is no administrator. </strong><br/><br/> There is a creator who uploaded the contract code to the cryptocurrency blockchain Tron. Since then, the smart contract has been part of the overall network, which is supported by miners. No one has the right to affect the operation of a smart contract, delete it or stop it. Any attempt to make unauthorized changes will be rejected due to inconsistency with previous copies in the blockchain.\n",
   "faq_q3": "Can a transaction remain in the balance of a smart contract?",
   "faq_a3": "Ruled out. The contract was programmed so as not to accumulate funds, but to serve only as a transmitter. The balance of the contract is always zero, anyone can verify this. It simply lacks the function of taking funds to your balance. Any transaction will reach the desired goal safe and sound.",
   "faq_q4": "What currency does the project work with?",
-  "faq_a4": "Since the smart contract is published in the software environment of Ethereum, then, accordingly, participation in the project is possible only with this digital currency.",
+  "faq_a4": "Since the smart contract is published in the software environment of Tron, then, accordingly, participation in the project is possible only with this digital currency.",
   "faq_q5": "What is needed to participate in the project?",
-  "faq_a5": "It is enough to have a computer or smartphone with Ethereum wallet.",
+  "faq_a5": "It is enough to have a computer or smartphone with Tron wallet.",
   "faq_q6": "And if the project collapses, will I lose money?",
   "faq_a6": "Ruled out. The smart contract is absolutely transparent, all data is recorded in the blockchain chain. No scam or fraud. The project cannot fail. It will work as long as the blockchain exists, even if the site is closed.",
   "faq_q7": "How can I be sure that my wallet will not be blocked?",
-  "faq_a7": "In the cryptocurrency industry, there is no such thing as wallet blocking. This is impossible and technically impossible even by the creator of cryptocurrency (this is a feature of the technology). Created by you the ETH wallet belongs only to you.",
+  "faq_a7": "In the cryptocurrency industry, there is no such thing as wallet blocking. This is impossible and technically impossible even by the creator of cryptocurrency (this is a feature of the technology). Created by you the TRX wallet belongs only to you.",
   "faq_q8": "How to register in the project?",
-  "faq_a8": "To register you must do the payment first. To do this, go from the main page to \"Register\" and follow the instructions. After successful payment, you take a place in the structure and are considered a full participant.\n",
+  "faq_a8": "<strong>To register you must do the payment first.</strong> To do this, go from the main page to \"<a href=\"/register\">Register\"</a> and follow the instructions. After successful payment, you take a place in the structure and are considered a full participant.\n",
   "faq_q9": "Which wallet is better to use?",
-  "faq_a9": "There are many suitable wallets. The most important thing is not to use exchange wallets! We recommend using 2 type of wallets, these are: Metamask - if you are working from a personal computer. (Download from the official website\n",
+  "faq_a9": "There are many suitable wallets. The most important thing is not to use exchange wallets! We recommend using 2 type of wallets, these are: Metamask - if you are working from a personal computer. (Download from the official website)",
   "faq_q10": "Is it possible to earn passively here?",
   "faq_a10": "In addition to personal invitations, partners can appear in your structure in two ways: these are \"Overflows\" and \"Gifts\". Therefore, it can be argued that the system has the possibility of passive earnings. But this does not guarantee you a quick decent income, which other successful participants who are active can boast of.\n",
   "faq_q11": "What are overflows?",
@@ -118,7 +118,7 @@
   "faq_q12": "Can I register if I came to the site without an participant link?",
   "faq_a12": "Yes, such members are called \"free participants.\" These are participants who came for any reason WITHOUT an affiliate link. Free participants are distributed evenly across the System (from left to right), starting from those uplines that were previously registered.\n",
   "faq_q13": "How to obtain ETH in my wallet?",
-  "faq_a13": "There are many exchangers. Reliable and proven exchangers can be found on the website bestchange. Ru. If this is your first time making an exchange, follow these instructions: __<br/><br/>__ 1) Go to the site bestchange. Ru. 2) Choose the appropriate payment system with which you want to make an exchange for the desired currency Ethereum. 3) Choose the right service with the best rate. 4) Go to the site of the selected exchanger and follow the simple instructions. The exchange is usually automatic and takes place very quickly. 5) Make sure that your wallet Ethereum funds received. Note: When replenishing with bank cards, exchangers may request card verification for the first time. Typically, this is a photo card on the background of the exchange page. Subsequent replenishment is done instantly. If you don’t want to verify your card in the exchanger, you can first top up your QIWI or YandexMoney account from your bank card (via the interface of either of these two payment systems, and not through the exchanger), and then change from such a payment system through the exchanger to Ethereum wallet without card verification\n",
+  "faq_a13": "There are many exchangers. Reliable and proven exchangers can be found on the website bestchange. Ru. If this is your first time making an exchange, follow these instructions: <br/><br/> 1) Go to the site bestchange. Ru. <br/><br/> 2) Choose the appropriate payment system with which you want to make an exchange for the desired currency Ethereum. <br/><br/>3) Choose the right service with the best rate. <br/><br/>4) Go to the site of the selected exchanger and follow the simple instructions. The exchange is usually automatic and takes place very quickly.<br/><br/> 5) Make sure that your wallet Tron funds received. Note: When replenishing with bank cards, exchangers may request card verification for the first time. <br/><br/> Typically, this is a photo card on the background of the exchange page. Subsequent replenishment is done instantly. If you don’t want to verify your card in the exchanger, you can first top up your QIWI or YandexMoney account from your bank card (via the interface of either of these two payment systems, and not through the exchanger), and then change from such a payment system through the exchanger to Tron wallet without card verification\n",
   "faq_q14": "What happens if my partner buys a level before me?",
   "faq_a14": "The money will be redirected to your upline of the same line as your partner. If you buy levels on time, this will not happen. If this happened, it’s not scary. If you find this in time, then after activating the level, continue to receive the remaining transfers for this level.\n",
   "faq_q15": "What will happen if you do not extend the level and it is deactivated?",

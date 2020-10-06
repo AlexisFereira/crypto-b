@@ -42,8 +42,8 @@ function ItemDesc({name,desc}) {
                <div className="title-name ">
                    {name}
                </div>
-               <div className="desc">
-                   {desc}
+               <div className="desc" >
+                   <p dangerouslySetInnerHTML={{ __html:desc}}></p>
                </div>
            </Container>
        </Fade>

@@ -23,18 +23,42 @@ export function formatNumber(num,decimales) {
     return val
 }
 
-const Cifra = ({text,number=0,big,flex="1 0 22%",decimales,unidad,prefix,hover,hoverOut})=>{
+const Cifra = ({text,number=0,big,flex="1 0 22%",decimales,unidad,prefix,hover,hoverOut,onLoad,when})=>{
 
-
+    const [entra,setEntra] = useState(false);
     const [props,set,stop] = useSpring(()=>({number:0}));
 
 
    useEffect(()=>{
+       if(onLoad){
+           setTimeout(()=>{
+               setEntra(true);
+           },500)
+       }
       setTimeout(()=>{
           set({number: number});
           stop();
       },1500)
-   },[])
+   },[]);
+
+    let Content = () =>{
+       return(
+           <div className={"wc"}>
+               {big ?
+                   <Flex className="pointB" direction={"column"}>
+                       <div className="whiteP bgw "> </div>
+                   </Flex> :
+                   <div className="point"> </div>
+               }
+               <Flex className="textos" direction={"column"}>
+                   <p className={" d-inline mb-0 cc title"}>{text}</p>
+                   <p className={" d-inline cw amount mb-0"}>
+                       {prefix && "$"} <animated.span>{ props.number.interpolate(val => Math.floor(val)) }</animated.span> {unidad}
+                   </p>
+               </Flex>
+           </div>
+       )
+    };
 
     return(
         <CifraCont
@@ -45,23 +69,14 @@ const Cifra = ({text,number=0,big,flex="1 0 22%",decimales,unidad,prefix,hover,h
             onMouseEnter={hover}
             onMouseLeave={hoverOut}
         >
-
-           <Fade left>
-               <div className={"wc"}>
-                   {big ?
-                       <Flex className="pointB" direction={"column"}>
-                           <div className="whiteP bgw "> </div>
-                       </Flex> :
-                       <div className="point"> </div>
-                   }
-                   <Flex className="textos" direction={"column"}>
-                       <p className={" d-inline mb-0 cc title"}>{text}</p>
-                       <p className={" d-inline cw amount mb-0"}>
-                           {prefix && "$"} <animated.span>{ props.number.interpolate(val => Math.floor(val)) }</animated.span> {unidad}
-                       </p>
-                   </Flex>
-               </div>
-           </Fade>
+            {onLoad ?
+                <Fade left when={entra}>
+                   <Content/>
+                </Fade>:
+                <Fade left >
+                    <Content/>
+                </Fade>
+            }
         </CifraCont>
     )
 };
@@ -86,6 +101,8 @@ function Datos(props) {
                         big={active === 1}
                         hover={()=> hoverF(1)}
                         hoverOut={()=> hoverOut()}
+                        onLoad={props.onLoad}
+                        when={props.when}
                     />
                     <Cifra
                         text={t('new_participants')}
@@ -93,6 +110,8 @@ function Datos(props) {
                               big={active === 2}
                         hover={()=> hoverF(2)}
                         hoverOut={()=> hoverOut()}
+                        onLoad={props.onLoad}
+                        when={props.when}
                     />
                     <Cifra
                         text={t('income')}
@@ -102,6 +121,8 @@ function Datos(props) {
                         unidad={"USD"}
                         hover={()=> hoverF(3)}
                         hoverOut={()=> hoverOut()}
+                        onLoad={props.onLoad}
+                        when={props.when}
                     />
                     <Cifra
                         text={t('total_income')}
@@ -110,6 +131,8 @@ function Datos(props) {
                         big={active === 4}
                         hover={()=> hoverF(4)}
                         hoverOut={()=> hoverOut()}
+                        onLoad={props.onLoad}
+                        when={props.when}
                     />
                 </Flex>
             </div>

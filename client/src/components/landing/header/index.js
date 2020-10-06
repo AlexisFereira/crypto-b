@@ -8,6 +8,7 @@ import {scrollT} from "./menuMovil";
 import {connect} from "react-redux";
 import {Container} from "./styles";
 import FadeSrprin from "../../UI/Fade/FadeSrprin";
+import {Mylink} from "./../../UI/Btn";
 
 function Header(props) {
     const { t } = useTranslation();
@@ -21,16 +22,15 @@ function Header(props) {
                         <img src="img/logo.png" alt=""/>
                     </Flex>
                     <Flex className={"menu"} jc={"flex-start"}>
-                        <Flex flex={"1 0 350px"} className="menu d-none d-lg-flex">
+                        <Flex flex={"1 0 300px"} className="menu d-none d-lg-flex">
                             <button onClick={() => scrollT("home")} className={"link cw px-2"}>{t('home')}</button>
                             <button onClick={() => scrollT("faq")} className={"link cw px-2"}>{t('how_this')}</button>
-                            {/*<button onClick={()=>scrollT("faq")} className={"link cw px-2"} >{t('faqs')}</button>*/}
-                            <button onClick={() => scrollT("faq2")}
-                                    className={"link cw px-2"}>{t('etherum_fqas')}</button>
+                            <button onClick={() => scrollT("faq2")} className={"link cw px-2"}>{t('etherum_fqas')}</button>
                         </Flex>
-                        <Flex className={"main-btns pr-3 "}>
+                        <Flex className={"main-btns "} flex={"1 0 400px"}>
+                            <Mylink className={"p-2 cw "}  href="https://drive.google.com/drive/folders/1bWeWeOlEas4oQo1kUEK7WEbsZLhGHB1c?usp=sharing" target={"_blank"}>{t("dash_marketin_btn")}</Mylink>
                             {props.canRegister &&
-                            <div className={"col-6 px-0 pr-2"}>
+                            <div className={"col-4 px-0 px-2"}>
                                 <Btn
                                     type={"line"} gold flex={"0 0 100%"}
                                     onClick={() => props.register()}
@@ -39,7 +39,7 @@ function Header(props) {
                                 </Btn>
                             </div>
                             }
-                            <div className={"col-6 px-0 pl-2"}>
+                            <div className={"col-4 px-0 pl-2"}>
                                 <Btn
                                     flex={"0 0 100%"}
                                     onClick={() => props.history.push('/login')}>

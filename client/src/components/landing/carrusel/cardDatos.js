@@ -78,7 +78,7 @@ function CardDatos({id,usd,eth,mx3,mx6}) {
             <div className="wc color br22">
                 <ItemValue name={"id"} value={id}  size />
                 <ItemValue name={t('balance') + " usd"} value={usd} size bold/>
-                <ItemValue name={t('balance') + " eth"} value={eth} size bold/>
+                <ItemValue name={t('balance') + " TRON"} value={eth} size bold/>
                 <ItemValue name={t('gain') + " matrix x3"} value={mx3}/>
                 <ItemValue name={t('gain') + " matrix x6"} value={mx6}/>
                 <div className="icon">

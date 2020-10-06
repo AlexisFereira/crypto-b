@@ -12,7 +12,7 @@
   "The_number_one": "La plataforma número uno del mundo que genera más riqueza.",
   "Absence":"Ausencia de riesgo:",
   "no_human":"Sin factor humano",
-  "Etherrum":"Ethereum:",
+  "Tron":"Tron:",
   "highest":"La criptomoneda más rentable",
   "smartContract":"Smart Contract:",
   "nothing_can":"Nada puede detenerlo",
@@ -20,7 +20,7 @@
   "Participants":"Desbordamiento de participantes",
   "wallets":"Billeteras Compatibles",
   "the_best_smart":"Los mejores smart contracts",
-  "the_best_smart_desc":"Ethereum Smart Contract Este es el mejor sistema de ganancias que la humanidad crea en los últimos años. El cajero automático más seguro y descentralizado es ahora disponible para todos!",
+  "the_best_smart_desc":"Tron Smart Contract Este es el mejor sistema de ganancias que la humanidad crea en los últimos años. El cajero automático más seguro y descentralizado es ahora disponible para todos!",
   "total_participants": "Total de participantes",
   "new_participants": "Participantes nuevos 24h",
   "income": "Ingresos USD",
@@ -29,10 +29,10 @@
   "PARTICIPANTS_RESULTS": "RESULTADOS DE LOS PARTICIPANTES",
   "balance": "balance",
   "gain": "ganancia",
-  "CROWDFUNDING": "SMART CONTRACT PARA CROWDFUNDING BASADOS EN ETHEREUM ",
+  "CROWDFUNDING": "SMART CONTRACT PARA CROWDFUNDING BASADOS EN TRON ",
   "crow_a": {
     "title": "Absolutamente sin riesgo",
-    "desc" : "Contrato inteligente de código abierto cargado a la Blockchain de Ethereum. Uno de los mas criptomonedas seguras y populares en el mercado."
+    "desc" : "Contrato inteligente de código abierto cargado a la Blockchain de Tron. Uno de los mas criptomonedas seguras y populares en el mercado."
   },
   "crow_b": {
     "title": "El sistema no puede ser pirateado",
@@ -48,7 +48,7 @@
   },
   "crow_e": {
     "title": "Fianza transaccional",
-    "desc" : "Los nodos de la red Ethereum registran y almacenan irrevocablemente el historial de transacciones de todos los participantes de la red Neun en Blockchain."
+    "desc" : "Los nodos de la red Tron registran y almacenan irrevocablemente el historial de transacciones de todos los participantes de la red Cryptobillion en Blockchain."
   },
   "crow_f": {
     "title": "Pagos instantáneos, excluido el engaño",
@@ -56,20 +56,20 @@
   },
   "crow_g": {
     "title": "Entrada inclusiva",
-    "desc" : "Costo de entrada - 0.09 ETH ($ XX.XX USD)"
+    "desc" : "Costo de entrada - 1200 TRX ($ XX.XX USD)"
   },
   "crow_h": {
     "title": "Término indefinido",
-    "desc" : "El contrato inteligente existirá mientras exista la cadena de bloques Ethereum, e incluso los creadores de un contrato inteligente no podrán eliminar ni cambiar sus términos."
+    "desc" : "El contrato inteligente existirá mientras exista la cadena de bloques Tron, e incluso los creadores de un contrato inteligente no podrán eliminar ni cambiar sus términos."
   },
   "crow_i": {
     "title": "Inicio fácil",
-    "desc" :"- Experiencia de usuario inteligente {{ <br/ > }}- Videos tutoriales {{ <br/ > }}- Herramientas promocionales únicas {{ <br/ > }}- 100% automatizado {{ <br/ > }}- Garantía ganador"
+    "desc" :"- Experiencia de usuario inteligente <br/>- Videos tutoriales <br/>- Herramientas promocionales únicas <br/>- 100% automatizado <br/>- Garantía ganador"
     },
   "MARKETING_PLAN": "PLAN DE MARKETING - SISTEMA INTELIGENTE Y SIMPLE DE PAGO",
-  "Automatic_downline": "Comisiones automáticas de participantes de línea descendente pagadas al instante en su billetera ETH",
+  "Automatic_downline": "Comisiones automáticas de participantes de línea descendente pagadas al instante en su billetera TRX",
   "By_completing": "Al completar su matriz, el contrato genera una nueva matriz que le permitirá tener espacios para nuevos participantes.",
-  "Automatic_commissions": "Los bonos automáticos de los miembros de la línea descendente se pagan instantáneamente a su billetera ETH.",
+  "Automatic_commissions": "Los bonos automáticos de los miembros de la línea descendente se pagan instantáneamente a su billetera TRX.",
   "All_data_is": "Todos los datos se almacenan en la cadena de bloques y son de acceso público en etherscan.io",
   "only": "Solo",
   "During_register": "Durante el registro, Cryptobillion.io creará automáticamente ambas matrices (x3 y x6) para usted",
@@ -78,7 +78,7 @@
   "Automatic_login": "Entrar con billetera de forma automática:",
   "Login_automatically": "Entrar con billetera",
   "Entern_manually": "Entrar manualmente",
-  "Enter_ETH": "Ingrese dirección ETH o Id del sistema",
+  "Enter_TRX": "Ingrese dirección TRX o Id del sistema",
   "Enter_the_number": "Ingrese el número de su referido",
   "linkcopied": "¡Enlace copiado!",
   "walletCopied": "¡Direccion de wallet copiada!",
@@ -94,19 +94,19 @@
   "user_registered": "Usuario registrado.",
   "telegram_chanel": "Canal Telegram",
   "faq_q1": "¿Qué es Crypto Billions?",
-  "faq_a1": "Se puede dividir en 2 conceptos: primero: es un contrato inteligente o una aplicación que se ejecuta en una red de criptomonedas Ethereum. El código de la aplicación está programado para distribuir transferencias entrantes entre los participantes de acuerdo con un algoritmo específico. Segundo: Esto es el sitio en sí, que proporciona una interfaz para la conveniencia de trabajar con un contrato inteligente",
+  "faq_a1": "Se puede dividir en 2 conceptos: primero: <br/> es un contrato inteligente o una aplicación que se ejecuta en una red de criptomonedas Tron. El código de la aplicación está programado para distribuir transferencias entrantes entre los participantes de acuerdo con un algoritmo específico. Segundo: Esto es el sitio en sí, que proporciona una interfaz para la conveniencia de trabajar con un contrato inteligente",
   "faq_q2": "¿Quién es el administrador del proyecto?",
-  "faq_a2": "En Crypto Billions no hay administrador. Hay un creador que subió el código del contrato a la cadena de bloques de criptomonedas Ethereum. Desde entonces, el contrato inteligente ha sido parte de la red general, que es compatible con los mineros. No uno tiene el derecho de afectar la operación de un contrato inteligente, eliminarlo o detenerlo. Cualquier intento de hacer cambios no autorizados será rechazado debido a la inconsistencia con copias anteriores en la cadena de bloques",
+  "faq_a2": "En Crypto Billions no hay administrador. Hay un creador que subió el código del contrato a la cadena de bloques de criptomonedas Tron. Desde entonces, el contrato inteligente ha sido parte de la red general, que es compatible con los mineros. No uno tiene el derecho de afectar la operación de un contrato inteligente, eliminarlo o detenerlo. Cualquier intento de hacer cambios no autorizados será rechazado debido a la inconsistencia con copias anteriores en la cadena de bloques",
   "faq_q3": "¿Puede una transacción permanecer en el saldo de un contrato inteligente?",
   "faq_a3": "Descartado. El contrato se programó para no acumular fondos, sino para servir solo como transmisor. El saldo del contrato siempre es cero, cualquiera puede verificar esto. Simplemente carece de la función de tomar fondos para su saldo. Cualquier transacción alcanzará el objetivo deseado sano y salvo",
   "faq_q4": "¿Con qué moneda funciona el proyecto?",
-  "faq_a4": "Dado que el contrato inteligente se publica en el entorno de software de Ethereum, entonces, en consecuencia, la participación en el proyecto solo es posible con esta moneda digital",
+  "faq_a4": "Dado que el contrato inteligente se publica en el entorno de software de Tron entonces, en consecuencia, la participación en el proyecto solo es posible con esta moneda digital",
   "faq_q5": "¿Qué se necesita para participar en el proyecto?",
-  "faq_a5": "Es suficiente tener una computadora o teléfono inteligente con la billetera Ethereum",
+  "faq_a5": "Es suficiente tener una computadora o teléfono inteligente con la billetera Tron",
   "faq_q6": "Y si el proyecto se derrumba, ¿perderé dinero?",
   "faq_a6": "Descartado. El contrato inteligente es absolutamente transparente, todos los datos se registran en la cadena de la cadena de bloques. Sin estafas ni fraudes. El proyecto no puede fallar. Funcionará mientras exista la cadena de bloques, incluso si el sitio está cerrado",
   "faq_q7": "¿Cómo puedo estar seguro de que mi billetera no se bloqueará?",
-  "faq_a7": "En la industria de las criptomonedas, no existe el bloqueo de billetera. Esto es imposible y técnicamente imposible incluso para el creador de la criptomoneda (esta es una característica de la tecnología). Creado por usted, la billetera ETH pertenece solo a tú.",
+  "faq_a7": "En la industria de las criptomonedas, no existe el bloqueo de billetera. Esto es imposible y técnicamente imposible incluso para el creador de la criptomoneda (esta es una característica de la tecnología). Creado por usted, la billetera TRX pertenece solo a tú.",
   "faq_q8": "¿Cómo registrarse en el proyecto?",
   "faq_a8": "Para registrarse, primero debe hacer el pago. Para hacerlo, vaya desde la página principal a \"Registrarse\" y siga las instrucciones. Después del pago exitoso, toma un lugar en la estructura y se considera un pago completo. partícipe.",
   "faq_q9": "¿Qué billetera es mejor usar?",
@@ -117,8 +117,8 @@
   "faq_a11":"El desbordamiento es un proceso que ocurre cuando un participante se registra en línea ascendente o descendente, en el que el primer nivel se llena con participantes. El siguiente miembro nuevo cae en la estructura de esta línea ascendente o descendente arriba, en el área libre más cercana sitio.",
   "faq_q12":"¿Puedo registrarme si llegué al sitio sin un enlace de participante?",
   "faq_a12":"Sí, dichos miembros se llaman \"participantes gratuitos.\" Estos son participantes que vinieron por cualquier motivo SIN un enlace de afiliado. Los participantes gratuitos se distribuyen de manera uniforme en todo el Sistema (de izquierda a derecha), comenzando por esas líneas ascendentes que se registraron previamente",
-  "faq_q13":"¿Cómo obtener ETH en mi billetera?",
-  "faq_a13":"Hay muchos intercambiadores. Se pueden encontrar intercambiadores confiables y probados en el sitio web bestchange. Ru. Si es la primera vez que realiza un intercambio, siga estas instrucciones: 1) Vaya al sitio bestchange. Ru.  2) Elija el sistema de pago apropiado con el que desea realizar un intercambio por la moneda deseada Ethereum.3) Elija el servicio adecuado con la mejor tarifa.4) Vaya al sitio del intercambiador seleccionado y siga las instrucciones simples. automático y se lleva a cabo muy rápidamente. 5) Asegúrese de que su billetera reciba los fondos de Ethereum. Nota: Al recargar con tarjetas bancarias, los intercambiadores pueden solicitar la verificación de la tarjeta por primera vez. Por lo general, esta es una tarjeta fotográfica en el fondo de la página de intercambio El reabastecimiento posterior se realiza instantáneamente. Si no desea verificar su tarjeta en el intercambiador, primero puede recargar su cuenta QIWI o YandexMoney desde su tarjeta bancaria (a través de la interfaz de cualquiera de estos dos sistemas de pago , y no a través del intercambiador), y luego cambiar de dicho sistema de pago a través del intercambiador a la billetera Ethereum sin verificación de tarjeta",
+  "faq_q13":"¿Cómo obtener TRX en mi billetera?",
+  "faq_a13":"Hay muchos intercambiadores. Se pueden encontrar intercambiadores confiables y probados en el sitio web bestchange. Ru. Si es la primera vez que realiza un intercambio, siga estas instrucciones: <br/><br/> 1) Vaya al sitio bestchange. Ru. <br/><br/> 2) Elija el sistema de pago apropiado con el que desea realizar un intercambio por la moneda deseada Tron.<br/><br/> 3) Elija el servicio adecuado con la mejor tarifa.<br/><br/> 4) Vaya al sitio del intercambiador seleccionado y siga las instrucciones simples. automático y se lleva a cabo muy rápidamente.<br/><br/> 5) Asegúrese de que su billetera reciba los fondos de Tron. Nota: Al recargar con tarjetas bancarias, los intercambiadores pueden solicitar la verificación de la tarjeta por primera vez. Por lo general, esta es una tarjeta fotográfica en el fondo de la página de intercambio El reabastecimiento posterior se realiza instantáneamente. Si no desea verificar su tarjeta en el intercambiador, primero puede recargar su cuenta QIWI o YandexMoney desde su tarjeta bancaria (a través de la interfaz de cualquiera de estos dos sistemas de pago , y no a través del intercambiador), y luego cambiar de dicho sistema de pago a través del intercambiador a la billetera Tron sin verificación de tarjeta",
   "faq_q14":"¿Qué sucede si mi compañero compra un nivel antes que yo?",
   "faq_a14":"El dinero será redirigido a su línea ascendente de la misma línea que su socio. Si compra niveles a tiempo, esto no sucederá. Si esto sucedió, no da miedo. Si encuentra esto a tiempo, luego activando el nivel, continúe recibiendo las transferencias restantes para este nivel",
   "faq_q15":"¿Qué pasará si no se extiende el nivel y está desactivado?",

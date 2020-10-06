@@ -4,5 +4,9 @@ export const colors ={
   cian:'#00C5FF',
   gold:'#DBA448',
   shadow:"rgba(0,0,0,.4)",
-  light:"rgba(255,255,255,.4)"
+  light:"rgba(255,255,255,.4)",
+
+  cGold:"#e0b652",
+  cCian:"#33c4ff",
+  cPurple:"#312cd1",
 };

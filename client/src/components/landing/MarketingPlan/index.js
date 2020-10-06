@@ -100,7 +100,7 @@ function MarketingPlan(props) {
                                       nIcons={"8"}
                                       w={"40"}
                                       h={"40"}
-                                      url={"img//landing/icons_02.png"}
+                                      url={"img/landing/icons_02.png"}
                                   />
                               </Flex>
                               <Flex flex={"1 0 60%"} jc={"flex-start"} className={"text-left"}>
@@ -113,7 +113,7 @@ function MarketingPlan(props) {
                                   nIcons={"8"}
                                   w={"40"}
                                   h={"40"}
-                                  url={"img//landing/icons_02.png"}
+                                  url={"img/landing/icons_02.png"}
                               />
                               <Flex flex={"1 0 60%"} jc={"flex-start"} className={"text-left"}>
                                   <small className={"d-block"} style={{fontSize:"7px"}}>{t('By_completing')}</small>
@@ -137,7 +137,7 @@ function MarketingPlan(props) {
                                   nIcons={"8"}
                                   w={"40"}
                                   h={"50"}
-                                  url={"img//landing/icons_02.png"}
+                                  url={"img/landing/icons_02.png"}
                               />
                               <Flex flex={"1 0 60%"} jc={"flex-start"} className={"text-left"}>
                                   <small className={"d-block"} style={{fontSize:"7px"}}>{t('Automatic_commissions')}</small>
@@ -158,7 +158,7 @@ function MarketingPlan(props) {
                 <Fade bottom>
                     <div className="dataoutline">
                         <div className="data">
-                            {t('only')} <span className={"bold"}>0.9 THH</span>
+                            {t('only')} <span className={"bold"}>1200 TRX</span>
                         </div>
                     </div>
                 </Fade>

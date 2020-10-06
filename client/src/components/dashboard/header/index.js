@@ -7,8 +7,7 @@ import LanguageSelect from "./language_select";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {SeTDataDash} from "../../store/actions/actionsCreators";
-// import {Link} from "react-router-dom";
-
+import {Mylink} from "./../../UI/Btn";
 
 
 const Container = styled.header`
@@ -29,9 +28,9 @@ function Header(props) {
                     <img src="/img/logo.png" alt=""/>
                 </Flex>
                 <Flex flex={"1 0 50%"} className={"pr-3 justify-content-center justify-content-sm-end pt-3 pt-sm-0"}>
-                    <Flex flex={"0 0 150px"} jc={"flex-end"} className={" mr-3"}>
+                    <Flex flex={"1 0 350px"} jc={"flex-end"} className={" mr-3 "}>
                         {/*<Link className={"p-2 cw "} to="/dashboard">{t("presentation")}</Link>*/}
-                        {/*<Link className={"p-2 cw "} to="/dashboard">{t("support")}</Link>*/}
+                        <Mylink className={"p-2 cw "}  href="https://drive.google.com/drive/folders/1bWeWeOlEas4oQo1kUEK7WEbsZLhGHB1c?usp=sharing" target={"_blank"}>{t("dash_marketin_btn")}</Mylink>
                         <Btn className={"ml-3"} flex={"0 0 150px"} onClick={()=>{
                             props.SeTDataDash({onlyView:false,minihash:""});
                             props.history.push('/login')

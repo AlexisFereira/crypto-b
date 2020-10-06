@@ -60,8 +60,8 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                        <p className={"question cw mb-0"}>{text}</p>
                        <div className={"wc pt-3 d-none d-md-block"}>
                            <Collapse isOpened={open}>
-                               <div className="desc" usedangerouslysetinnerhtml={"true"}>
-                                   {desc}
+                               <div className="desc">
+                                   <p  dangerouslySetInnerHTML={{ __html:desc}}></p>
                                </div>
                            </Collapse>
                        </div>
@@ -71,8 +71,8 @@ function ItemCollapse({open,text,desc,handleTab,id}) {
                    </Flex>
                    <div className={"wc pt-3 d-md-none"}>
                        <Collapse isOpened={open}>
-                           <div className="desc" usedangerouslysetinnerhtml={"true"} >
-                               {desc}
+                           <div className="desc">
+                            <p  dangerouslySetInnerHTML={{ __html:desc}}></p>
                            </div>
                        </Collapse>
                    </div>

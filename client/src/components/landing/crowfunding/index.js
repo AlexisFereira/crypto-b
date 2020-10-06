@@ -44,11 +44,7 @@ function Crowfunding() {
                         <div className="line line-gradien-v d-none d-lg-block"> </div>
                         <ItemDesc name={t('crow_g').title }  desc={t('crow_g').desc }/>
                         <ItemDesc name={t('crow_h').title }  desc={t('crow_h').desc }/>
-                        <ItemDesc name={t('crow_i').title }  desc={
-                            <div>
-                                { t('crow_i').desc }
-                            </div>
-                        }/>
+                        <ItemDesc name={t('crow_i').title }  desc={t('crow_i').desc }/>
                     </div>
                 </Flex>
             </div>
