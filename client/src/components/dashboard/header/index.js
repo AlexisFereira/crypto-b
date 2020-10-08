@@ -23,14 +23,14 @@ function Header(props) {
     const { t } = useTranslation();
     return (
         <Container className={"wc py-3 py-md-4 mb-5 position-relative "}  style={{zIndex:"999999"}}>
-            <Flex className={"col-12 col-xl-10 mx-auto px-0"} clasName={"wc"}>
+            <Flex className={"col-12 col-xl-10 mx-auto px-0 "} clasName={"wc"}>
                 <Flex flex={"0 0 250px"} jc={"flex-start"} onClick={()=>props.history.push("/")}>
                     <img src="/img/logo.png" alt=""/>
                 </Flex>
-                <Flex flex={"1 0 50%"} className={"pr-3 justify-content-center justify-content-sm-end pt-3 pt-sm-0 "}>
-                    <Flex flex={"1 0 320px"} jc={"flex-end"} className={"px-2"}>
+                <Flex flex={"1 0 50%"} className={"pr-3 pr-md-0 justify-content-center justify-content-sm-end pt-3 pt-sm-0"}>
+                    <Flex flex={"1 0 320px"} jc={"flex-end"} className={"px-2 px-md-0 "}>
                         <Mylink className={"p-2 cw "}  href="https://drive.google.com/drive/folders/1bWeWeOlEas4oQo1kUEK7WEbsZLhGHB1c?usp=sharing" target={"_blank"}>{t("dash_marketin_btn")}</Mylink>
-                        <Btn className={"mx-2"} flex={"0 0 120px"} onClick={()=>{
+                        <Btn className={"mx-2 mr-lg-4"} flex={"0 0 120px"} onClick={()=>{
                             props.SeTDataDash({onlyView:false,minihash:""});
                             props.history.push('/login')
                         }}>

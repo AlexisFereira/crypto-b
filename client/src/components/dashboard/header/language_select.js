@@ -50,7 +50,6 @@ function Language_select() {
 
     return (
         <Container>
-
             <Flex className="changeF " onClick={()=> setOpen({...menuL,open:!menuL.open})}>
                 <div className="flag">
                     <img src={`/img/flags/${i18n.language}.png`} alt="" width={"20px"} height={"auto"}/>

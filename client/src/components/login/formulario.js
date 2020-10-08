@@ -113,9 +113,9 @@ function Formulario(props) {
 
         try {
            let validacion = await VerificaId(address);
+
             if(validacion.status){
-                address = await Crypto(null,[address],'idToAddress');
-                let logueado = {wallet:address};
+                let logueado = {wallet:validacion.data.user_b58};
                 sessionStorage.setItem("onlyview",JSON.stringify(logueado));
                 props.SeTDataDash({onlyView:true});
                 props.history.push('/dashboard')

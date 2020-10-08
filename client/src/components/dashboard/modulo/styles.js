@@ -70,6 +70,8 @@ export const Container = styled(Flex)`
     max-width:133px;
     flex:1 0 133px;
     
+   
+    
     .circle{
         width:12px;
         height:12px;
@@ -142,8 +144,13 @@ export const Container = styled(Flex)`
                     transform:scale(1) rotate(-5deg);
                 }
             }
-        }
+        }    
     }
+     @media all and (max-width: 768px){
+        max-width:180px;
+    }
+    
+    
 `;
 
 const LinesS = styled(Flex)`

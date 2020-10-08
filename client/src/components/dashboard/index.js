@@ -31,12 +31,13 @@ function Dashboard(props) {
     let onlyview = JSON.parse(sessionStorage.getItem("onlyview"));
 
     if(onlyview){
-        logueado = onlyview.wallet
+        logueado = onlyview.wallet;
     }else if(!logueado){
         props.history.push('/login');
     }
 
     let addressRequeest = `${cryptoVar.api}/api/v1/accountw/${logueado}`;
+
 
     let getData = async ()=>{
         handler({loading:true});
@@ -113,8 +114,8 @@ function Dashboard(props) {
             :
                 <React.Fragment>
                     <Datos noDescrtiption onLoad={true} when={!state.loading} />
-                    <Flex alg={"flex-start"} className={"col-12 col-xl-10 mx-auto cw pt-4"}>
-                        <aside className={"col-12 col-sm-10 col-lg-3 mx-auto pt-md-5 mt-md-2 pb-5 px-0"}>
+                    <Flex alg={"flex-start"} className={"col-12 col-xl-10 mx-auto cw pt-4 pt-lg-0  px-lg-0"}>
+                        <aside className={"col-12 col-sm-10 col-lg-3 mx-auto pt-md-5 mt-md-2 pb-5 px-0 "}>
                             <Fade bottom>
                                 <DegCard className={"p-3 mb-lg-5 col-xl-9 mx-auto" }>
                                     <Flex alg={"flex-start"} className={"pt-4"}>
@@ -154,18 +155,15 @@ function Dashboard(props) {
                                        </div>
                                    </Fade>
                                 </Flex>
-
-                                    <Flex className={"col-12 col-sm-6 col-lg-12"}>
+                                <Flex className={"col-12 col-sm-6 col-lg-12"}>
                                         {moment().isAfter('2020-10-07') &&
                                         <CopyUrl id={"02"} name={"Link de afiliado"} url={props.dashboard.link} message={t("linkcopied")}/>
                                         }
                                         <CopyUrl id={"01"} name={"The TRON wallet"} url={props.dashboard.wallet} message={t("walletCopied")}/>
                                     </Flex>
-
-
                             </Flex>
                         </aside>
-                        <div className="content col-12 col-sm-10 col-lg-9 px-0 pl-md-4">
+                        <div className="content col-12 col-sm-10 col-lg-9 px-0 pl-md-4 ">
                             <BigCard
                                 version={"x3"}
                                 activos={props.dashboard.m1_levels}
@@ -199,7 +197,7 @@ function Dashboard(props) {
                             </Flex>
                         </div>
                     </Flex>
-                    <Flex className={"col-12 col-xl-10 mx-auto pb-3 pt-5 fadeIn"}>
+                    <Flex className={"col-12 col-xl-10 mx-auto pb-3 pt-5 fadeIn "}>
                         <Flex flex={"0 0 150px"}>
                             <Redes/>
                         </Flex>
