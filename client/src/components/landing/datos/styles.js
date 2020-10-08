@@ -4,6 +4,7 @@ import {colors} from "../../UI";
 export const Container = styled.div`
     position:relative;
     padding-bottom:40px;
+    max-height:159px;
     
     .line{
         height:1px;

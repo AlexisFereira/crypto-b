@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +15,9 @@ import './i18n';
 
 function App() {
 
+    useEffect(()=>{
+        console.log(window.location.pathname)
+    },[window.location.pathname])
 
   return (
     <div className="main-container bgDark" id={"scroll"}>

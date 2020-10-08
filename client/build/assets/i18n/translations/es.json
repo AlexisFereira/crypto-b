@@ -123,5 +123,10 @@
   "faq_a14":"El dinero será redirigido a su línea ascendente de la misma línea que su socio. Si compra niveles a tiempo, esto no sucederá. Si esto sucedió, no da miedo. Si encuentra esto a tiempo, luego activando el nivel, continúe recibiendo las transferencias restantes para este nivel",
   "faq_q15":"¿Qué pasará si no se extiende el nivel y está desactivado?",
   "faq_a15":"Su cuenta permanece en el Sistema para siempre, y en cualquier momento puede extender los niveles y continuar recibiendo ingresos",
-  "compatible": "Compatible con"
+  "compatible": "Compatible con",
+  "dash_white_circle": "Pago de usuario directo",
+  "dash_cian_circle": "Pago de usuario invitado por nivel superior",
+  "dash_purple_circle": "Pago de usuario  invitado por nivel inferior",
+  "dash_gold_circle": "Pago de usuario que superó a su partner",
+  "dash_marketin_btn": "Marketing"
 }

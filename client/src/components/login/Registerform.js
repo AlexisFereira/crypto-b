@@ -10,6 +10,7 @@ import ShowModal from "../UI/ShowModal/ShowModal";
 import Fade from "./../UI/Fade";
 import axios from "axios";
 import {Crypto,VerificaId,RegistroManual} from "../../crypto";
+import {cryptoVar} from "../../config";
 
 function RegisterForm(props) {
 
@@ -64,7 +65,7 @@ function RegisterForm(props) {
                 }
                 let currentAdd = await Crypto(null,null,"getUserAddress");
                 let currenId = await Crypto(null,[currentAdd],"addressId");
-                let idDecimal = await Crypto(null,[currenId.id["_hex"]],"toDecimal")
+                let idDecimal = await Crypto(null,[currenId.id["_hex"]],"toDecimal");
                 let currentUSer  = await VerificaId(idDecimal);
                 if(currentUSer.status){
                         props.SeTDataDash({logueado:currentAdd});
@@ -145,7 +146,7 @@ function RegisterForm(props) {
             handleState({disabled:true});
             await axios({
                 method:"get",
-                url:`http://api-test.cryptobillions.io/api/v1/accounth/${query.get("minihash")}`,
+                url:`${cryptoVar.api}/api/v1/accounth/${query.get("minihash")}`,
             }).then(async  result => {
                 if(result.status){
                     await handleState({address:result.data.wallet});

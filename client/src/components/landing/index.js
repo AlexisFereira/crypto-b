@@ -103,6 +103,8 @@ function Landing(props) {
 
 
     useEffect(() => {
+        sessionStorage.removeItem("logueado");
+        sessionStorage.removeItem("onlyview");
         getData();
         consultInvitation();
     }, []);

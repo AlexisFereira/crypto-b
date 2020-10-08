@@ -117,11 +117,16 @@
   "faq_a11": "Overflow is a process that occurs when a participant registers in upline or downline, in which the first level is filled with participants. The next new member falls into the structure of this upline below or downline above, in the nearest free place.",
   "faq_q12": "Can I register if I came to the site without an participant link?",
   "faq_a12": "Yes, such members are called \"free participants.\" These are participants who came for any reason WITHOUT an affiliate link. Free participants are distributed evenly across the System (from left to right), starting from those uplines that were previously registered.\n",
-  "faq_q13": "How to obtain ETH in my wallet?",
+  "faq_q13": "How to obtain TRON in my wallet?",
   "faq_a13": "There are many exchangers. Reliable and proven exchangers can be found on the website bestchange. Ru. If this is your first time making an exchange, follow these instructions: <br/><br/> 1) Go to the site bestchange. Ru. <br/><br/> 2) Choose the appropriate payment system with which you want to make an exchange for the desired currency Ethereum. <br/><br/>3) Choose the right service with the best rate. <br/><br/>4) Go to the site of the selected exchanger and follow the simple instructions. The exchange is usually automatic and takes place very quickly.<br/><br/> 5) Make sure that your wallet Tron funds received. Note: When replenishing with bank cards, exchangers may request card verification for the first time. <br/><br/> Typically, this is a photo card on the background of the exchange page. Subsequent replenishment is done instantly. If you don’t want to verify your card in the exchanger, you can first top up your QIWI or YandexMoney account from your bank card (via the interface of either of these two payment systems, and not through the exchanger), and then change from such a payment system through the exchanger to Tron wallet without card verification\n",
   "faq_q14": "What happens if my partner buys a level before me?",
   "faq_a14": "The money will be redirected to your upline of the same line as your partner. If you buy levels on time, this will not happen. If this happened, it’s not scary. If you find this in time, then after activating the level, continue to receive the remaining transfers for this level.\n",
   "faq_q15": "What will happen if you do not extend the level and it is deactivated?",
   "faq_a15": "Your account remains in the System forever, and at any time you can extend the levels and continue to receive income\n",
-  "compatible": "Compatible with"
+  "compatible": "Compatible with",
+  "dash_white_circle": "Direct user payment",
+  "dash_cian_circle": "Guest user payment by top level",
+  "dash_purple_circle": "Guest user payment by lower level",
+  "dash_gold_circle": "User payment that exceeded his partner",
+  "dash_marketin_btn": "Marketing"
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Flex from "./../UI/Flex";
 import Formulario from "./formulario";
 import LanguageSelect from "./../landing/header/language_select";
@@ -12,6 +12,11 @@ import {useTranslation} from "react-i18next";
 import Fade from 'react-reveal/Fade';
 
 function Login(props) {
+
+    useEffect(()=>{
+        sessionStorage.removeItem("logueado")
+        sessionStorage.removeItem("onlyview")
+    },[])
     const {t} = useTranslation();
     return (
         <Container className={"wc"} alg={"stretch"}>

@@ -43,8 +43,6 @@ A
 	yarn.lock,5/3/53585a096fe3a3b96321113856ae62602995a33b
 W
 'client/contracts/CryptobillionsTron.sol,7/b/7b42cb1113511342f38c2fb5cddeef0c7ca2b9e1
-S
-#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 ;
 client/.env,1/9/191d1665d4d8dc07f4bbf6e35a0d742096ce6a38
 E
@@ -163,3 +161,23 @@ _
 /client/public/assets/i18n/translations/Rus.json,a/e/ae896962b7316bc46543ca61368f37c9c34a5432
 H
 client/public/robots.txt,b/d/bd6eb45ab686cf67dd2d7534b5cf1e4a1e8cc874
+^
+.client/build/assets/i18n/translations/chi.json,6/d/6d05f90f5606aeb9cde2cd981304f763b1952243
+]
+-client/build/assets/i18n/translations/en.json,1/8/18ed533b343a98fd089126c9bca2cd3faf79a341
+]
+-client/build/assets/i18n/translations/es.json,6/1/61587d4713e20f4229222750bda9d9cc3741764f
+^
+.client/build/assets/i18n/translations/Rus.json,0/d/0dde3fac47fc72b52168db1d0521eaa9a54a53b6
+^
+.client/src/components/landing/header/styles.js,9/4/941400647f1a0579f91ac59720d7a552c7efb311
+U
+%client/src/components/UI/Btn/index.js,2/6/26e40f16cf6089aaf3730afd5b2b80f8310035f7
+8
+chi.JSON,d/1/d1ebf8370aa1edab13e9175b2a1d6b35b63d5e04
+8
+eng.JSON,b/b/bbf87c325e0fad74f564f8461c4bd4bc3b81b82e
+8
+Esp.JSON,b/1/b1585eb370923273373f302eabfce3e784a0cf99
+8
+Rus.JSON,6/c/6ce5b67b87a054405586e5f8e52a70a2aa8ca2fa

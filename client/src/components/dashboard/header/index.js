@@ -27,20 +27,21 @@ function Header(props) {
                 <Flex flex={"0 0 250px"} jc={"flex-start"} onClick={()=>props.history.push("/")}>
                     <img src="/img/logo.png" alt=""/>
                 </Flex>
-                <Flex flex={"1 0 50%"} className={"pr-3 justify-content-center justify-content-sm-end pt-3 pt-sm-0"}>
-                    <Flex flex={"1 0 350px"} jc={"flex-end"} className={" mr-3 "}>
-                        {/*<Link className={"p-2 cw "} to="/dashboard">{t("presentation")}</Link>*/}
+                <Flex flex={"1 0 50%"} className={"pr-3 justify-content-center justify-content-sm-end pt-3 pt-sm-0 "}>
+                    <Flex flex={"1 0 320px"} jc={"flex-end"} className={"px-2"}>
                         <Mylink className={"p-2 cw "}  href="https://drive.google.com/drive/folders/1bWeWeOlEas4oQo1kUEK7WEbsZLhGHB1c?usp=sharing" target={"_blank"}>{t("dash_marketin_btn")}</Mylink>
-                        <Btn className={"ml-3"} flex={"0 0 150px"} onClick={()=>{
+                        <Btn className={"mx-2"} flex={"0 0 120px"} onClick={()=>{
                             props.SeTDataDash({onlyView:false,minihash:""});
                             props.history.push('/login')
                         }}>
                             {t('logout')}
                         </Btn>
+
+                        <Flex flex={"0 0 45px"}  >
+                            <LanguageSelect/>
+                        </Flex>
                     </Flex>
-                    <Flex flex={"0 0 45px"}  >
-                        <LanguageSelect/>
-                    </Flex>
+
                 </Flex>
             </Flex>
         </Container>

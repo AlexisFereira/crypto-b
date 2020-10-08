@@ -123,5 +123,10 @@
   "faq_a14":"돈은 파트너와 같은 라인의 업 라인으로 재전송됩니다. 정시에 레벨을 구매하면 이런 일이 발생하지 않습니다. 이런 일이 발생하면 무섭지 않습니다. 시간이 지나면 발견됩니다. 레벨을 활성화하면이 레벨에 대한 나머지 송금을 계속받습니다.",
   "faq_q15":"레벨을 확장하지 않고 비활성화하면 어떻게됩니까?",
   "faq_a15":"계정은 시스템에 영구적으로 남아 있으며 언제든지 레벨을 확장하고 계속해서 수입을받을 수 있습니다",
-  "compatible": "兼容"
+  "compatible": "兼容",
+  "dash_white_circle": "Pago de usuario directo",
+  "dash_cian_circle": "Pago de usuario invitado por nivel superior",
+  "dash_purple_circle": "Pago de usuario  invitado por nivel inferior",
+  "dash_gold_circle": "Pago de usuario que superó a su partner",
+  "dash_marketin_btn": "Marketing"
 }

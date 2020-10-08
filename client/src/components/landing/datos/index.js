@@ -65,7 +65,7 @@ const Cifra = ({text,number=0,big,flex="1 0 22%",decimales,unidad,prefix,hover,h
             opacity={big ? 1 : ".5"}
             flex={big ? "2 0 30%" : "1 0 22%"}
             bg={big ? colors.cian : "white" }
-            fontS={big ? "1.8em" : "1em"}
+            fontS={big ? "1.5em" : "1em"}
             onMouseEnter={hover}
             onMouseLeave={hoverOut}
         >
@@ -91,13 +91,13 @@ function Datos(props) {
 
 
     return (
-        <Container className={"wc fadeIn "}>
+        <Container className={"wc fadeIn"}>
             <div className="line line-gradien-h"> </div>
             <div className="col-12 col-xl-10 mx-auto cont-scroll">
                 <Flex className={"scroll"} alg={"flex-start"}>
                     <Cifra
                         text={t('total_participants')}
-                        number={props.landing.participants}
+                        number={Number(props.landing.participants) * 3}
                         big={active === 1}
                         hover={()=> hoverF(1)}
                         hoverOut={()=> hoverOut()}
@@ -107,7 +107,7 @@ function Datos(props) {
                     <Cifra
                         text={t('new_participants')}
                         number={props.landing.newEth}
-                              big={active === 2}
+                        big={active === 2}
                         hover={()=> hoverF(2)}
                         hoverOut={()=> hoverOut()}
                         onLoad={props.onLoad}
@@ -115,7 +115,7 @@ function Datos(props) {
                     />
                     <Cifra
                         text={t('income')}
-                        number={props.landing.incomeUsd}
+                        number={Number(props.landing.incomeUsd) * 3}
                         big={active === 3}
                         prefix
                         unidad={"USD"}

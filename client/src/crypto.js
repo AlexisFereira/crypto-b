@@ -5,17 +5,18 @@ export const Crypto = async (options,parametros,metodo)=>{
     let response = {};
     try{
         var tronWeb = await window.tronWeb;
-        let contract = await tronWeb.contract().at('TQkwZ63jC9515utL2Xox2xUu7XP2SWP5hq');
+        let contract = await tronWeb.contract().at(cryptoVar.contractAddressBase58);
 
         if(metodo === "toDecimal"){
             let decimal = tronWeb.toDecimal(parametros[0]);
             return decimal;
         }
-        let contract_address = "TQkwZ63jC9515utL2Xox2xUu7XP2SWP5hq" ;
+        let contract_address = cryptoVar.contractAddressBase58 ;
         const issuerAddress = tronWeb.defaultAddress.base58;
+
         if(!issuerAddress){
             response.status = false;
-            response.message = "No se encontró ninunga billetera.";
+            response.message = "No se encontró billetera.";
             return response;
         }
 
@@ -36,7 +37,6 @@ export const Crypto = async (options,parametros,metodo)=>{
             if(metodo === "getUserAddress"){
                 let user = issuerAddress;
                 response = user;
-                console.log(response,":::: ::::")
                 return response;
             }
         }
@@ -233,9 +233,9 @@ export const getDataFromWallet = async (wallet)=>{
         .catch(e=>{
             obj.status = false;
             obj.message = e
-        })
+        });
     return obj;
-}
+};
 
 export const verificaCompra = (number,lock,canbuy, handler,modulo)=> {
     let compra = JSON.parse(sessionStorage.getItem(modulo));

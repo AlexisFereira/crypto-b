@@ -25,22 +25,18 @@ function Dashboard(props) {
     });
 
     let handler = x=> setstate({...state,...x});
-
     const { t } = useTranslation();
 
-    let search = window.location.search;
-    let id = search && new URLSearchParams(search).get("user");
+    let logueado = sessionStorage.getItem("logueado");
+    let onlyview = JSON.parse(sessionStorage.getItem("onlyview"));
 
-    if(!id && props.dashboard.onlyView){
-        props.history.push('/login')
+    if(onlyview){
+        logueado = onlyview.wallet
+    }else if(!logueado){
+        props.history.push('/login');
     }
 
-    let logueado = sessionStorage.getItem("logueado");
-
-    let addressRequeest = props.dashboard.onlyView ?
-        `${cryptoVar.api}/api/v1/account/${id}` :
-        `${cryptoVar.api}/api/v1/accountw/${logueado}`;
-
+    let addressRequeest = `${cryptoVar.api}/api/v1/accountw/${logueado}`;
 
     let getData = async ()=>{
         handler({loading:true});
@@ -67,7 +63,7 @@ function Dashboard(props) {
             let Data = await getDataDash(addressRequeest);
             if(Data.status){
 
-                let {id, users, minihash, wallet, referrer_b58, total_coin, m1_total_coin, m2_total_coin, m1_levels, m2_levels, m1, m2,
+                let {id, users, minihash, wallet, referrer_b58, total_coin, m1_total_coin, m2_total_coin, m1_levels, m2_levels, m1, m2,user_b58
                 } = Data.data;
 
                 props.SeTDataDash({
@@ -75,7 +71,7 @@ function Dashboard(props) {
                     users,
                     minihash,
                     link:`https://cryptobillions.io/register/?minihash=${minihash}`,
-                    wallet,
+                    wallet:user_b58,
                     referred:referrer_b58,
                     total_eth:total_coin,
                     m1_total_eth:m1_total_coin,
@@ -100,7 +96,6 @@ function Dashboard(props) {
 
     useEffect(()=>{
         getData();
-
     },[]);
 
     return (
@@ -159,12 +154,15 @@ function Dashboard(props) {
                                        </div>
                                    </Fade>
                                 </Flex>
-                                { moment().isAfter('2020-10-07') &&
+
                                     <Flex className={"col-12 col-sm-6 col-lg-12"}>
+                                        {moment().isAfter('2020-10-07') &&
                                         <CopyUrl id={"02"} name={"Link de afiliado"} url={props.dashboard.link} message={t("linkcopied")}/>
+                                        }
                                         <CopyUrl id={"01"} name={"The TRON wallet"} url={props.dashboard.wallet} message={t("walletCopied")}/>
                                     </Flex>
-                                }
+
+
                             </Flex>
                         </aside>
                         <div className="content col-12 col-sm-10 col-lg-9 px-0 pl-md-4">
@@ -172,7 +170,7 @@ function Dashboard(props) {
                                 version={"x3"}
                                 activos={props.dashboard.m1_levels}
                                 data={props.dashboard.m1}
-                                onlyView={props.dashboard.onlyView}
+                                onlyView={onlyview}
                                 accountLogged={props.dashboard.wallletLoged }
                                 getData={()=>getData()}
                             />
@@ -188,16 +186,16 @@ function Dashboard(props) {
                                 version={"x6"}
                                 activos={props.dashboard.m2_levels}
                                 data={props.dashboard.m2}
-                                onlyView={props.dashboard.onlyView}
+                                onlyView={onlyview}
                                 accountLogged={props.dashboard.wallletLoged }
                                 getData={()=>getData()}
                                 m2
                             />
                             <Flex jc={"flex-end"} className={"wc cw historia"}>
-                                <div className={"pl-3"}> <div className="color-circle "> </div> Usuario en matriz</div>
-                                <div className={"pl-3"}> <div className="color-circle purple"> </div> Número de ciclos</div>
-                                <div className={"pl-3"}> <div className="color-circle cian"> </div> Número de ciclos</div>
-                                <div className={"pl-3"}> <div className="color-circle gold"> </div> Número de ciclos</div>
+                                <div className={"pl-3"}> <div className="color-circle "> </div> {t("dash_white_circle")}</div>
+                                <div className={"pl-3"}> <div className="color-circle purple"> </div> {t("dash_purple_circle")}</div>
+                                <div className={"pl-3"}> <div className="color-circle cian"> </div> {t("dash_cian_circle")}</div>
+                                <div className={"pl-3"}> <div className="color-circle gold"> </div> {t("dash_gold_circle")}</div>
                             </Flex>
                         </div>
                     </Flex>

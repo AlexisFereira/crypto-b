@@ -27,8 +27,10 @@ function Header(props) {
                             <button onClick={() => scrollT("faq")} className={"link cw px-2"}>{t('how_this')}</button>
                             <button onClick={() => scrollT("faq2")} className={"link cw px-2"}>{t('etherum_fqas')}</button>
                         </Flex>
-                        <Flex className={"main-btns "} flex={"1 0 400px"}>
-                            <Mylink className={"p-2 cw "}  href="https://drive.google.com/drive/folders/1bWeWeOlEas4oQo1kUEK7WEbsZLhGHB1c?usp=sharing" target={"_blank"}>{t("dash_marketin_btn")}</Mylink>
+                        <Flex className={"main-btns "} flex={"1 0 auto"} style={{maxWidth:"400px"}}>
+                            <Mylink className={"p-2 cw "}  href="https://drive.google.com/drive/folders/1bWeWeOlEas4oQo1kUEK7WEbsZLhGHB1c?usp=sharing" target={"_blank"}>
+                                {t("dash_marketin_btn")}
+                            </Mylink>
                             {props.canRegister &&
                             <div className={"col-4 px-0 px-2"}>
                                 <Btn

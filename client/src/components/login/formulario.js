@@ -57,6 +57,7 @@ function Formulario(props) {
         SetS({...state,loadingAuth:true});
         try{
            let UserTron = await Crypto(null,null,"getUserAddress");
+            console.log(typeof  UserTron)
             if(UserTron && typeof UserTron === "string"){
                 // Verifica si existe
                 let exists = await getDataFromWallet(UserTron);
@@ -108,11 +109,16 @@ function Formulario(props) {
             address = await Crypto(null,[address],"addressId");
             address = await Crypto(null, [address.id._hex],"toDecimal");
         }
+
+
         try {
            let validacion = await VerificaId(address);
             if(validacion.status){
-                props.SeTDataDash({onlyView:true})
-                props.history.push(`/dashboard?user=${address}`)
+                address = await Crypto(null,[address],'idToAddress');
+                let logueado = {wallet:address};
+                sessionStorage.setItem("onlyview",JSON.stringify(logueado));
+                props.SeTDataDash({onlyView:true});
+                props.history.push('/dashboard')
 
             }else{
                 handler({

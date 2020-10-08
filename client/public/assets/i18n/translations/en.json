@@ -124,9 +124,9 @@
   "faq_q15": "What will happen if you do not extend the level and it is deactivated?",
   "faq_a15": "Your account remains in the System forever, and at any time you can extend the levels and continue to receive income\n",
   "compatible": "Compatible with",
-  "dash_white_circle": "Pago de usuario directo",
-  "dash_cian_circle": "Pago de usuario invitado por nivel superior",
-  "dash_purple_circle": "Pago de usuario  invitado por nivel inferior",
-  "dash_gold_circle": "Pago de usuario que superó a su partner",
+  "dash_white_circle": "Direct user payment",
+  "dash_cian_circle": "Guest user payment by top level",
+  "dash_purple_circle": "Guest user payment by lower level",
+  "dash_gold_circle": "User payment that exceeded his partner",
   "dash_marketin_btn": "Marketing"
 }
