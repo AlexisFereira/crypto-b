@@ -70,7 +70,7 @@
   "Automatic_downline": "下线的佣金会自动即刻到你的以太坊钱包",
   "By_completing": "完成matriz后，合同将生成一个新matriz，您可以为新的参与者留出空间。",
   "Automatic_commissions": "您的二级下线的佣金将立即支付到您的以太坊钱包。",
-  "All_data_is": "所有数据都存储在区块链上，可在etherscan.io上公开访问",
+  "All_data_is": "所有数据都存储在区块链上，可在<a href=\"https://tronscan.org/#/\" target=\"_blank\">tronscan.org<a/> 上公开访问",
   "only": "单独",
   "During_register": "注册期间，Cryptobillion.io将自动创建两个数组（x3和x6）。",
   "What_is_Criptobillions": "什么是Criptobillions.io？",

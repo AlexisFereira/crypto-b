@@ -28,7 +28,7 @@ function BigCard({version,activos,data,m2,onlyView,accountLogged,getData}) {
         <Container className={"wc mb-4 mt-4 pt-3"}>
             <p className={"title"}>
                 <Fade>
-                    <span>Bilions </span>
+                    <span>Billions </span>
                 </Fade>
                 <Fade bottom>
                     <span className={"str"}>{version}</span>
